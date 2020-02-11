@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  # Apache
+  apache:
+    build: ./docker/build/apache
+    depends_on:
+      - mysql
+    volumes:
+      - ./docker/etc/apache/virtualhost.conf:/etc/apache2/sites-enabled/000-default.conf:ro
+      - ./docker/etc/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/etc/php/php-cli.ini:/usr/local/etc/php/php-cli.ini
+      - ./app/symfony/var/DoctrineMigrations:/var/www/symfony/var/DoctrineMigrations
+      - ./app/symfony/var/import/db:/var/www/symfony/var/import/db
+      - ./app/symfony/src:/var/www/symfony/src
+      - ./app/symfony/bin:/var/www/symfony/bin
+      - ./app/symfony/templates:/var/www/symfony/templates
+      - ./app/symfony/translations:/var/www/symfony/translations
+      - ./app/integration:/var/www/integration
+      - ./app/symfony/config:/var/www/symfony/config
+      - ./app/symfony/public:/var/www/symfony/public
+      - ./app/symfony/install.sh:/var/www/symfony/install.sh
+      - ./app/symfony/composer.json:/var/www/symfony/composer.json
+      - ./app/symfony/composer.lock:/var/www/symfony/composer.lock
+      - ./app/symfony/symfony.lock:/var/www/symfony/symfony.lock
+      - ./app/symfony/.env:/var/www/symfony/.env
+      - app-vendor:/var/www/symfony/vendor
+
+    environment:
+      APP_ENV: $APP_ENV
+      DATABASE_URL: mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DATABASE
+
+  # MySQL
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./docker/etc/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - mysql-data:/var/lib/mysql/
+
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: nazarpc/phpmyadmin
+    depends_on:
+      - mysql
+
+volumes:
+  app-vendor:
+  mysql-data:

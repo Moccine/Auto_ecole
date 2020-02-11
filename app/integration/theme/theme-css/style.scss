@@ -1,0 +1,681 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name: Driveon - Driving School HTML Template
+    Template URI: http://hastech.company/
+    Description: Bootstrap HTML Template
+    Author: Hastech
+    Author URI: http://hastech.company/
+    Version: 1.0
+
+-----------------------------------------------------------------------------------
+
+    CSS INDEX
+    ===================
+
+    1.   Page Banner Title Area
+    2.   Feature Area
+	3.   Course Area
+	4.   Video Area
+	5.   Instructor Area
+	6.   FAQ Area
+	7.   Call To Action Area
+	8.   Contact Area
+	9.   Dark Version Style
+
+
+-----------------------------------------------------------------------------------*/
+/*--------------------------
+	1. Page Banner Title Area
+--------------------------*/
+
+.page-banner-area {
+  background-image: url("../theme-img/img/section-bg/page-banner.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 270px 0 150px;
+}
+
+.page-banner {
+  h1 {
+    color: #fff;
+    display: block;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 30px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  &.text-left h1 {
+    float: left;
+  }
+
+  &.text-right h1 {
+    float: right;
+  }
+
+  ul {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 15px;
+  }
+
+  &.text-left ul {
+    float: right;
+  }
+
+  &.text-right ul {
+    float: left;
+  }
+
+  ul li {
+    display: block;
+    float: left;
+    padding: 0 6px;
+    position: relative;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    + li::before {
+      color: #fff;
+      content: "/";
+      display: block;
+      left: -3px;
+      line-height: 9px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+    }
+
+    a, span {
+      color: #fff;
+      display: block;
+      font-size: 12px;
+      line-height: 9px;
+      text-transform: uppercase;
+    }
+
+    a:hover {
+      color: #dec839;
+    }
+  }
+}
+
+/*--------------------------
+	2. Feature Area
+--------------------------*/
+
+.feature-wrapper, .feature-left, .feature-right {}
+
+/* Feature Image */
+
+.feature-image {
+  z-index: 9;
+}
+
+/* Single Feature */
+
+.single-feature {
+  position: relative;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  z-index: 1;
+
+  &:nth-child(1) {
+    padding: 15px 0 14px;
+  }
+
+  &:nth-child(2) {
+    padding: 37px 0;
+  }
+
+  &:nth-child(3) {
+    padding: 15px 0;
+  }
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  &::before {
+    background-color: #fff;
+    bottom: 0;
+    content: "";
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 50%;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Single Feature Hover */
+
+.feature-left .single-feature::before {
+  left: 100%;
+}
+
+.feature-right .single-feature::before {
+  Right: 100%;
+}
+
+/* Left Single Feature */
+
+.feature-left .single-feature {
+  margin-right: -7px;
+
+  &:nth-child(2) {
+    margin-left: -15px;
+    padding-right: 24px;
+  }
+}
+
+/* Right Single Feature */
+
+.feature-right .single-feature {
+  margin-left: -7px;
+
+  &:nth-child(2) {
+    margin-right: -15px;
+    padding-left: 24px;
+  }
+}
+
+/* Featue Icon */
+
+.single-feature .icon {
+  display: block;
+  margin-top: 19px;
+  min-width: 36px;
+}
+
+.feature-left .icon {
+  float: right;
+  margin-left: 29px;
+  text-align: left;
+}
+
+.feature-right .icon {
+  float: left;
+  margin-right: 29px;
+  text-align: right;
+}
+
+.single-feature {
+  .icon i {
+    color: #dec839;
+    font-size: 36px;
+    display: block;
+  }
+
+  .text {
+    h4 {
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    p {}
+  }
+}
+
+/* Feature Text */
+
+/*--------------------------
+	3. Course Area
+--------------------------*/
+
+.course-wrapper {}
+
+.course-item {
+  background: rgba(0, 0, 0, 0) url("../theme-img/img/shape/course/course-white.png") no-repeat scroll center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  overflow: hidden;
+  padding: 34px 25px 40px;
+  position: relative;
+  transition: all 1s ease 0s;
+  z-index: 1;
+
+  i {
+    color: #dec839;
+    display: inline-block;
+    font-size: 48px;
+    margin-bottom: 18px;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+
+  h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 19px;
+    padding-bottom: 19px;
+    position: relative;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+
+    &::before {
+      background-color: #dec839;
+      bottom: 0;
+      content: "";
+      height: 2px;
+      left: 50%;
+      margin-left: -25px;
+      position: absolute;
+      width: 50px;
+    }
+  }
+
+  p {
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+
+  &:hover {
+    background-image: url("../theme-img/img/shape/course/course-color.png");
+    transform: rotate(360deg);
+
+    i {
+      color: #fff;
+    }
+
+    h4 {
+      color: #fff;
+
+      &::before {
+        background-color: #fff;
+      }
+    }
+
+    p {
+      color: #fff;
+    }
+  }
+}
+
+/* Course Hover */
+
+/*--------------------------
+	4. Video Area
+--------------------------*/
+
+.video-area {
+  background: rgba(0, 0, 0, 0) url("../theme-img/img/section-bg/video.jpg") repeat scroll 0 0;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 195px 0;
+}
+
+.video-content {
+  a {
+    color: #ffffff;
+    display: inline-block;
+
+    &:hover {
+      color: #dec839;
+    }
+
+    i {
+      display: block;
+      font-size: 60px;
+    }
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 18px;
+    margin: 30px 0 0;
+    text-transform: uppercase;
+  }
+}
+
+/*--------------------------
+	5. Instructor Area
+--------------------------*/
+
+.instructor-details {}
+
+.instructor-name {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.instructor-title {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.instructor-details p {
+  margin-bottom: 17px;
+}
+
+.instructor-social a {
+  border: 1px solid #aaaaaa;
+  color: #aaaaaa;
+  display: block;
+  float: left;
+  height: 35px;
+  margin-right: 15px;
+  text-align: center;
+  width: 35px;
+
+  i {
+    display: block;
+    font-size: 18px;
+    line-height: 33px;
+  }
+
+  &:hover {
+    background-color: #dec839;
+    border-color: #dec839;
+    color: #fff;
+  }
+}
+
+.instructor-image {
+  margin-top: 74px;
+
+  img {
+    width: 100%;
+  }
+}
+
+/* Instructor Tab List */
+
+.instructor-tab-list {
+  float: left;
+  margin-top: -127px;
+
+  li {
+    display: block;
+    float: left;
+    margin-right: 30px;
+    padding-bottom: 12px;
+    width: 115px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    a {
+      display: block;
+      position: relative;
+
+      &::before {
+        background-color: #000;
+        bottom: 0;
+        content: "";
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      &:hover::before {
+        opacity: 0.5;
+      }
+    }
+
+    &.active a::before {
+      opacity: 0.5;
+    }
+
+    a {
+      &::after {
+        background-color: #dddddd;
+        border-radius: 50%;
+        bottom: -12px;
+        content: "";
+        height: 2px;
+        left: 10px;
+        opacity: 0;
+        position: absolute;
+        right: 10px;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+
+    &.active a::after {
+      opacity: 1;
+    }
+
+    a img {
+      width: 100%;
+    }
+  }
+}
+
+/*--------------------------
+	6. FAQ Area
+--------------------------*/
+
+.faq-image {
+  margin-top: 75px;
+
+  img {
+    width: 100%;
+  }
+}
+
+/*--------------------------
+	7. Call To Action Area
+--------------------------*/
+
+.cta-area {
+  background-color: #dec839;
+}
+
+.call-to-action {
+  h3 {
+    color: #fff;
+    display: block;
+    float: left;
+    font-weight: 600;
+    line-height: 36px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  a {
+    float: right;
+  }
+}
+
+/*--------------------------
+	8. Contact Area
+--------------------------*/
+
+#contact-map {
+  height: 530px;
+}
+
+.contact-info .single-info {
+  + .single-info {
+    margin-top: 45px;
+  }
+
+  .icon {
+    background-color: #dec839;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    float: left;
+    height: 44px;
+    margin-left: 10px;
+    margin-right: 40px;
+    margin-top: 10px;
+    text-align: center;
+    transform: rotate(45deg);
+    width: 44px;
+
+    i {
+      display: block;
+      font-size: 24px;
+      line-height: 44px;
+      transform: rotate(-45deg);
+    }
+  }
+
+  .content {
+    h5 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 11px;
+      text-transform: uppercase;
+    }
+
+    p a {
+      display: block;
+
+      &:hover {
+        color: #dec839;
+      }
+    }
+  }
+}
+
+/*--------------------------
+	9. Dark Version Style
+--------------------------*/
+
+.dark-wrapper {
+  .bg-white, &.bg-white {
+    background-color: #1e2127;
+  }
+
+  .bg-gray, &.bg-gray {
+    background-color: #252830;
+  }
+
+  .overlay-white::before, &.overlay-white::before {
+    background-color: #000;
+  }
+
+  p, span {
+    color: #d0d0d0;
+  }
+
+  h1, h2, h3, h4, h5, h6, a {
+    color: #fff;
+  }
+
+  .section-title {
+    &::before, &::after {
+      background-color: #444;
+    }
+  }
+
+  .find-course-form h5 span {
+    color: #555555;
+  }
+
+  .single-feature {
+    &:hover, &::before {
+      background-color: #1e2127;
+    }
+  }
+
+  .single-facts {
+    i {
+      color: #d0d0d0;
+    }
+
+    h1::before {
+      background-color: #d0d0d0;
+    }
+  }
+
+  .course-item {
+    background-image: url("../theme-img/img/shape/course/course-dark.png");
+  }
+
+  .gallery-filter button {
+    &::before, &::after {
+      background-color: #d0d0d0;
+    }
+
+    color: #d0d0d0;
+  }
+
+  .ts-arrows {
+    color: #fff;
+  }
+
+  .panel-group .panel {
+    background-color: #252830;
+  }
+
+  .blog-item {
+    .meta p {
+      color: #d0d0d0;
+    }
+
+    .title a {
+      color: #fff;
+    }
+  }
+
+  .category-sidebar ul li a {
+    color: #fff;
+  }
+
+  .form .input {
+    input {
+      &[type="text"], &[type="email"], &[type="tel"], &[type="password"], &[type="search"], &[type="url"] {
+        color: #fff;
+      }
+    }
+
+    textarea {
+      color: #fff;
+    }
+  }
+
+  .pagination ul li a {
+    color: #fff;
+  }
+}
+
+/* Course Form */
+
+/* Feature */
+
+/* Funfact */
+
+/* Course */
+
+/* Gallery */
+
+/* Testimonial */
+
+/* FAQ */
+
+/* Blog */
+
+/* Contact */
+
+/* Other */

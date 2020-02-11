@@ -1,0 +1,44 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "watch": "yarn run encore dev --watch",
+    "start": "yarn install && yarn encore production",
+    "start:prod": "yarn install && yarn encore production",
+    "start:dev": "yarn install && yarn run encore dev"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.28.2",
+    "copy-webpack-plugin": "^5.0.5",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.2.0",
+    "webpack-notifier": "^1.8.0"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "autoprefixer": "^9.7.2",
+    "bootstrap": "^4.3.1",
+    "bootstrap-select": "^1.13.12",
+    "datatables.net": "^1.10.20",
+    "gulp": "^4.0.2",
+    "gulp-iconfont": "^10.0.3",
+    "gulp-iconfont-css": "^3.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-load-plugins": "2.0.1",
+    "gulp-mjml": "^4.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-svgicons2svgfont": "^6.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "3.0.8",
+    "imagesloaded": "^4.1.4",
+    "jquery": "^3.4.1",
+    "material-design-iconic-font": "^2.2.0",
+    "modernizr": "^3.8.0",
+    "paymentfont": "^1.2.5",
+    "popper.js": "^1.16.0"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "ios >= 8"
+  ]
+}

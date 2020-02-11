@@ -1,0 +1,36 @@
+<div class="main-menu mean-menu col-auto">
+  <nav>
+    <ul>
+      <li class="active"><a href="{{path('homepage')}}">Accueil</a></li>
+      <li><a href="#">Qui somme nous</a></li>
+      <li><a href="#">Boutique<i class="icofont icofont-simple-down"></i></a>
+        <ul>
+          <li><a href="#pricing-area">Nos meilleures offres</a></li>
+          <li><a href="#">La conduite à la carte</a></li>
+        </ul>
+      </li>
+      <li><a href="#">La conduite<i class="icofont icofont-simple-down"></i></a>
+        <ul>
+          <li><a href="#">Leçons de conduite</a></li>
+          <li><a href="#">Reserver une leçon</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Examen</a></li>
+      {% if app.user %}
+      <li><a href="#">Compte<i class="icofont icofont-simple-down"></i></a>
+        <ul>
+          <li><a href="{{ path('fos_user_profile_edit') }}">Profil</a></li>
+          <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+        </ul>
+      {% else %}
+      <li><a href="#">{{'app.home.login'|trans}}<i class="icofont icofont-simple-down"></i></a>
+        <ul>
+          <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+          <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+        </ul>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+<div class="mobile-menu col-12"></div>

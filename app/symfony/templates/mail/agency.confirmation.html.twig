@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>
+    {{ 'mail.report_supplementary.subject'|trans }}
+  </title>
+  <!--[if !mso]><!-- -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<body>
+<p>
+  {{ 'email.agency.hello'|trans }}<br>
+  {{ 'email.agency.introduction'|trans }}<br>
+</p>
+<ul>
+  <li>{{ 'email.agency.purchasing_date'|trans }} : {{ bookingOrder.createdAt|date('m/d/Y') }}</li>
+  <li>{{ 'email.agency.purchasing_number'|trans }} : {{ bookingOrder.code }}</li>
+  <li>{{ 'email.agency.domain'|trans }} : {{ bookingOrder.domain.country }}</li>
+  <li>{{ 'email.agency.client.last_name'|trans }} : {{ bookingOrder.customer.firstName }}</li>
+  <li>{{ 'email.agency.client.first_name'|trans }} : {{ bookingOrder.customer.lastName }}</li>
+  <li>{{ 'email.agency.client.phone'|trans }} : {{ bookingOrder.customer.phone }}</li>
+  <li>{{ 'email.agency.client.email'|trans }} : {{ bookingOrder.customer.email }}</li>
+  {% for student in bookingOrder.student %}
+  <li>{{ 'email.agency.student.first_name'|trans }} : {{ student.firstName }}</li>
+  <li>{{ 'email.agency.student.last_name'|trans }} : {{ student.email }}</li>
+  {%  endfor%}
+  <li>{{ 'email.agency.product.name'|trans }} : {{ bookingOrder.product.name }}</li>
+  <li>{{ 'email.agency.product.code'|trans }} : {{ bookingOrder.product.code }}</li>
+  <li>{{ 'email.agency.product.city'|trans }} : {{ bookingOrder.product.school.city }}</li>
+  <li>{{ 'email.agency.product.date.from_date'|trans }} : {{ bookingOrder.fromDate|date('m/d/Y') }}</li>
+  <li>{{ 'email.agency.product.date.to_date'|trans }} : {{ bookingOrder.toDate|date('m/d/Y') }}</li>
+  <li>{{ 'email.agency.accommodations.option'|trans }} : <br>
+    {{ bookingOrder.accommodationPricing? 'yes': 'no' }}
+    {% if bookingOrder.accommodationPricing %}
+    <ul>
+      <li>{{ bookingOrder.accommodationPricing? bookingOrder.accommodationPricing.category}}</li>
+      <li>{{ bookingOrder.accommodationPricing? bookingOrder.accommodationPricing.name}}</li>
+    </ul>
+    {% endif %}
+  </li>
+
+  <li>{{ 'email.agency.travel.option'|trans }} : <br>
+      {{ bookingOrder.travelPrice? 'yes':'no' }} </li>
+
+  <li>{{ 'email.agency.insurance.option'|trans }} :<br>
+    {{ bookingOrder.insurancePricing? 'yes' : 'no' }}
+    {% if bookingOrder.insurancePricing %}
+    <ul>
+      <li> {{ ('email.agency.insurance.'~bookingOrder.insurancePricing.insurance.type)|trans}}</li>
+    </ul>
+    {% endif %}
+  </li>
+</ul>
+{{ 'email.agency.best_regards'|trans }}
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!-- Common Modal -->
+{% if largeModal is  defined %}
+    {% set largeModal = "modal-lg" %}
+    {% set messagePosition = "text-center" %}
+    {% else %}
+        {% set largeModal = '' %}
+        {% set messagePosition = "text-left" %}
+
+{% endif %}
+<div class="modal fade" id="commonModal" tabindex="-1" role="dialog"
+     aria-labelledby="common-modal-label" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog {{ largeModal }}" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commonModalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" id="commonModalCloser" aria-label="Close">
+                    <i class="zmdi zmdi-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="commonModalError" role="alert" style="display: none"></div>
+                <div id="commonModalMessage" class="{{ messagePosition }}" style="display: none"></div>
+                <div id="commonModalSpinner" class="text-center" style="display: none">
+                    <i class="fa fa-spinner fa-spin" style="font-size:40px"></i>
+                </div>
+            </div>
+            <div class="modal-footer" id="commonModalButtons">
+                <!-- Buttons -->
+            </div>
+        </div>
+    </div>
+</div>

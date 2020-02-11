@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="TfiZ6Du" resname="app.action.cancel">
+        <source>app.action.cancel</source>
+        <target>Annuler</target>
+      </trans-unit>
+      <trans-unit id="znMecRW" resname="app.action.confirm">
+        <source>app.action.confirm</source>
+        <target>Confirmer</target>
+      </trans-unit>
+      <trans-unit id="5RdvY6Z" resname="app.action.close">
+        <source>app.action.close</source>
+        <target>Fermer</target>
+      </trans-unit>
+      <trans-unit id="oZF0hx7" resname="app.phone">
+        <source>app.phone</source>
+        <target>01 42 63 93 40</target>
+      </trans-unit>
+      <trans-unit id="f3U2Gqw" resname="app.name">
+        <source>app.name</source>
+        <target>Meilleurs Moniteurs</target>
+      </trans-unit>
+      <trans-unit id="Z8MJclM" resname="app.email">
+        <source>app.email</source>
+        <target>permisacceleres@yahoo.fr </target>
+      </trans-unit>
+      <trans-unit id="BcasOn0" resname="app.slogan">
+        <source>app.slogan</source>
+        <target>Permis accéléré</target>
+      </trans-unit>
+      <trans-unit id="Sn112NS" resname="app.devise">
+        <source>app.devise</source>
+        <target>€</target>
+      </trans-unit>
+      <trans-unit id="ALFFYPh" resname="app.traffick.laws">
+        <source>app.traffick.laws</source>
+        <target>Code de la route</target>
+      </trans-unit>
+      <trans-unit id=".Idqvk4" resname="app.traffick.allowed_to_drive">
+        <source>app.traffick.allowed_to_drive</source>
+        <target>Permis de conduire</target>
+      </trans-unit>
+      <trans-unit id="bp4w4oT" resname="app.home.login">
+        <source>app.home.login</source>
+        <target>Connexion</target>
+      </trans-unit>
+      <trans-unit id="ptSMaKf" resname="app.caroussel.title">
+        <source>app.caroussel.title</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="VoWhdUF" resname="app.caroussel.message">
+        <source>app.caroussel.message</source>
+        <target><![CDATA[Permis <span>accéléré !</span>]]></target>
+      </trans-unit>
+      <trans-unit id="MTYePp0" resname="app.caroussel.content">
+        <source>app.caroussel.content</source>
+        <target> L'Ecole de Conduite Permis Accéléré vous propose ses formules pour obtenir rapidement votre permis B.</target>
+      </trans-unit>
+      <trans-unit id="YIqZybe" resname="app.common.edit">
+        <source>app.common.edit</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="36DwMrI" resname="app.common.delete">
+        <source>app.common.delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="EI05Ql_" resname="app.common.activated">
+        <source>app.common.activated</source>
+        <target>Activer</target>
+      </trans-unit>
+      <trans-unit id="EmUaHdX" resname="app.common.desactivated">
+        <source>app.common.desactivated</source>
+        <target>Desactiver</target>
+      </trans-unit>
+      <trans-unit id="4GyY10d" resname="app.common.save">
+        <source>app.common.save</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="cv_cksw" resname="app.menu.home">
+        <source>app.menu.home</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="G2RLBAn" resname="app.menu.drive_to_code.title">
+        <source>app.menu.drive_to_code.title</source>
+        <target>Code de la route</target>
+      </trans-unit>
+      <trans-unit id="SmioSOl" resname="app.menu.drive_to_code.training">
+        <source>app.menu.drive_to_code.training</source>
+        <target>Entrainement</target>
+      </trans-unit>
+      <trans-unit id="h0Obs37" resname="app.menu.shop.title">
+        <source>app.menu.shop.title</source>
+        <target>Boutique</target>
+      </trans-unit>
+      <trans-unit id="JvlTuNY" resname="app.menu.shop.our_best_offers">
+        <source>app.menu.shop.our_best_offers</source>
+        <target>Nos meilleurs offres</target>
+      </trans-unit>
+      <trans-unit id="iL_aqAc" resname="app.menu.shop.card_for_a_driving">
+        <source>app.menu.shop.card_for_a_driving</source>
+        <target>Conduite à la carte</target>
+      </trans-unit>
+      <trans-unit id="m1Mdy9y" resname="app.menu.the_driving.title">
+        <source>app.menu.the_driving.title</source>
+        <target>Conduite</target>
+      </trans-unit>
+      <trans-unit id="dM2m7un" resname="app.menu.the_driving.driving_lesson">
+        <source>app.menu.the_driving.driving_lesson</source>
+        <target>Leçon de conduite</target>
+      </trans-unit>
+      <trans-unit id="etWsCTS" resname="app.menu.the_driving.book_a_lesson">
+        <source>app.menu.the_driving.book_a_lesson</source>
+        <target>Reserver une leçon</target>
+      </trans-unit>
+      <trans-unit id="s6WtxaM" resname="app.menu.the_driving.learning_booklet">
+        <source>app.menu.the_driving.learning_booklet</source>
+        <target>Livret d'apprentissage</target>
+      </trans-unit>
+      <trans-unit id="Hex651P" resname="app.menu.examination_area.title">
+        <source>app.menu.examination_area.title</source>
+        <target>Espace Examen</target>
+      </trans-unit>
+      <trans-unit id="Bkudush" resname="app.menu.about">
+        <source>app.menu.about</source>
+        <target>A propos</target>
+      </trans-unit>
+      <trans-unit id="bRGcnjJ" resname="app.menu.profil.title">
+        <source>app.menu.profil.title</source>
+        <target>compte</target>
+      </trans-unit>
+      <trans-unit id="BKWGRME" resname="app.menu.profil.login">
+        <source>app.menu.profil.login</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="SvmSbP6" resname="app.menu.profil.logout">
+        <source>app.menu.profil.logout</source>
+        <target>Se deconnecter</target>
+      </trans-unit>
+      <trans-unit id="lgIJ0Z." resname="app.menu.user.role.driving_instructor">
+        <source>app.menu.user.role.driving_instructor</source>
+        <target>Moniteur</target>
+      </trans-unit>
+      <trans-unit id="vIYY_CA" resname="app.menu.user.role.coordinator">
+        <source>app.menu.user.role.coordinator</source>
+        <target>Coordinateur</target>
+      </trans-unit>
+      <trans-unit id="eqbmnkX" resname="app.menu.user.role.driving_student">
+        <source>app.menu.user.role.driving_student</source>
+        <target>Elève</target>
+      </trans-unit>
+      <trans-unit id="IRDehiy" resname="app.menu.user.role.super_admin">
+        <source>app.menu.user.role.super_admin</source>
+        <target>Administrateur</target>
+      </trans-unit>
+      <trans-unit id="jpK2H9o" resname="app.menu.user.instructor.title">
+        <source>app.menu.user.instructor.title</source>
+        <target>Les moniteur</target>
+      </trans-unit>
+      <trans-unit id="Fc82mY5" resname="app.menu.user.instructor.list">
+        <source>app.menu.user.instructor.list</source>
+        <target>Liste des moniteurs</target>
+      </trans-unit>
+      <trans-unit id="UjdJ619" resname="app.menu.user.instructor.add">
+        <source>app.menu.user.instructor.add</source>
+        <target>Ajouter un nouveau moniteur</target>
+      </trans-unit>
+      <trans-unit id="hGGN.dU" resname="app.menu.user.instructor.delete">
+        <source>app.menu.user.instructor.delete</source>
+        <target>Supprimer un moniteur</target>
+      </trans-unit>
+      <trans-unit id="6Sg6Ftt" resname="app.menu.user.instructor.edit">
+        <source>app.menu.user.instructor.edit</source>
+        <target>Modifier un moniteur</target>
+      </trans-unit>
+      <trans-unit id="cP0DE74" resname="app.menu.user.student.title">
+        <source>app.menu.user.student.title</source>
+        <target>Les élèves</target>
+      </trans-unit>
+      <trans-unit id="vRWDk90" resname="app.menu.user.student.list">
+        <source>app.menu.user.student.list</source>
+        <target>Liste des élèves</target>
+      </trans-unit>
+      <trans-unit id="6pGPxFD" resname="app.menu.user.student.add">
+        <source>app.menu.user.student.add</source>
+        <target>Ajouter un nouveau élève</target>
+      </trans-unit>
+      <trans-unit id="SSecSJU" resname="app.menu.user.student.delete">
+        <source>app.menu.user.student.delete</source>
+        <target>Supprimer un élève</target>
+      </trans-unit>
+      <trans-unit id="pHAyqQp" resname="app.menu.user.student.edit">
+        <source>app.menu.user.student.edit</source>
+        <target>Modifier un élève</target>
+      </trans-unit>
+      <trans-unit id="OeUFFeW" resname="app.menu.location.title">
+        <source>app.menu.location.title</source>
+        <target>Points de rencontre</target>
+      </trans-unit>
+      <trans-unit id="qgSIz8d" resname="app.menu.location.add">
+        <source>app.menu.location.add</source>
+        <target>Ajouter un point de rencontre</target>
+      </trans-unit>
+      <trans-unit id="PjXGvkD" resname="app.menu.location.delete">
+        <source>app.menu.location.delete</source>
+        <target>Supprimer un point de recontre</target>
+      </trans-unit>
+      <trans-unit id="Y3pvTQK" resname="app.menu.location.edit">
+        <source>app.menu.location.edit</source>
+        <target>Modifier un point de recontre</target>
+      </trans-unit>
+      <trans-unit id="1TeZFXB" resname="app.menu.location.list">
+        <source>app.menu.location.list</source>
+        <target>Liste des points de recontre</target>
+      </trans-unit>
+      <trans-unit id="N_kLMwm" resname="security.login.password">
+        <source>security.login.password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="cMU.0rQ" resname="security.login.username">
+        <source>security.login.username</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="8DSptbg" resname="security.login.remember_me">
+        <source>security.login.remember_me</source>
+        <target>Se souvenir de moi</target>
+      </trans-unit>
+      <trans-unit id="tuAV77Z" resname="security.login.submit">
+        <source>security.login.submit</source>
+        <target>Valider</target>
+      </trans-unit>
+      <trans-unit id="oS6W.A2" resname="security.login.first_name">
+        <source>security.login.first_name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="UVo0qnq" resname="security.login.last_name">
+        <source>security.login.last_name</source>
+        <target>Prenom</target>
+      </trans-unit>
+      <trans-unit id="hINXr4D" resname="security.login.phone">
+        <source>security.login.phone</source>
+        <target>Téléphone</target>
+      </trans-unit>
+      <trans-unit id="Pmk1Is3" resname="security.login.birth_date">
+        <source>security.login.birth_date</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="Kp5FpVW" resname="security.login.zip_code">
+        <source>security.login.zip_code</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit id="2O8VS__" resname="security.login.address">
+        <source>security.login.address</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="Q9iTcLU" resname="security.login.registration">
+        <source>security.login.registration</source>
+        <target>Inscription</target>
+      </trans-unit>
+      <trans-unit id="lTz..Zv" resname="security.login.city">
+        <source>security.login.city</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="Ff9nnG5" resname="security.login.email">
+        <source>security.login.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="6a2PoxU" resname="security.login.login">
+        <source>security.login.login</source>
+        <target>Connexion</target>
+      </trans-unit>
+      <trans-unit id="ukyFao4" resname="security.login.forgot_password">
+        <source>security.login.forgot_password</source>
+        <target>Mot de passe oublié</target>
+      </trans-unit>
+      <trans-unit id="b7iMmNW" resname="security.login.back_login">
+        <source>security.login.back_login</source>
+        <target>Retour à la connexion</target>
+      </trans-unit>
+      <trans-unit id="nDivo2b" resname="security.login.reset">
+        <source>security.login.reset</source>
+        <target>Mot de passe oublié</target>
+      </trans-unit>
+      <trans-unit id="2XWFhqq" resname="security.login.save">
+        <source>security.login.save</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="homjm7y" resname="security.login.description">
+        <source>security.login.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="yQjvPoX" resname="drive_to_code.title">
+        <source>drive_to_code.title</source>
+        <target>Code de la route</target>
+      </trans-unit>
+      <trans-unit id="H6U8XYE" resname="drive_to_code.training.slogan">
+        <source>drive_to_code.training.slogan</source>
+        <target>Obtenez votre code de la route pour 29,90€</target>
+      </trans-unit>
+      <trans-unit id="K29sdiY" resname="drive_to_code.price">
+        <source>drive_to_code.price</source>
+        <target>29,90</target>
+      </trans-unit>
+      <trans-unit id="F73Gu8x" resname="location.form.metting_point">
+        <source>location.form.metting_point</source>
+        <target>Choisir comme Point de rencontre</target>
+      </trans-unit>
+      <trans-unit id="dC1m3Zg" resname="location.form.address">
+        <source>location.form.address</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="uE6qHUA" resname="location.form.postal_code">
+        <source>location.form.postal_code</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit id="B5mogkM" resname="location.form.city">
+        <source>location.form.city</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="AiOsEcu" resname="location.form.region">
+        <source>location.form.region</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="0DtCm8p" resname="location.form.activated">
+        <source>location.form.activated</source>
+        <target>Actvivé le point de rencotre</target>
+      </trans-unit>
+      <trans-unit id="zn5P2pb" resname="user.role.driving_instructor">
+        <source>user.role.driving_instructor</source>
+        <target>Moniteur</target>
+      </trans-unit>
+      <trans-unit id="YqttSR1" resname="user.role.coordinator">
+        <source>user.role.coordinator</source>
+        <target>Coordinateur</target>
+      </trans-unit>
+      <trans-unit id="qsmQc7H" resname="user.role.driving_student">
+        <source>user.role.driving_student</source>
+        <target>Elève</target>
+      </trans-unit>
+      <trans-unit id="FU0pYlx" resname="user.role.super_admin">
+        <source>user.role.super_admin</source>
+        <target>Administrateur</target>
+      </trans-unit>
+      <trans-unit id="YtIY.V_" resname="day.monday">
+        <source>day.monday</source>
+        <target>Lundi</target>
+      </trans-unit>
+      <trans-unit id="HEzirfw" resname="day.tuesday">
+        <source>day.tuesday</source>
+        <target>Mardi</target>
+      </trans-unit>
+      <trans-unit id=".leulZD" resname="day.wednesday">
+        <source>day.wednesday</source>
+        <target>Mercredi</target>
+      </trans-unit>
+      <trans-unit id="IKzLPMm" resname="day.thursday">
+        <source>day.thursday</source>
+        <target>Jeudi</target>
+      </trans-unit>
+      <trans-unit id="eVLIGzn" resname="day.friday">
+        <source>day.friday</source>
+        <target>Vendredi</target>
+      </trans-unit>
+      <trans-unit id="69IiYP7" resname="day.saturday">
+        <source>day.saturday</source>
+        <target>Samedi</target>
+      </trans-unit>
+      <trans-unit id=".FcWZR3" resname="day.sunday">
+        <source>day.sunday</source>
+        <target>Dimanche</target>
+      </trans-unit>
+      <trans-unit id="lpYpPl6" resname="month.January">
+        <source>month.January</source>
+        <target>Janvier</target>
+      </trans-unit>
+      <trans-unit id="jWiYJCq" resname="month.february">
+        <source>month.february</source>
+        <target>Fevrier</target>
+      </trans-unit>
+      <trans-unit id="X_VvCAA" resname="month.march">
+        <source>month.march</source>
+        <target>Mars</target>
+      </trans-unit>
+      <trans-unit id="trmIV1m" resname="month.april">
+        <source>month.april</source>
+        <target>Avril</target>
+      </trans-unit>
+      <trans-unit id="JeDq94m" resname="month.may">
+        <source>month.may</source>
+        <target>Mai</target>
+      </trans-unit>
+      <trans-unit id="RsY9NcG" resname="month.june">
+        <source>month.june</source>
+        <target>Juin</target>
+      </trans-unit>
+      <trans-unit id="trHhJOb" resname="month.july">
+        <source>month.july</source>
+        <target>Juillert</target>
+      </trans-unit>
+      <trans-unit id="cRoWKY4" resname="month.august">
+        <source>month.august</source>
+        <target>Août</target>
+      </trans-unit>
+      <trans-unit id="pV0rFEJ" resname="month.september">
+        <source>month.september</source>
+        <target>September</target>
+      </trans-unit>
+      <trans-unit id="_U33TCM" resname="month.october">
+        <source>month.october</source>
+        <target>Octobre</target>
+      </trans-unit>
+      <trans-unit id="vYzQ1Ia" resname="month.november">
+        <source>month.november</source>
+        <target>Novembre</target>
+      </trans-unit>
+      <trans-unit id="2xCp5NT" resname="month.december">
+        <source>month.december</source>
+        <target>Decembre</target>
+      </trans-unit>
+      <trans-unit id="XjBJ9_M" resname="course.in_card">
+        <source>course.in_card</source>
+        <target>Dans le panier</target>
+      </trans-unit>
+      <trans-unit id="gdLJsO9" resname="course.paid">
+        <source>course.paid</source>
+        <target>Acheter</target>
+      </trans-unit>
+      <trans-unit id="jQOPGuc" resname="course.done">
+        <source>course.done</source>
+        <target>Effectuer</target>
+      </trans-unit>
+      <trans-unit id="w7Hme_H" resname="form.save.success">
+        <source>form.save.success</source>
+        <target>__form.save.success</target>
+      </trans-unit>
+      <trans-unit id="fsrtHZB" resname="app.description">
+        <source>app.description</source>
+        <target>__app.description</target>
+      </trans-unit>
+      <trans-unit id="qCsa5Ni" resname="mail.copyright">
+        <source>mail.copyright</source>
+        <target>__mail.copyright</target>
+      </trans-unit>
+      <trans-unit id="Vg3ZM5U" resname="mail.report_supplementary.subject">
+        <source>mail.report_supplementary.subject</source>
+        <target>__mail.report_supplementary.subject</target>
+      </trans-unit>
+      <trans-unit id="57TTtpk" resname="email.agency.hello">
+        <source>email.agency.hello</source>
+        <target>__email.agency.hello</target>
+      </trans-unit>
+      <trans-unit id="Y1QBRkC" resname="email.agency.introduction">
+        <source>email.agency.introduction</source>
+        <target>__email.agency.introduction</target>
+      </trans-unit>
+      <trans-unit id="Dlf4LEV" resname="email.agency.purchasing_date">
+        <source>email.agency.purchasing_date</source>
+        <target>__email.agency.purchasing_date</target>
+      </trans-unit>
+      <trans-unit id="4gwDa1C" resname="email.agency.purchasing_number">
+        <source>email.agency.purchasing_number</source>
+        <target>__email.agency.purchasing_number</target>
+      </trans-unit>
+      <trans-unit id="qsFFU4O" resname="email.agency.domain">
+        <source>email.agency.domain</source>
+        <target>__email.agency.domain</target>
+      </trans-unit>
+      <trans-unit id="xQXYsmE" resname="email.agency.client.last_name">
+        <source>email.agency.client.last_name</source>
+        <target>__email.agency.client.last_name</target>
+      </trans-unit>
+      <trans-unit id="aJh5Cgz" resname="email.agency.client.first_name">
+        <source>email.agency.client.first_name</source>
+        <target>__email.agency.client.first_name</target>
+      </trans-unit>
+      <trans-unit id="qxo5BdF" resname="email.agency.client.phone">
+        <source>email.agency.client.phone</source>
+        <target>__email.agency.client.phone</target>
+      </trans-unit>
+      <trans-unit id="dJYwQEV" resname="email.agency.client.email">
+        <source>email.agency.client.email</source>
+        <target>__email.agency.client.email</target>
+      </trans-unit>
+      <trans-unit id="UPOEto5" resname="email.agency.student.first_name">
+        <source>email.agency.student.first_name</source>
+        <target>__email.agency.student.first_name</target>
+      </trans-unit>
+      <trans-unit id="DiYwHop" resname="email.agency.student.last_name">
+        <source>email.agency.student.last_name</source>
+        <target>__email.agency.student.last_name</target>
+      </trans-unit>
+      <trans-unit id="GW8hm6o" resname="email.agency.product.name">
+        <source>email.agency.product.name</source>
+        <target>__email.agency.product.name</target>
+      </trans-unit>
+      <trans-unit id="vWZkLwz" resname="email.agency.product.code">
+        <source>email.agency.product.code</source>
+        <target>__email.agency.product.code</target>
+      </trans-unit>
+      <trans-unit id="oqnpNvY" resname="email.agency.product.city">
+        <source>email.agency.product.city</source>
+        <target>__email.agency.product.city</target>
+      </trans-unit>
+      <trans-unit id="xCDg_8_" resname="email.agency.product.date.from_date">
+        <source>email.agency.product.date.from_date</source>
+        <target>__email.agency.product.date.from_date</target>
+      </trans-unit>
+      <trans-unit id="8bDB5SI" resname="email.agency.product.date.to_date">
+        <source>email.agency.product.date.to_date</source>
+        <target>__email.agency.product.date.to_date</target>
+      </trans-unit>
+      <trans-unit id="4hi1K_2" resname="email.agency.accommodations.option">
+        <source>email.agency.accommodations.option</source>
+        <target>__email.agency.accommodations.option</target>
+      </trans-unit>
+      <trans-unit id="s3Qp.lj" resname="email.agency.travel.option">
+        <source>email.agency.travel.option</source>
+        <target>__email.agency.travel.option</target>
+      </trans-unit>
+      <trans-unit id="1_hHj.X" resname="email.agency.insurance.option">
+        <source>email.agency.insurance.option</source>
+        <target>__email.agency.insurance.option</target>
+      </trans-unit>
+      <trans-unit id="KPCpgrL" resname="email.agency.best_regards">
+        <source>email.agency.best_regards</source>
+        <target>__email.agency.best_regards</target>
+      </trans-unit>
+      <trans-unit id="4I4Gb2z" resname="email.report_supplementary.subject">
+        <source>email.report_supplementary.subject</source>
+        <target>__email.report_supplementary.subject</target>
+      </trans-unit>
+      <trans-unit id="WCnALIX" resname="email.customer.booking.confirm">
+        <source>email.customer.booking.confirm</source>
+        <target>__email.customer.booking.confirm</target>
+      </trans-unit>
+      <trans-unit id="TJK2u8i" resname="email.customer.hello">
+        <source>email.customer.hello</source>
+        <target>__email.customer.hello</target>
+      </trans-unit>
+      <trans-unit id="gWF6Hog" resname="email.customer.introduction">
+        <source>email.customer.introduction</source>
+        <target>__email.customer.introduction</target>
+      </trans-unit>
+      <trans-unit id="uNHTiY0" resname="email.customer.detail">
+        <source>email.customer.detail</source>
+        <target>__email.customer.detail</target>
+      </trans-unit>
+      <trans-unit id="8xQegyT" resname="email.customer.purchasing_number">
+        <source>email.customer.purchasing_number</source>
+        <target>__email.customer.purchasing_number</target>
+      </trans-unit>
+      <trans-unit id="GXLfHq." resname="email.customer.product.name">
+        <source>email.customer.product.name</source>
+        <target>__email.customer.product.name</target>
+      </trans-unit>
+      <trans-unit id="Bwm8h9I" resname="email.customer.product.code">
+        <source>email.customer.product.code</source>
+        <target>__email.customer.product.code</target>
+      </trans-unit>
+      <trans-unit id="ge7omYj" resname="email.customer.product.city">
+        <source>email.customer.product.city</source>
+        <target>__email.customer.product.city</target>
+      </trans-unit>
+      <trans-unit id="P4Wisl8" resname="email.customer.product.date.from_date">
+        <source>email.customer.product.date.from_date</source>
+        <target>__email.customer.product.date.from_date</target>
+      </trans-unit>
+      <trans-unit id="OMX5sQH" resname="email.customer.product.date.to_date">
+        <source>email.customer.product.date.to_date</source>
+        <target>__email.customer.product.date.to_date</target>
+      </trans-unit>
+      <trans-unit id="rQ9gqSb" resname="email.agency.accommodations.type">
+        <source>email.agency.accommodations.type</source>
+        <target>__email.agency.accommodations.type</target>
+      </trans-unit>
+      <trans-unit id="WctQrTq" resname="email.agency.accommodations.name">
+        <source>email.agency.accommodations.name</source>
+        <target>__email.agency.accommodations.name</target>
+      </trans-unit>
+      <trans-unit id="pkByZ0m" resname="email.customer.travel.option">
+        <source>email.customer.travel.option</source>
+        <target>__email.customer.travel.option</target>
+      </trans-unit>
+      <trans-unit id="1H2Ghhr" resname="text.yes">
+        <source>text.yes</source>
+        <target>__text.yes</target>
+      </trans-unit>
+      <trans-unit id="JJzABBM" resname="text.no">
+        <source>text.no</source>
+        <target>__text.no</target>
+      </trans-unit>
+      <trans-unit id="YXR7pGa" resname="email.customer.insurance.option">
+        <source>email.customer.insurance.option</source>
+        <target>__email.customer.insurance.option</target>
+      </trans-unit>
+      <trans-unit id="xIuF0Iu" resname="email.customer.contact_text">
+        <source>email.customer.contact_text</source>
+        <target>__email.customer.contact_text</target>
+      </trans-unit>
+      <trans-unit id="MmCe4SU" resname="email.customer.contact">
+        <source>email.customer.contact</source>
+        <target>__email.customer.contact</target>
+      </trans-unit>
+      <trans-unit id="v0tsdMQ" resname="email.customer.best_regards">
+        <source>email.customer.best_regards</source>
+        <target>__email.customer.best_regards</target>
+      </trans-unit>
+      <trans-unit id="xs2uweg" resname="email.customer.footer.email">
+        <source>email.customer.footer.email</source>
+        <target>__email.customer.footer.email</target>
+      </trans-unit>
+      <trans-unit id="Vb61mU_" resname="email.customer.footer.protection">
+        <source>email.customer.footer.protection</source>
+        <target>__email.customer.footer.protection</target>
+      </trans-unit>
+      <trans-unit id="89Nqp7f" resname="email.customer.footer.protection_link">
+        <source>email.customer.footer.protection_link</source>
+        <target>__email.customer.footer.protection_link</target>
+      </trans-unit>
+      <trans-unit id="ARHQiy3" resname="email.customer.footer.siret">
+        <source>email.customer.footer.siret</source>
+        <target>__email.customer.footer.siret</target>
+      </trans-unit>
+      <trans-unit id="dlhq.Wf" resname="email.customer.footer.phone">
+        <source>email.customer.footer.phone</source>
+        <target>__email.customer.footer.phone</target>
+      </trans-unit>
+      <trans-unit id="gTUxrry" resname="app.traffic.laws">
+        <source>app.traffic.laws</source>
+        <target>__app.traffic.laws</target>
+      </trans-unit>
+      <trans-unit id="lXiogv3" resname="thumbable.chooseFile">
+        <source>thumbable.chooseFile</source>
+        <target>__thumbable.chooseFile</target>
+      </trans-unit>
+      <trans-unit id="4yVGTn7" resname="thumbable.browse">
+        <source>thumbable.browse</source>
+        <target>__thumbable.browse</target>
+      </trans-unit>
+      <trans-unit id="oeSeotV" resname="booking.name">
+        <source>booking.name</source>
+        <target>__booking.name</target>
+      </trans-unit>
+      <trans-unit id="TUSRKoB" resname="error.title">
+        <source>error.title</source>
+        <target>__error.title</target>
+      </trans-unit>
+      <trans-unit id="MkfWCQQ" resname="error.description">
+        <source>error.description</source>
+        <target>__error.description</target>
+      </trans-unit>
+      <trans-unit id="k5VC02I" resname="error.btn">
+        <source>error.btn</source>
+        <target>__error.btn</target>
+      </trans-unit>
+      <trans-unit id="RhqA8RF" resname="mail.connect">
+        <source>mail.connect</source>
+        <target>__mail.connect</target>
+      </trans-unit>
+      <trans-unit id="_gzBbUG" resname="app.title.account">
+        <source>app.title.account</source>
+        <target>__app.title.account</target>
+      </trans-unit>
+      <trans-unit id=".N8Xds3" resname="account.password_confirmation">
+        <source>account.password_confirmation</source>
+        <target>__account.password_confirmation</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

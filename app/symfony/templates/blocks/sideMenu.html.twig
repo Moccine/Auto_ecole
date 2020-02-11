@@ -1,0 +1,5 @@
+{% if is_granted("ROLE_DRIVING_STUDENT") %}
+  {% include 'blocks/lateralMemu.html.twig' %}
+  {% else %}
+    {% include 'blocks/menuLateralAdmin.html.twig' %}
+{% endif %}

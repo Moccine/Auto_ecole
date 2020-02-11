@@ -1,0 +1,75 @@
+  <div class="section-title text-center col-12 mb-45">
+    <h3 class="heading" style="color: black; padding-top: 50px">{{app.user.lastName}} {{app.user.firstName}}</h3>
+    <div class="excerpt">
+      <p>Bonjour {{app.user.firstName}} {{app.user.lastName}} votre prochain cour c'est le 12/01/2020</p>
+    </div>
+    <i class="icofont icofont-traffic-light"></i>
+  </div>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" aria-expanded="false" href="#accordion-1">{{ 'app.menu.drive_to_code.title'|trans }}</a>
+        </h4>
+      </div>
+      <div id="accordion-1" class="panel-collapse collapse " data-parent="#accordion">
+        <div class="panel-body">
+          <ul>
+            <li><a href="{{ path('drive_to_code') }}">{{ 'app.menu.drive_to_code.training'|trans }}</a></li>
+            <li><a href="#">{{ 'app.menu.drive_to_code.title'|trans }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" aria-expanded="false" href="#accordion-2">
+            Conduite
+          </a>
+        </h4>
+      </div>
+      <div id="accordion-2" class="panel-collapse collapse" data-parent="#accordion">
+        <div class="panel-body">
+          <ul>
+            <li><a href="{{ path('student_cardUnity_list_unity', {id: app.user.id}) }}">Unités</a></li>
+            <li><a href="{{ path('package_course_list') }}">Packages</a></li>
+            <li><a href="{{ path('unity_booking_instructor_search_form') }}">{{ 'app.menu.the_driving.book_a_lesson'|trans }}</a></li>
+            <li><a href="#">{{ 'app.menu.the_driving.learning_booklet'|trans }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" aria-expanded="false" href="#accordion-3">
+            Espace Examen
+          </a>
+        </h4>
+      </div>
+      <div id="accordion-3" class="panel-collapse collapse " data-parent="#accordion">
+        <div class="panel-body">
+          <ul>
+            <li><a href="#">{{ 'app.menu.examination_area.title'|trans }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" aria-expanded="false" href="#accordion-4">
+            {{ 'app.menu.shop.title'|trans }}
+          </a>
+        </h4>
+      </div>
+      <div id="accordion-4" class="panel-collapse collapse " data-parent="#accordion">
+        <div class="panel-body">
+          <ul>
+            <li><a href="{{ path('shop_display') }}"> {{ 'app.menu.shop.title'|trans }} </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

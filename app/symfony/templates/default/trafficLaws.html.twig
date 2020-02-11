@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Auto ecole{% endblock %}
+{% block body %}
+  <div class="container code-form" style="margin-top: 20%; ">
+    <div class="row">
+      <div class="col-6">
+        {{ form_start(form, {'action': path('traffic_laws_code_validate'), 'method': 'POST'}) }}
+        {{ form_row(form.code)  }}
+        <button type="submit" class="btn btn-block">Valider</button>
+        {{ form_end(form)  }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

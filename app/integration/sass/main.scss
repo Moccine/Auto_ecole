@@ -1,0 +1,36 @@
+/*@import "~bootstrap";
+@import "theme/theme-css/style";
+
+
+import '../theme-css/icofont.css';
+import '../theme-css/bootstrap.min.css';
+import '../theme-css/icofont.css';
+import '../theme-css/plugins.css';
+import '../theme-css/responsive.css';
+ */
+ // Variables
+ @import "variables";
+
+ // Bootstrap
+ @import "bootstrap";
+
+// Mixins
+@import "mixins/bg-cover";
+@import "mixins/circle";
+@import "mixins/flex";
+@import "mixins/fonts-typo";
+@import "mixins/fonts-vendor";
+@import "mixins/breakpoints";
+@import "mixins/rem";
+
+ // Components
+ @import "components/elements";
+ @import "components/pricing";
+
+
+  // Layout
+ @import 'layout/header';
+ @import 'layout/footer';
+
+  // Pages
+ @import 'pages/login';

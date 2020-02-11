@@ -1,0 +1,17 @@
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%/%kernel.environment%.log"
+            level: alert
+            channels: ["!event"]
+        console:
+            type: console
+            process_psr_3_messages: false
+            channels: ["!event", "!console"]
+            path: "%kernel.logs_dir%/import/%kernel.environment%.log"
+        payment:
+            level: notice
+            type: rotating_file
+            path: "%kernel.logs_dir%/payment.log"
+            channel: 'payment'

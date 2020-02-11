@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+    title: 'Toutes vos leçons',
+    link: '#',
+    home: 'La conduite'
+  } %}
+  <div class="container-fluid bg-white">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+            {% include 'blocks/sideMenu.html.twig' %}
+          </div>
+          <div class="col-8">
+            <div class="col-12">
+              {% include 'blocks/title.block.html.twig' with {
+                title:  'drive_to_code.training.slogan',
+                description: '10× moins cher qu’en auto-école traditionnelle !'
+              } %}
+            </div>
+            <div class="col-lg-12">
+
+            </div>
+            {% if courses|length > 0 %}
+            <div class="col-12">
+              <table id="example" class="display" style="width:100%">
+                <thead>
+                <tr>
+                  <th>Heure</th>
+                  <th>Moniteur</th>
+                  <th>Prix</th>
+                  <th>Modifier</th>
+                  <th>supprimer</th>
+                  <th>status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for course in courses %}
+                  <tr>
+                    <td>{{ course_date(course) }}</td>
+                    <td>{{ course.instructor.lastName }} {{ course.instructor.firstName }}</td>
+                    <td>{{ course.price }}</td>
+                    <td><a style="color: black" href=" {{ path('course_edit', {id: course.id}) }}"><i class="icon-edit"></i></a></td>
+                    <td><a style="color: black" href=" {{ path('course_remove', {id: course.id}) }}"><i class="icon-trash"></i></a></td>
+                    <td>
+                     {{ constant('App\\Entity\\Course::COURSE_STATUS')[course.status]|trans  }}
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% endif %}
+            {% if cards|length > 0 %}
+
+            <table id="example" class="display" style="width:100%">
+              <thead>
+              <tr>
+                <th></th>
+                <th>montant</th>
+                <th>status</th>
+                <th>Reserver des cours</th>
+                <th>voir les cours reservé</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for card in cards %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ card.total }}</td>
+                <td>{{ card.status }}</td>
+                <td></td>
+                <td>
+                </td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+              <div class="col-lg-6 offset-3">
+                <h5 class="title">Auncun achat </h5>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+  {% block stylesheets %}
+  {% endblock %}
+
+

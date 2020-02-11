@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+    title: 'Liste des produits de la boutique',
+    link: '#',
+    home: 'Boutique'
+  } %}
+  <div class="container-fluid bg-white">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+            {% include 'blocks/menuLateralAdmin.html.twig' %}
+          </div>
+          <div class="col-8">
+            <div class="col-12">
+              {% include 'blocks/title.block.html.twig' with {
+                title:  '',
+                description: ''
+              } %}
+            </div>
+            <div class="col-12">
+              <div class="col-6" style="padding-bottom: 50px">
+                <a class="btn btn-lg hover-black color" style="color: black" href="{{ path('shop_add') }}">{{'shop.add'|trans}}</a>`
+              </div>
+
+              <table id="example" class="display" style="width:100%">
+                <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Price</th>
+                  <th>Description</th>
+                  <th>Priorité</th>
+                  <th>Information complementaire</th>
+                  <th>modifier</th>
+                  <th>supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for shop in shops %}
+                  <tr>
+                    <td>{{shop.name}}</td>
+                    <td>{{shop.price}}</td>
+                    <td>{{shop.description}}</td>
+                    <td>{{ shop.priority }}  </td>
+                    <td>{{ shop.complementDescription}} </td>
+                    <td><a style="color: black" href=" {{ path('shop_edit', {id: shop.id}) }}">{{'app.common.edit'|trans}}</a></td>
+                    <td><a style="color: black" href=" {{ path('shop_remove', {id: shop.id}) }} ">{{'app.common.delete'|trans}}</a></td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Nom</th>
+                  <th>Price</th>
+                  <th>Description</th>
+                  <th>Priorité</th>
+                  <th>Information complementaire</th>
+                  <th>modifier</th>
+                  <th>supprimer</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,19 @@
+{% if title is not defined %}
+  {% set title = '' %}
+{% endif %}{% if title is not defined %}
+  {% set title = '' %}
+{% endif %}
+{% if description is not defined %}
+  {% set description = '' %}
+{% endif %}
+  <div class="section-title text-center black-section-title">
+    {% if title != '' %}
+      <h3 class="heading" style="color: black;">{{title|trans}}</h3>
+    {% endif %}
+    {% if description != '' %}
+      <div class="excerpt">
+        <p>{{description}}</p>
+      </div>
+    {% endif %}
+    <i class="icofont icofont-traffic-light"></i>
+</div>

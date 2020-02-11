@@ -1,0 +1,5 @@
+
+App\Entity\User:
+  type: entity
+  lifecycleCallbacks:
+    prePersist: ['setCodeValue']

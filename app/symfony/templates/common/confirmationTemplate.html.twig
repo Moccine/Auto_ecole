@@ -1,0 +1,102 @@
+<div id="course-area" class="course-area bg-light pt-90 pb-60 dark-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6"><h4 class="instructor-name">Meilleur-moniteur.com</h4>
+        <div class="text-left">
+          <div class="contact-widget">
+            <span> 31 rue batignolle</span><br>
+            <span>75017 Paris</span>
+            <span>+880 1912 345 678 </span><br/>
+            <span>+880 1912 345 678</span><br/>
+            <span>driveonskill@email.com</span>
+            <span>www.driveon.com</span><br/>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="text-right">
+          <div class="contact-widget">
+            <span> {{app.user.firstName }}</span> <span>{{app.user.lastName }}</span><br>
+            <span>{{app.user.address }}</span><br>
+            <span>{{app.user.zipCode }}</span>
+            <span>{{app.user.city }}</span><br>
+            <span>{{app.user.phone }}</span><br>
+            <span>{{app.user.email }}</span><br>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <p class="h3" style="color: black">Confirmation de commande</p></br>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <table>
+          <tr>
+            <td>N° de commande : </td>
+            <td></td>
+            <td>{{order.orderNumber}} </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Date: </td>
+            <td> </td>
+            <td>{{order.createdAt|date('m/d/Y')}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row" style="padding: 20px 0 50px 0">
+      <div class="col-lg-12">
+        <p>
+          <span>Madame, Monsieur,</span>
+          Nous vous remercions pour votre commande. Conformément à notre offre, nous vous fournissons les produits suivants :
+        </p>
+      </div>
+    </div>
+    {% if card.type != constant('App\\Entity\\Card::TYPE_PACKAGE')  %}
+      <div class="row">
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Date du cours</th>
+            <th>Moniteur</th>
+            <th>Point de rencontre</th>
+            <th>price</th>
+            <th>status</th>
+          </tr>
+          {% for course in courses %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ course.courseDate|date('d/m/Y') }}</td>
+              <td>{{ course.instructor.firstname }} {{ course.instructor.lastname }}</td>
+              <td>{{ course.mettingPoint.address }} {{ course.mettingPoint.postalCode }} {{ course.mettingPoint.city }}</td>
+              <td>{{ course.price }}</td>
+              <td>
+                {{ constant('App\\Entity\\Course::COURSE_STATUS')[course.status]|trans  }}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% else %}
+      <div class="row">
+        <div class="col-lg-12">
+          <h5 style="color: black">  {{ shop.name }}</h5>
+        </div>
+        <div class="col-lg-12">
+          <p class="description">{{ shop.description }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tr><td> Dont  TVA 20%	</td>		<td></td><td>{{ card.totalTva|price }}</td>
+          <tr class="text-bold"> <td>Montant de la commande	</td>		<td></td><td>{{ card.total|price }}</td>
+          </tr>
+        </table>
+      </div>
+    {% endif %}
+    <p style="margin-bottom: 50px">Nous restons bien entendu à votre disposition pour toute information.</p>
+  </div> {# table des course#}
+</div>

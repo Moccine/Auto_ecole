@@ -1,0 +1,33 @@
+/* ---- 404 ---- */
+.error-wrap {
+  @extend .clearfix; background: $primary; color: $white; overflow: hidden;
+  padding: rem(150px) 0 0; text-align: center; min-height: calc(100vh - 100px); position: relative;
+  @include max(xs){ min-height: calc(100vh - 70px);}
+  @include max(xs){ padding: rem(30px) 0 rem(40px);}
+  &:after {
+    content: '404'; color: $white; font-family: 'ActaDisplay'; font-size: rem(750px); font-weight: 300; opacity: 0.05; pointer-events: none; position: absolute; left: 50%; transform: translateX(-50%); line-height: 0.6; bottom: 0;
+    @include max(xs){ font-size: rem(63vw); bottom: 100px; }
+  }
+
+  .error-title {
+    font-family: 'ActaDisplay'; font-size: rem(60px); font-weight: 300; line-height: 1.1; max-width: 700px; width: 100%; margin: 0 auto;
+    @include max(xs){
+      font-size: rem(38px); line-height: 1.21;
+    }
+    &:after {
+      content: ''; width: 40px; height: 1px; background: $red; display: block; margin: rem(25px) auto rem(35px);
+      @include max(xs){margin: rem(20px) auto rem(35px); }
+    }
+  }
+  .error-text {
+    font-size: rem(21px); font-weight: 100; line-height: 1.52;  max-width: 730px; width: 100%; margin: 0 auto rem(45px);
+    p { margin-bottom: 0;}
+
+    @include max(xs){
+      font-size: rem(18px); line-height: 1.44; margin-bottom: rem(40px);
+    }
+  }
+  .btn {
+    min-height: 50px; padding: rem(13px) rem(30px);
+  }
+}

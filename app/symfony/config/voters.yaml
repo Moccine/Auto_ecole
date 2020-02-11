@@ -1,0 +1,60 @@
+AppBundle\Entity\Equipement:
+  view: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  create: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR']
+  edit: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR']
+  delete: ['ROLE_SUPER_ADMIN']
+  activate: ['ROLE_SUPER_ADMIN']
+  edit_partial: ['ROLE_COORDINATOR']
+AppBundle\Entity\Customer:
+  view: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN']
+  delete: ['ROLE_SUPER_ADMIN']
+  activate: ['ROLE_SUPER_ADMIN']
+  edit_contacts: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR']
+AppBundle\Entity\Depository:
+  view: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  create: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR']
+  edit: ['ROLE_SUPER_ADMIN']
+  delete: ['ROLE_SUPER_ADMIN']
+  activate: ['ROLE_SUPER_ADMIN']
+  edit_partial: ['ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  edit_contacts: ['ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+AppBundle\Entity\Intervention:
+  view: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  create: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  edit: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  delete: ['ROLE_SUPER_ADMIN']
+  activate: ['ROLE_SUPER_ADMIN']
+  edit_partial: ['ROLE_SUPER_ADMIN']
+AppBundle\Entity\ObservationCategory:
+  view: ['ROLE_SUPER_ADMIN']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN']
+  delete: ['ROLE_SUPER_ADMIN']
+AppBundle\Entity\MailTemplate:
+  view: ['ROLE_SUPER_ADMIN']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN']
+  activate: ['ROLE_SUPER_ADMIN']
+AppBundle\Entity\User:
+  view: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN']
+  activate: ['ROLE_SUPER_ADMIN']
+AppBundle\Entity\Region:
+  view: ['ROLE_SUPER_ADMIN']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN']
+AppBundle\Entity\LegalEntity:
+  view: ['ROLE_SUPER_ADMIN']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN']
+AppBundle\Entity\Invoice:
+  view: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+AppBundle\Entity\Pricing:
+  view: ['ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR']
+  create: ['ROLE_SUPER_ADMIN']
+  edit: ['ROLE_SUPER_ADMIN']

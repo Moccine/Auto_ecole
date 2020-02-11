@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+    title: 'Point de rencontres',
+    link: '#',
+    home: 'Conduite'
+  } %}
+  <div class="container-fluid bg-white">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+            {% include 'blocks/sideMenu.html.twig' %}
+          </div>
+          <div class="col-8">
+            <div class="col-12">
+              {% include 'blocks/title.block.html.twig' with {
+                title:  '',
+                description: ''
+              } %}
+            </div>
+            <div class="col-12">
+              <table id="example" class="display" style="width:100%">
+                <thead>
+                <tr>
+                  <th>Adresse</th>
+                  <th>Code postal</th>
+                  <th>Villel</th>
+                  <th>active</th>
+                  <th>editer</th>
+                  <th>supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for mettingPoint in mettingPoints %}
+                  <tr>
+                    <td>{{mettingPoint.address}}</td>
+                    <td>{{mettingPoint.postalCode}}</td>
+                    <td>{{mettingPoint.city}}</td>
+                    <td> {{ mettingPoint.activated? 'oui':'non'}} </td>
+                    <td><a style="color: black" href=" {{ path('edit_metting_point', {'id': mettingPoint.id}) }}"><i class="icon-edit"></i></a></td>
+                    <td><a style="color: black" href=" {{ path('remove_metting_point', {'id': mettingPoint.id}) }}"><i class="icon-trash" style="color: red" ></i></a></td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Adresse</th>
+                  <th>Code postal</th>
+                  <th>Villel</th>
+                  <th>active</th>
+                  <th>editer</th>
+                  <th>supprimer</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+

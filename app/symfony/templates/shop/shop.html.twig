@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+    title: 'Ajouter un produit ',
+    link: '#',
+    home: 'Boutique'
+  } %}
+  <div class="container-fluid bg-white" style="min-height: 1000px">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+            {% include 'blocks/sideMenu.html.twig' %}
+          </div>
+          <div class="col-10">
+            <div class="col-12">
+              {% include 'blocks/title.block.html.twig' with {
+                title:  'drive_to_code.training.slogan',
+                description: '10× moins cher qu’en auto-école traditionnelle !'
+              } %}
+            </div>
+            <div id="pricing" class="pricing-area overlay overlay-white overlay-40 pt-90 pb-60">
+              <div class="container">
+                <!-- Section Title -->
+                <div class="row">
+                  <div class="section-title title-white text-center col-12 mb-45">
+                    <h3 class="heading">{{ 'shop.best_offers'|trans }}</h3>
+                    <div class="excerpt">
+                      <p>Nous avons une solution pour tous vos besoins d’apprentissage</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  {% for shop in bestOffers %}
+                    <div class="col-lg-4 col-md-6 col-12 mb-30">
+                      <div class="single-pricing text-center">
+                        <div class="pricing-head">
+                          <h4>{{shop.name}}</h4>
+                        </div>
+                        <div class="pricing-price">
+                          <h2>{{shop.price}} €</h2>
+                        </div>
+                        <p class="pricing-details" style="min-height: 80px; color: white; font-size: 15px">
+                          {{ shop.description }}
+                        </p>
+                        <a href="{{ path('add_product', {id: shop.id}) }}" class="pricing-action">Choisir</a>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                <!-- Section Title -->
+                <div class="row">
+                  <div class="section-title title-white text-center col-12 mb-45">
+                    <h3 class="heading">{{ 'shop.driving_card'|trans }}</h3>
+                    <div class="excerpt">
+                      <p>Apprenez la conduite à votre rythme </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  {% for shop in drivingCards %}
+                    <div class="col-lg-4 col-md-6 col-12 mb-30">
+                      <div class="single-pricing text-center">
+                        <div class="pricing-head">
+                          <h4>{{shop.name}}</h4>
+                        </div>
+                        <div class="pricing-price">
+                          <h2>{{shop.price}} €</h2>
+                        </div>
+                        <p class="pricing-details" style="min-height: 80px; color: white; font-size: 15px">
+                          {{ shop.description }}
+                        </p>
+                        <a href="{{ path('add_product', {id: shop.id}) }}" class="pricing-action">Choisir</a>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+{% block modal %}
+  {% include 'blocks/common_modal.block.html.twig' %}
+{% endblock %}
+  {% block stylesheets %}
+  {% endblock %}
+
+

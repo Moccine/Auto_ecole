@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="{{ 'app.description'|trans }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+  <title>{% block title %}{{ 'app.name'|trans }}{% endblock %}</title>
+  <!-- Styles -->
+  {%  include 'common/css.html.twig' %}
+  {{ encore_entry_link_tags('main') }}
+  <!-- Favicon -->
+  {% block stylesheets %}{% endblock %}
+
+</head>
+<body class="main-bg-3">
+<!-- Pre Loader
+============================================ -->
+<div class="preloader">
+  <div class="loading-center">
+    <div class="loading-center-absolute">
+      <div class="object object_one"></div>
+      <div class="object object_two"></div>
+      <div class="object object_three"></div>
+    </div>
+  </div>
+</div>
+<!-- Body main wrapper start -->
+<div class="wrapper fix dark-wrapper">
+  <!-- Header 1
+  ============================================ -->
+  {% include 'common/header.html.twig' %}
+  {% block body %}{% endblock %}
+  {% include 'common/footer.html.twig' %}
+</div>
+{% block modal %}{% endblock %}
+<!-- Footer -->
+{% include 'block/js_vars.block.html.twig' %}
+{% include 'common/js.html.twig' %}
+{{ encore_entry_script_tags('main') }}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

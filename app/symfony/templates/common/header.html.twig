@@ -1,0 +1,35 @@
+<!-- Header 1 ============================================ -->
+<div class="header-area header-absolute header-transparent" style="color: white">
+  <div class="header-top d-none d-md-block">
+    <div class="container">
+      <!-- Header Top -->
+      <div class="header-top-wrapper row">
+        <div class="header-top-left text-left col-md-6 col-12">
+          <p>
+            <i class="icofont icofont-envelope" style="color: white">
+            </i><span style="color: white">{{ 'app.email'|trans }}</span>
+          </p>
+          <p style="color: white !important;">
+            <i class="icofont icofont-ui-call"></i>
+            <span>{{ 'app.name'|trans }} </span>
+          </p>
+        </div>
+        <div class="header-top-right text-right col-md-6 col-12 date">
+          <p><i class="icofont icofont-clock-time" style="color: white">
+            </i>{{ "now"|date("d/m/Y") }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-bottom sticky">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="navbar-header col-auto">
+          <a href="{{ path('homepage') }}" class="logo navbar-brand">
+            <img id="logo_img" src="{{ asset('img/logo.png') }}" alt="logo"/></a>
+        </div>
+        {% include 'common/menu.html.twig' %}
+      </div>
+    </div>
+  </div>
+</div>

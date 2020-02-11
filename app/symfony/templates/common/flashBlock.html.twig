@@ -1,0 +1,10 @@
+{% if message is not defined %}
+  {% set message = '' %}
+{% endif %}
+{% if title is not defined %}
+  {% set title = 'Alert' %}
+{% endif %}
+{% if level is not defined %}
+  {% set level = 'info' %}
+{% endif %}
+<div class="alert  alert-{{ level }}" role="alert"><strong>{{ title }}</strong> {{message}}</div>

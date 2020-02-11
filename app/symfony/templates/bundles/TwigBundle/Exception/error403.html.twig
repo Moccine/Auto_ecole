@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'booking.name'|trans }}{% endblock %}
+{% block body %}
+    <div class="error-wrap">
+        <div class="container">
+            <div class="error-content">
+                <h1 class="error-title">“{{ 'error.title'|trans }}”</h1>
+                <div class="error-text">{{ 'error.description'|trans }}</div>
+                <a href="" class="btn btn-outline btn-white-outline">
+                  <div class="db-text-block">
+                    <div class="db-label db-top">{{ 'error.btn'|trans }}</div>
+                    <div class="db-label db-bottom" tabindex="-1" aria-hidden="true">{{ 'error.btn'|trans }}</div>
+                  </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

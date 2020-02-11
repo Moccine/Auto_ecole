@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+    title: 'Entrainement',
+    link: '#',
+    home: 'Code de la route'
+  } %}
+  <div class="container-fluid bg-white">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+            {% include 'blocks/sideMenu.html.twig' %}
+          </div>
+          <div class="col-8">
+            <div class="col-12">
+              {% include 'blocks/title.block.html.twig' with {
+                title:  'Liste des moniteurs ',
+                description: '10× moins cher qu’en auto-école traditionnelle !'
+              } %}
+            </div>
+              <div id="course-area" class="course-area bg-white pt-90 pb-60">
+                <div class="container">
+                  <div class="col-12 row" style="color: black; padding-bottom: 50px">
+                  <h5 style="color: black; padding-right: 15px">Point de rencontre:  </h5>
+                    <i class="fas fa-map-marker-alt"></i> <span  class="h4" style="color : red; float: left"> {{ mettingPoint.address }} {{ mettingPoint.city }} {{ mettingPoint.postalcode }} </span>
+                  </div>
+                  <!-- Course Wrapper -->
+                  <div class="course-wrapper row">
+                    {% for instructor in instructors %}
+                      <div class="col-lg-3 col-md-6 col-12 mb-30 fix">
+                        <div class="course-item text-center">
+                          <i class="icofont icofont-user-alt-4"></i>
+                          <h4><a href="{{
+                            path('list_horurs_drivingins',
+                              {
+                                'instructor_id': instructor.id,
+                                'card_id': card.id,
+                                'mp_id': mettingPoint.id
+                              })
+                            }}">{{ instructor.firstName }}</a></h4>
+                          <p> description :  {{ instructor.firstName}} 45 ans  pus de 15 d'experience et Plus 75% de reussite</p>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+
+

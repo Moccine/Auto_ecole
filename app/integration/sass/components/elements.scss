@@ -1,0 +1,17 @@
+body { background-image: none !important; background-color: #F0F0F0; }
+.panel-title a {
+  &:hover { color: $yellow; text-decoration: none;}
+}
+.form-check {
+  a { color: $dark-grey !important; text-decoration: underline;
+    &:hover { text-decoration: none; }
+  }
+}
+.white-box { padding: 50px 30px; margin: 50px auto; background:white;
+  @include max(xs){ padding: 30px; margin: 30px auto; }
+}
+.section-title { padding-top: 50px; color: $black; }
+.black-section-title { padding-top: 0px; color: $black; margin-bottom: 50px;
+  @include max(xs){ margin-bottom: 30px;}
+}
+//.form-control { border-radius: 0; }

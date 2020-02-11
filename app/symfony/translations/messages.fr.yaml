@@ -1,0 +1,157 @@
+app:
+  action:
+    cancel: 'Annuler'
+    confirm: 'Confirmer'
+    close: 'Fermer'
+    save: 'Enregistrer'
+    add: 'Ajouter'
+  phone: '01 42 63 93 40'
+  name: 'Meilleurs Moniteurs'
+  email: 'permisacceleres@yahoo.fr '
+  slogan: 'Meilleurs Moniteurs'
+  devise: '€'
+  traffick:
+    laws: 'Code de la route'
+    allowed_to_drive: 'Permis de conduire'
+  home:
+    login: 'Connexion'
+  caroussel:
+    title: ''
+    message: 'Meilleurs  <span> Moniteurs !</span>'
+    content: ' L''Ecole de Conduite Permis Accéléré vous propose ses formules pour obtenir rapidement votre permis B.'
+  common:
+    edit: 'Modifier'
+    delete: 'Supprimer'
+    activated: 'Activer'
+    desactivated: 'Desactiver'
+    save: 'Enregistrer'
+  menu:
+    home: 'Accueil'
+    drive_to_code:
+      title: 'Code de la route'
+      training: 'Entrainement'
+    shop:
+      title: 'Boutique'
+      list: 'La liste des produits'
+      add: 'Ajouter un produit'
+      our_best_offers: 'Nos meilleurs offres'
+      card_for_a_driving: 'Conduite à la carte'
+    the_driving:
+      title: 'Conduite'
+      driving_lesson: 'Leçon de conduite'
+      book_a_lesson: 'Reserver une leçon'
+      learning_booklet: 'Livret d''apprentissage'
+    examination_area:
+      title: 'Espace Examen'
+
+    about: 'A propos'
+    profil:
+      title: 'compte'
+      login: 'Se connecter'
+      logout: 'Se deconnecter'
+
+    user:
+      role:
+        driving_instructor: 'Moniteur'
+        coordinator: 'Coordinateur'
+        driving_student: 'Elève'
+        super_admin: 'Administrateur'
+      instructor:
+        title: 'Les moniteur'
+        list: 'Liste des moniteurs'
+        add: 'Ajouter un nouveau moniteur'
+        delete: 'Supprimer un moniteur'
+        edit: 'Modifier un moniteur'
+      student:
+        title: 'Les élèves'
+        list: 'Liste des élèves'
+        add: 'Ajouter un nouveau élève'
+        delete: 'Supprimer un élève'
+        edit: 'Modifier un élève'
+    location:
+      title: 'Points de rencontre'
+      add: 'Ajouter un point de rencontre'
+      delete: 'Supprimer un point de recontre'
+      edit: 'Modifier un point de recontre'
+      list: 'Liste des points de recontre'
+
+security:
+  login:
+    password: 'Mot de passe'
+    username: 'Email'
+    remember_me: 'Se souvenir de moi'
+    submit: 'Valider'
+    first_name: 'Nom'
+    last_name: 'Prenom'
+    phone: 'Téléphone'
+    birth_date: 'Date de naissance'
+    zip_code: 'Code postal'
+    address: 'Adresse'
+    registration: 'Inscription'
+    city: 'Ville'
+    email: 'Email'
+    login: 'Connexion'
+    forgot_password: 'Mot de passe oublié'
+    back_login: 'Retour à la connexion'
+    reset: 'Mot de passe oublié'
+    save: 'Enregistrer'
+    description: 'Description'
+drive_to_code:
+  title: 'Code de la route'
+  training:
+    slogan: 'Obtenez votre code de la route pour 29,90€'
+  price:  '29,90'
+location:
+  form:
+    metting_point: 'Choisir comme Point de rencontre'
+    address: 'Adresse'
+    postal_code: 'Code postal'
+    city: 'Ville'
+    region: 'Region'
+    activated: 'Actvivé le point de rencotre'
+
+user:
+  role:
+    driving_instructor: 'Moniteur'
+    coordinator: 'Coordinateur'
+    driving_student: 'Elève'
+    super_admin: 'Administrateur'
+day:
+  monday: 'Lundi'
+  tuesday: 'Mardi'
+  wednesday: 'Mercredi'
+  thursday: 'Jeudi'
+  friday: 'Vendredi'
+  saturday: 'Samedi'
+  sunday: 'Dimanche'
+month:
+  January: 'Janvier'
+  february: 'Fevrier'
+  march: 'Mars'
+  april: 'Avril'
+  may: 'Mai'
+  june: 'Juin'
+  july: 'Juillert'
+  august: 'Août'
+  september: 'September'
+  october: 'Octobre'
+  november: 'Novembre'
+  december: 'Decembre'
+course:
+  in_card: 'Dans le panier'
+  paid: 'Payé'
+  done: 'Effectuer'
+shop:
+  name : 'Nom du produit'
+  hour : 'Prix par heure'
+  price : 'Prix du produit'
+  description : 'Description'
+  priority : 'Priorité'
+  complementDescription : 'information complementaire'
+  add: 'Ajouter un produit'
+  best_offers: 'Nos meilleures offres'
+  driving_card: 'La conduite à la carte'
+  course_number: 'Nombre d''heure du package'
+package:
+  add:
+    error: 'Impossible d''ajouter des cours'

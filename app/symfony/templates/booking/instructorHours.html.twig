@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+    title: 'Reservation',
+    link: '#',
+    home: 'Code de la route'
+  } %}
+  <div class="container-fluid bg-white" style="min-height: 200px">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+            {% include 'blocks/sideMenu.html.twig' %}
+          </div>
+          <div class="col-8">
+            <div class="col-12">
+              {% include 'blocks/title.block.html.twig' with {
+                title:  'Moniteur : ' ~ instructor.firstName ,description: 'Heures de disponibilité'
+              } %}
+            </div>
+            <form id="instructor-hours" data-package="{% if credit.id is defined %}1{% endif %}"
+                  data-instructor-id="{{ instructor.id }}"
+                  data-metting-point-id="{{ mettingPoint.id }}">
+              <div class="col-12" style="margin-bottom: 20px">
+                <h5 style="color: black; padding-bottom: 20px">{{'app.menu.location.title'|trans}} : {{ mettingPoint.address }}  </h5>
+                <!-- Course Wrapper -->
+                {{ form_start(form) }}
+                <table class="table">
+                  <tr>
+                    {% for child in form.children %}
+                    <td>{{ form_row(child)}}</td>
+                    {% if loop.index is divisible by(7) %}
+                  </tr> <tr>
+                    {% endif %}
+                    {% endfor %}
+                  </tr>
+                </table>
+
+                {{ form_start(form) }}
+              </div>
+              <button type="submit" class="btn btn-lg hover-black color">{{'app.common.save'|trans}}</button>
+              {{ form_end(form) }}
+          </div>
+
+          <div class="col-2" style="padding-top: 50px">
+
+            {% if credit.courseNumber is not defined %}
+              <h5>Panier</h5>
+              <div class="h1 price">
+                {% if card.total is defined %}
+                  {{ card.total }}
+                {% endif %}
+              </div>
+            {% else %}
+              <h5>Heures restantes sur votre package de ({{ credit.courseNumber }})</h5>
+              <div class="h1 course-number"
+                   data-card-id="{{ credit.card.id }}"
+                   data-="{{ credit.card.id }}"
+                   data-credit-id="{{ credit.id }}">
+                {% if credit.restCourseNumber is defined %}
+                  {{ credit.restCourseNumber }} h
+                {% endif %}
+              </div>
+            {% endif %}
+            <button type="button" class="btn btn-ms hover-black color">
+              <a href="{{ path('display_card', {'id': card.id}) }}">voir le panier</a> </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+

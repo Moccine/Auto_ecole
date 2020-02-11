@@ -1,0 +1,27 @@
+
+{% if title is not defined %}
+  {% set title = '' %}
+{% endif %}
+
+{% if home is not defined %}
+  {% set home = '' %}
+{% endif %}
+
+{% if link is not defined %}
+  {% set link = '#' %}
+{% endif %}
+<!-- Page Banner Area
+============================================ -->
+<div class="page-banner-area overlay overlay-black overlay-70">
+  <div class="container">
+    <div class="row">
+      <div class="page-banner text-center col-12">
+        <h1>{{title}}</h1>
+        <ul>
+          <li><a href="{{ link }}">{{home}}</a></li>
+          <li><span>{{title}}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

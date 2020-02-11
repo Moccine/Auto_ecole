@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block title %}Register{% endblock %}
+{% block body %}
+
+{% include 'common/banner.html.twig' with {
+  title :'security.login.registration'|trans,
+  home :'app.menu.home'|trans,
+  link :  path('homepage')
+}
+
+%}
+  <div class="container">
+    <div class="white-box">
+      <div class="col-12">
+        <div class="col-6 offset-3">
+          <div class="col-12">
+            {% include 'blocks/title.block.html.twig' with {
+
+              description: 'Inscription'
+            }%}
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        {{ form_start(form) }}
+        <div class="row">
+          <div class="col-sm">
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.email) }}
+          </div>
+          <div class="col-sm">
+            {{ form_row(form.address) }}
+            {{ form_row(form.zipCode) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.birthDate) }}
+            {{ form_row(form.plainPassword) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 offset-3" style="margin-bottom: 50px">
+          <button type="submit" class="btn btn-lg hover-black color">Enregistrer</button>
+        </div>
+
+      </div>
+      {{ form_end(form) }}
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+  $('.js-datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    weekStart: 1,
+    daysOfWeekHighlighted: "6,0",
+    autoclose: true,
+    todayHighlight: true,
+  });
+</script>
+
+{% endblock %}

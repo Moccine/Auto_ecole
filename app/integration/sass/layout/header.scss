@@ -1,0 +1,18 @@
+#logo_img { max-height: 50px;
+  @include max(md){ max-height: 40px; }
+}
+.stick .mean-container a.meanmenu-reveal { top: -62px; }
+
+.header-top-left {
+  p {
+    span { color: $white; }
+  }
+}
+.header-top-right { display: none; }
+
+.main-menu nav {
+  > ul > li {
+    > a { font-size: 16px; }
+    ul li > a  { font-size: 16px; }
+  }
+}
