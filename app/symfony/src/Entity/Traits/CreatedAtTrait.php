@@ -21,7 +21,7 @@ trait CreatedAtTrait
      */
     public function setCreatedAt($createdAt)
     {
-        if(!$createdAt instanceof \DateTime){
+        if (!$createdAt instanceof \DateTime) {
             $this->onPersist();
         }
         $this->createdAt = $createdAt;

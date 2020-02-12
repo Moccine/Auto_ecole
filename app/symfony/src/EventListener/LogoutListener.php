@@ -3,7 +3,6 @@
 
 namespace App\EventListener;
 
-
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +18,8 @@ class LogoutListener implements LogoutHandlerInterface
     private $session;
 
 
-    public function __construct(UserManagerInterface $userManager, SessionInterface $session){
-
+    public function __construct(UserManagerInterface $userManager, SessionInterface $session)
+    {
         $this->userManager = $userManager;
         $this->session = $session;
     }
@@ -30,9 +29,8 @@ class LogoutListener implements LogoutHandlerInterface
      */
     public function logout(Request $request, Response $response, TokenInterface $token)
     {
-     if($this->session->has('card')){
-         $this->session->remove('card');
-     }
-
+        if ($this->session->has('card')) {
+            $this->session->remove('card');
+        }
     }
 }

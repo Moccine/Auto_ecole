@@ -45,11 +45,13 @@ class CourseExtension extends AbstractExtension
     {
         $date = $course->getCourseDate();
 
-        return  sprintf('%s H - %s %s %s',
+        return  sprintf(
+            '%s H - %s %s %s',
             $date->format('H'),
             $this->translator->trans(Course::DAYS[$date->format('N')]),
             $date->format('j'),
-            $this->translator->trans(Course::MONTHS[$date->format('n')]));
+            $this->translator->trans(Course::MONTHS[$date->format('n')])
+        );
     }
 
     public function formatPrice($number, $decimals = 2, $decPoint = '.', $thousandsSep = ',')

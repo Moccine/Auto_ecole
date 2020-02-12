@@ -9,7 +9,6 @@ use Faker\Factory;
 use Faker\Provider\Address;
 use FOS\UserBundle\Model\UserManagerInterface;
 
-
 class userFixtures extends Fixture
 {
     private $userManager;
@@ -42,7 +41,7 @@ class userFixtures extends Fixture
             $user->setEnabled(true);
             $user->setRoles((array)$roles);
             /** @var MettingPoint $mp */
-            if($roles == User::ROLE_RIVING_INSTRUCTOR){
+            if ($roles == User::ROLE_RIVING_INSTRUCTOR) {
                 $mp= $manager->merge($this->getReference('mettingPoint'.rand(0, 5)));
                 $mp->addUser($user);
             }

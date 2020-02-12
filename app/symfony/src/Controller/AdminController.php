@@ -16,7 +16,7 @@ class AdminController extends AbstractController
      */
     public function indexAction()
     {
-       $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
         return $this->render('admin/index.html.twig', [
             'users' => $users,
         ]);
@@ -35,5 +35,4 @@ class AdminController extends AbstractController
             'users' => $users,
         ]);
     }
-
 }

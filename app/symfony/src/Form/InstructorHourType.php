@@ -50,11 +50,13 @@ class InstructorHourType extends AbstractType
             for ($hour = 7; $hour < 22; $hour++) { //l'heure
                 $checkboxValue = false;
                 $date->setTime($hour, 0, 0);
-                $label = sprintf('%s H - %s %s %s',
+                $label = sprintf(
+                    '%s H - %s %s %s',
                     $hour,
                     substr($this->translator->trans(Course::DAYS[$date->format('N')]), 0, 3),
                     $date->format('j'),
-                    substr($this->translator->trans(Course::MONTHS[$date->format('n')]), 0, 3));
+                    substr($this->translator->trans(Course::MONTHS[$date->format('n')]), 0, 3)
+                );
                 $fieldName = sprintf('hours-%d-%d', $day, $hour);
                 $attr = [
 
@@ -76,13 +78,15 @@ class InstructorHourType extends AbstractType
                 }
 
                 $builder
-                    ->add($fieldName, CheckboxType::class,
+                    ->add(
+                        $fieldName,
+                        CheckboxType::class,
                         [
                             'label' => $label,
                             'data' => $checkboxValue,
                             'attr' => $attr
-                        ]);
-
+                        ]
+                    );
             }
         }
     }

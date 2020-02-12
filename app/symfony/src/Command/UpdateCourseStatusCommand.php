@@ -26,7 +26,7 @@ class UpdateCourseStatusCommand extends Command
      * UpdateCourseStatusCommand constructor.
      * @param PackageManager $packageManager
      */
-    public function __construct( EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em)
     {
         parent::__construct();
         $this->em = $em;
@@ -47,8 +47,8 @@ class UpdateCourseStatusCommand extends Command
         //
 
         $now = new \DateTime();
-        $courses = $this->em->getRepository(Course::class)->findCourseByDate($now->add(new \DateInterval('P1D'))->setTime(0,0,0));
-        dump($courses,$now->add(new \DateInterval('P1D'))->setTime(0,0,0));
+        $courses = $this->em->getRepository(Course::class)->findCourseByDate($now->add(new \DateInterval('P1D'))->setTime(0, 0, 0));
+        dump($courses, $now->add(new \DateInterval('P1D'))->setTime(0, 0, 0));
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 
         return 0;

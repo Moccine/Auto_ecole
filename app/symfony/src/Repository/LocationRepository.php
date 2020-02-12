@@ -7,7 +7,6 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-
 class LocationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -41,7 +40,6 @@ class LocationRepository extends ServiceEntityRepository
                 'metting' => Location::ACTIVATED,]);
 
         return $qb->getQuery()->getResult();
-
     }
     public function userByLocation(User $user)
     {
@@ -50,8 +48,5 @@ class LocationRepository extends ServiceEntityRepository
             ->setParameter('user', $user);
         ;
         return $qb->getQuery()->getResult();
-
     }
-
-
 }

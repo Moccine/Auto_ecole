@@ -77,9 +77,9 @@ class ProfileType extends AbstractType
                 'data_class' => null,
                 'required' => false
             ]);
-       // if ($user->hasRole('ROLE_SUPER_ADMIN')) {
-            $builder->remove('current_password');
-       // }
+        // if ($user->hasRole('ROLE_SUPER_ADMIN')) {
+        $builder->remove('current_password');
+        // }
     }
 
     public function getUser()

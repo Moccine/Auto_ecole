@@ -23,13 +23,13 @@ class Course
         self::PAID => 'course.paid',
         self::DONE => 'course.done',
     ];
-    consT MONDAY = 1;
-    consT TUESDAY = 2;
-    consT WEDNESDAY = 3;
-    consT THURSDAY = 4;
-    consT FRIDAY = 5;
-    consT SATURDAY = 6;
-    consT SUNDAY = 7;
+    const MONDAY = 1;
+    const TUESDAY = 2;
+    const WEDNESDAY = 3;
+    const THURSDAY = 4;
+    const FRIDAY = 5;
+    const SATURDAY = 6;
+    const SUNDAY = 7;
     const DAYS = [
         self::MONDAY => 'day.monday',
         self::TUESDAY => 'day.tuesday',

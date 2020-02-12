@@ -27,7 +27,6 @@ class BookingController extends AbstractController
      */
     public function instructorByUserdMettinPointAction(Request $request, SessionInterface $session)
     {
-
         $session->set('card_id', $request->query->get('card'));
         $session->remove('card_id');
         $form = $this->createForm(MettingPointType::class);
@@ -37,7 +36,6 @@ class BookingController extends AbstractController
             return $this->redirect($this->generateUrl('instructor_list', array('id' => $mettingPoint->getId(),
                 'card' => $request->query->get('card'),)));
             // return $this->redirectToRoute('instructor_list', ['id' => $mettingPoint->getId(), 'card' => $request->query->get('card')]);
-
         }
         return $this->render('instructor/instructorSearchForm.html.twig', [
             'form' => $form->createView()
@@ -82,8 +80,10 @@ class BookingController extends AbstractController
      */
     public function instructorHoursAction(Request $request, User $user, MettingPoint $mettingPoint, SessionInterface $session)
     {
-       $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(InstructorHourType::class, null,
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(
+            InstructorHourType::class,
+            null,
             [
                 'instructor' => $user,
                 'student' => $this->getUser()
@@ -95,12 +95,12 @@ class BookingController extends AbstractController
             'status' => Card::PENDING,
         ]);
 
-   if(!$card instanceof Card){
-       $card = new Card();
-       $card->setUser($this->getUser())->setShop(null);
-       $em->persist($card);
-       $em->flush();
-   }
+        if (!$card instanceof Card) {
+            $card = new Card();
+            $card->setUser($this->getUser())->setShop(null);
+            $em->persist($card);
+            $em->flush();
+        }
         /** @var Course $course */
         $form->handleRequest($request);
 
@@ -117,7 +117,6 @@ class BookingController extends AbstractController
      */
     public function stripeFormAction(Request $request, Card $card)
     {
-
         $hop = $card->getShop();
 
         return $this->render('payment/index.html.twig', [
@@ -135,7 +134,6 @@ class BookingController extends AbstractController
      */
     public function studentCardUnityListAction(User  $user)
     {
-
         $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($user, Card::TYPE_UNITE);
 
 
@@ -144,8 +142,5 @@ class BookingController extends AbstractController
             'cards' => $cards,
 
         ]);
-
     }
-
-
 }

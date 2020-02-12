@@ -14,7 +14,9 @@ class MettingPointType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('address', EntityType::class,
+            ->add(
+                'address',
+                EntityType::class,
                 [
                     'class' => MettingPoint::class,
                     'label' => 'Choisir Point de rencontre',
@@ -22,10 +24,11 @@ class MettingPointType extends AbstractType
                         return $er->createQueryBuilder('m')
                             ->orderBy('m.address', 'ASC');
                     },
-                    'choice_label' => function(MettingPoint $mettingPoint){
-                   return sprintf('%s %s %s', $mettingPoint->getAddress(), $mettingPoint->getCity(), $mettingPoint->getPostalCode());
+                    'choice_label' => function (MettingPoint $mettingPoint) {
+                        return sprintf('%s %s %s', $mettingPoint->getAddress(), $mettingPoint->getCity(), $mettingPoint->getPostalCode());
                     },
-                ])
+                ]
+            )
         ;
     }
 

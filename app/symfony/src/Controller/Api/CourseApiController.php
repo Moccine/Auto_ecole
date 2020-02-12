@@ -3,7 +3,6 @@
 
 namespace App\Controller\Api;
 
-
 use App\Entity\Card;
 use App\Entity\Course;
 use App\Entity\Credit;
@@ -26,7 +25,6 @@ class CourseApiController extends AbstractController
      */
     public function addCourseAction(Request $request, User $user, CourseManager $courseManager)
     {
-
         $em = $this->getDoctrine()->getManager();
         /** @var MettingPoint $mettingPoint */
         $mettingPoint =  $em->getRepository(MettingPoint::class)->find($request->query->get('mettingPointId'));
@@ -67,7 +65,6 @@ class CourseApiController extends AbstractController
             $card = new Card();
             $card->setUser($student);
             $em->persist($card);
-
         }
 
         $courseManager->addCourse($card, $course);
@@ -121,10 +118,10 @@ class CourseApiController extends AbstractController
         ]);
 
         if ($course instanceof Course and $card instanceof Card) {
-                /** @var Card $card */
-                $courseManager->removeCourse($card, $course);
-                $em->remove($course);
-             $em->flush();
+            /** @var Card $card */
+            $courseManager->removeCourse($card, $course);
+            $em->remove($course);
+            $em->flush();
         }
         $price = 0;
         $courses = $card->getCourses();
@@ -150,7 +147,6 @@ class CourseApiController extends AbstractController
      */
     public function CourseInformationAction(Course $course)
     {
-
         $template = $this->renderView('course/courseInfo.html.twig', ['course' => $course,]);
         return $this->json([
             'template' => $template,
@@ -168,8 +164,7 @@ class CourseApiController extends AbstractController
 
     public function addpackageCourse(request $request, Card $card, Credit $credit)
     {
-        if($credit->getRestCourseNumber() ===0){
-
+        if ($credit->getRestCourseNumber() ===0) {
             return $this->json([
                 'message' => 'failed',
                 'restCourseNumber' => $credit->getRestCourseNumber(),
@@ -178,9 +173,9 @@ class CourseApiController extends AbstractController
         }
         $em = $this->getDoctrine()->getManager();
         /** @var MettingPoint $mettingPoint */
-       $mettingPoint =  $em->getRepository(MettingPoint::class)->find($request->query->get('mettingPointId'));
-       /** @var User $instructor */
-       $instructor =  $em->getRepository(User::class)->find($request->query->get('instructorId'));
+        $mettingPoint =  $em->getRepository(MettingPoint::class)->find($request->query->get('mettingPointId'));
+        /** @var User $instructor */
+        $instructor =  $em->getRepository(User::class)->find($request->query->get('instructorId'));
         /** @var User $student */
         $student = $this->getUser();
         $courseRepository = $this->getDoctrine()->getRepository(Course::class);
@@ -264,5 +259,4 @@ class CourseApiController extends AbstractController
 
         ], Response::HTTP_OK);
     }
-
 }

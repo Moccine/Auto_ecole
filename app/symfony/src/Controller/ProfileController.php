@@ -35,8 +35,6 @@ class ProfileController extends BaseController
 
     public function editAction(Request $request)
     {
-
-
         $courses = $this->getDoctrine()->getRepository(Course::class)->findBy([
             'student' => $this->getUser(),
             'status' => Card::PENDING
@@ -47,12 +45,14 @@ class ProfileController extends BaseController
         foreach ($courses as $course) {
             $mettingPoint = $course->getMettingPoint()->first();
 
-            array_push($items,
+            array_push(
+                $items,
                 [
                     'mettingPoint' => $mettingPoint,
                     'course' => $course
 
-                ]);
+                ]
+            );
         }
 
         /** @var SessionInterface $session */
@@ -108,5 +108,4 @@ class ProfileController extends BaseController
             ['form' => $form->createView()]
         );
     }
-
 }

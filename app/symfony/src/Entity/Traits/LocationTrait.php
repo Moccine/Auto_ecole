@@ -3,7 +3,6 @@
 
 namespace App\Entity\Traits;
 
-
 use App\Entity\Region;
 
 trait LocationTrait
@@ -64,7 +63,6 @@ trait LocationTrait
     public function getPostalCode(): ?string
     {
         return $this->postalCode;
-
     }
 
     /**
@@ -134,5 +132,4 @@ trait LocationTrait
 
         return $this;
     }
-
 }

@@ -3,8 +3,6 @@
 
 namespace App\Service;
 
-
 class Utils
 {
-
 }
