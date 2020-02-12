@@ -56,7 +56,7 @@ class InstructorController extends AbstractController
 
     public function editAction(Request $request, User $user)
     {
-        $form = $this->createForm(InstructorType::class,  $user);
+        $form = $this->createForm(InstructorType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
@@ -70,38 +70,3 @@ class InstructorController extends AbstractController
         ]);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

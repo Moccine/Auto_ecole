@@ -14,14 +14,12 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @Vich\Uploadable
  */
 class User extends BaseUser
 {
-
     use CreatedAtTrait;
     use ActivatedTrait;
     use UpdatedAtTrait;

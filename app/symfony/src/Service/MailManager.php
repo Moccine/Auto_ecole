@@ -45,12 +45,13 @@ class MailManager
      * @param TranslatorInterface $translator
      * @param string $oiseMail
      */
-    public function __construct(ObjectManager $entityManager,
+    public function __construct(
+        ObjectManager $entityManager,
                                 \Swift_Mailer $mailer,
                                 EngineInterface $twig,
                                 TranslatorInterface $translator,
-                                ContainerInterface $container)
-    {
+                                ContainerInterface $container
+    ) {
         $this->entityManager = $entityManager;
         $this->mailer = $mailer;
         $this->twig = $twig;

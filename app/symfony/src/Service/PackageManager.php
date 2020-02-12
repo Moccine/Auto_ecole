@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\Course;
 use Doctrine\ORM\EntityManager;
 use phpDocumentor\Reflection\Types\Parent_;
@@ -22,14 +21,13 @@ class PackageManager
         $this->em = $em;
     }
 
-    public  function updateCourseStatus(){
+    public function updateCourseStatus()
+    {
         $now = new \DateTime();
         $courses = $this->em->getRepository(Course::class)->findBy([
-            'courseDate' =>$now->add(new \DateInterval('P1D'))->setTime(0,0,0)
+            'courseDate' =>$now->add(new \DateInterval('P1D'))->setTime(0, 0, 0)
 
         ]);
         dump($courses);
-
     }
-
 }

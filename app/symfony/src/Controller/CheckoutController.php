@@ -20,11 +20,13 @@ class CheckoutController extends AbstractController
      * @Route("/checkout/{id}", name="checkout", methods={"POST"})
      * @throws \Exception
      */
-    public function index(Request $request, Card $card,
+    public function index(
+        Request $request,
+        Card $card,
                           PaymentManager $paymentManager,
                           TranslatorInterface $translator,
-                          Session $session)
-    {
+                          Session $session
+    ) {
         try {
             /** @var Session $session */
             $em = $this->getDoctrine()->getManager();
@@ -49,13 +51,11 @@ class CheckoutController extends AbstractController
                 $card->getCourses()->map(function (Course $course) {
                     $course->setStatus(Course::PAID);
                 });
-
             }
             $em->flush();
             $session->set('card', $card);
             $session->set('order', $bookingOrder);
         } catch (\Exception $exception) {
-
             return $this->render('checkout/failed.html.twig', [
                 'card' => $card,
             ]);
@@ -81,9 +81,9 @@ class CheckoutController extends AbstractController
             'card' => $card
         ]);
         $shop = null;
-       if ($card->getType() == Card::TYPE_PACKAGE){
-           $shop = $this->getDoctrine()->getRepository(Shop::class)->find($card->getShop()->getId());
-       }
+        if ($card->getType() == Card::TYPE_PACKAGE) {
+            $shop = $this->getDoctrine()->getRepository(Shop::class)->find($card->getShop()->getId());
+        }
 
         return $this->render('checkout/confirmation.html.twig', [
             'card' => $session->get('card'),
@@ -91,6 +91,5 @@ class CheckoutController extends AbstractController
             'courses' => $courses,
             'shop' => $shop,
         ]);
-
     }
 }

@@ -25,8 +25,8 @@ class OrdersController extends AbstractController
     /**
      * @Route("/orders/checkout", name="checkout_order")
      */
-    public function checkoutAction(Request $request){
-
+    public function checkoutAction(Request $request)
+    {
         return $this->render('orders/checkout.html.twig', [
             'orders' => 'OrdersController',
         ]);

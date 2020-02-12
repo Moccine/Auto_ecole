@@ -16,11 +16,14 @@ class ShopType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class,
+            ->add(
+                'name',
+                TextType::class,
                 [
                     'label' => 'shop.name',
                     'required' => true,
-                ])
+                ]
+            )
             ->add('hour', MoneyType::class, [
                 'label' => 'shop.hour',
                 'required' => false,
@@ -31,12 +34,15 @@ class ShopType extends AbstractType
                 'required' => true,
 
             ])
-            ->add('description', TextareaType::class,
+            ->add(
+                'description',
+                TextareaType::class,
                 [
                     'label' => 'shop.description',
                     'required' => false,
 
-                ])
+                ]
+            )
             ->add('priority', IntegerType::class, [
                 'label' => 'shop.priority',
                 'required' => true,
@@ -47,12 +53,15 @@ class ShopType extends AbstractType
                 'required' => true,
 
             ])
-            ->add('complementDescription', TextareaType::class,
+            ->add(
+                'complementDescription',
+                TextareaType::class,
                 [
                     'label' => 'shop.complementDescription',
                     'required' => false,
 
-                ]);
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

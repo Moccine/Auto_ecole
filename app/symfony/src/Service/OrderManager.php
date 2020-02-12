@@ -44,7 +44,4 @@ class OrderManager
 
         return $Orders;
     }
-
-
-
 }

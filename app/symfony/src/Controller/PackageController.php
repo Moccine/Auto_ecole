@@ -40,18 +40,18 @@ class PackageController extends AbstractController
             /** @var MettingPoint $mettingPoint */
             $mettingPoint = $form->getData()['address'];
 
-            return $this->redirectToRoute('booking_instructor_list_by_metting_point',
+            return $this->redirectToRoute(
+                'booking_instructor_list_by_metting_point',
                 [
                     'id' => $mettingPoint->getId(),
                     'mp_id' => $mettingPoint->getId(),
                     'card_id' => $card->getId(),
-            ]);
-
+            ]
+            );
         }
         return $this->render('package/instructorSearchForm.html.twig', [
             'form' => $form->createView()
         ]);
-
     }
 
     /**
@@ -95,14 +95,16 @@ class PackageController extends AbstractController
      */
     public function instructorHoursAction(Request $request, User $user, MettingPoint $mettingPoint, Card $card, SessionInterface $session)
     {
-        $form = $this->createForm(InstructorHourType::class, null,
+        $form = $this->createForm(
+            InstructorHourType::class,
+            null,
             [
                 'instructor' => $user,
                 'student' => $this->getUser()
             ]
         );
 
-            $credit = $this->getDoctrine()->getRepository(Credit::class)->findOneBy([
+        $credit = $this->getDoctrine()->getRepository(Credit::class)->findOneBy([
                 'card' => $card
             ]);
 
@@ -123,20 +125,21 @@ class PackageController extends AbstractController
      */
     public function packageCoursesListAction(Card $card)
     {
-
         $items = [];
         $price = 0;
         $courses = $card->getCourses()->toArray();
         /** @var Course $course */
-        foreach ($courses as $course){
+        foreach ($courses as $course) {
             $mettingPoint =$course->getMettingPoint();
             $price+=$course->getPrice();
-            array_push($items,
+            array_push(
+                $items,
                 [
                     'mettingPoint'=> $mettingPoint,
                     'course' => $course
 
-                ]);
+                ]
+            );
         }
         $credit = $this->getDoctrine()->getRepository(Credit::class)->findOneBy([
             'card' => $card
@@ -165,7 +168,7 @@ class PackageController extends AbstractController
 
         $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($this->getUser(), Card::TYPE_PACKAGE);
         $cardDatas = [];
-        foreach ($cards as $card){
+        foreach ($cards as $card) {
             /** @var Credit $credit */
             $credit = $this->getDoctrine()->getRepository(Credit::class)->findOneBy(['card' => $card]);
 
@@ -177,7 +180,7 @@ class PackageController extends AbstractController
         }
         $courses = [];
         /** @var Card $card */
-        foreach ($cards as $card){
+        foreach ($cards as $card) {
             array_merge($courses, $card->getCourses()->toArray());
         }
 
@@ -187,6 +190,5 @@ class PackageController extends AbstractController
             'cardDatas' => $cardDatas
 
         ]);
-
     }
 }

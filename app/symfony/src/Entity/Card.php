@@ -189,8 +189,9 @@ class Card
     /**
      * @return float|int
      */
-    public function totalTva(){
-        return $this->total* (1- 0.2 );
+    public function totalTva()
+    {
+        return $this->total* (1- 0.2);
     }
 
     public function getShop(): ?Shop
@@ -204,5 +205,4 @@ class Card
 
         return $this;
     }
-
 }

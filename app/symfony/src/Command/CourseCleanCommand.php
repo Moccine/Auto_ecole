@@ -42,28 +42,27 @@ class CourseCleanCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $now = new \DateTime();
-        $now->add(new \DateInterval('P1D'))->setTime(0,0,0);
+        $now->add(new \DateInterval('P1D'))->setTime(0, 0, 0);
         // recuperer les courses inferieur ou égale à cette date
         $cards = $this->em->getRepository(Card::class)->findBy([
             'status' => Card::PENDING,
             'shop' => null
         ]);
 
-          foreach($cards as $card){
-              /** @var Course $course */
-              foreach ($card->getCourses() as $course){
-                  if($course->getCourseDate() <= $now){
-                      $this->em->remove($course);
-                      $this->em->flush();
-                  }
-              }
+        foreach ($cards as $card) {
+            /** @var Course $course */
+            foreach ($card->getCourses() as $course) {
+                if ($course->getCourseDate() <= $now) {
+                    $this->em->remove($course);
+                    $this->em->flush();
+                }
+            }
 
-              if ($card->getCourses()->count() === 0){
-                  $this->em->remove($card);
-                  $this->em->flush();
-              }
-
-          }
+            if ($card->getCourses()->count() === 0) {
+                $this->em->remove($card);
+                $this->em->flush();
+            }
+        }
 
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 

@@ -9,6 +9,4 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaymentContoller extends AbstractController
 {
-
-
 }

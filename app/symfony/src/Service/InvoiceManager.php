@@ -30,7 +30,6 @@ class InvoiceManager
 
     public function generateQuotePDF(Card $card, Order $order, Payment $payment, Shop $shop, Course $course)
     {
-
         $filename = 'quotation.pdf';
         $tempDir = '/tmp';
         $fullPath = $tempDir.'/'.$filename;
@@ -72,9 +71,7 @@ class InvoiceManager
 
             return $response;
         } catch (\Exception $exception) {
-
             return $exception->getMessage();
         }
     }
-
 }

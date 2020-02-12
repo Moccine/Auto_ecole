@@ -35,7 +35,7 @@ class ObjectVoter extends Voter
      */
     protected function supports($attribute, $subject)
     {
-        if(null === $subject){
+        if (null === $subject) {
             return false;
         }
         $attributes = $this->getAttributes($subject);

@@ -82,7 +82,7 @@ class Orders
     {
         $this->createdAt = new \DateTime();
         $this->payment = new ArrayCollection();
-        $this->orderNumber = sprintf('%s%s',time(),'ORDER');
+        $this->orderNumber = sprintf('%s%s', time(), 'ORDER');
     }
 
     /**
@@ -293,6 +293,4 @@ class Orders
 
         return $this;
     }
-
-
 }

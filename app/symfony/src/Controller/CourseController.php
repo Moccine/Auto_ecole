@@ -46,7 +46,7 @@ class CourseController extends AbstractController
     public function removeAction(card $card, Course $course)
     {
         $em = $this->getDoctrine()->getManager();
-        if($card instanceof Card){
+        if ($card instanceof Card) {
             $card->removeCourse($course);
         }
         $em->flush();
@@ -63,11 +63,10 @@ class CourseController extends AbstractController
      */
     public function studentCourseListAction(User  $user)
     {
-
         $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($user, Card::TYPE_UNITE);
         $courses = [];
         /** @var Card $card */
-        foreach ($cards as $card){
+        foreach ($cards as $card) {
             array_merge($courses, $card->getCourses()->toArray());
         }
 
@@ -76,8 +75,5 @@ class CourseController extends AbstractController
             'courses' => []
 
         ]);
-
     }
-
-
 }

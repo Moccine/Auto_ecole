@@ -3,7 +3,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Location;
 use App\Entity\MettingPoint;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -51,10 +50,7 @@ class LocationFixtures extends Fixture
             $manager->persist($mettingPoint);
             $manager->flush();
             $this->addReference('mettingPoint'.$i, $mettingPoint);
-
-
         }
-
     }
 
     public function getOrder()

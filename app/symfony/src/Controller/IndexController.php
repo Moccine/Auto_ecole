@@ -16,7 +16,7 @@ class IndexController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-    $hops = $this->getDoctrine()->getRepository(Shop::class)->findBy([
+        $hops = $this->getDoctrine()->getRepository(Shop::class)->findBy([
         'priority' => 2
     ]);
 
@@ -36,7 +36,4 @@ class IndexController extends AbstractController
 
         ]);
     }
-
-
-
 }

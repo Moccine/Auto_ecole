@@ -81,7 +81,6 @@ class Payment
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->stripePrivateKey = $_ENV['PRIVATE_KEY'];
-
     }
 
     /**
@@ -230,6 +229,4 @@ class Payment
 
         return $this;
     }
-
-
 }

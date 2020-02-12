@@ -3,7 +3,6 @@
 
 namespace App\Controller\Api;
 
-
 use App\Controller\BaseAjaxController;
 use App\Entity\Card;
 use App\Entity\Credit;

@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\Card;
 use App\Entity\Course;
 use App\Entity\MettingPoint;
@@ -53,7 +52,6 @@ class CourseManager
      */
     public function addCourse(Card $card, Course $course)
     {
-
         $card->addCourse($course)->setPrice($this->price + $course->getPrice());
 
         return $card;

@@ -36,7 +36,6 @@ class MettingPointController extends AbstractController
             $this->addFlash('success', $translator->trans('form.save.success'));
 
             return $this->redirectToRoute('list_metting_location');
-
         }
 
         return $this->render('location/edit.html.twig', [
@@ -48,8 +47,7 @@ class MettingPointController extends AbstractController
      */
     public function removeMettingLocationAction(MettingPoint $mettingPoint, TranslatorInterface $translator)
     {
-        if($mettingPoint instanceof MettingPoint) {
-
+        if ($mettingPoint instanceof MettingPoint) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($mettingPoint);
             $em->flush();
@@ -57,7 +55,6 @@ class MettingPointController extends AbstractController
         }
 
         return $this->redirectToRoute('metting_point_list');
-
     }
 
     /**
@@ -74,12 +71,10 @@ class MettingPointController extends AbstractController
             $this->addFlash('success', $translator->trans('form.save.success'));
 
             return $this->redirectToRoute('metting_point_list');
-
         }
 
         return $this->render('location/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-
 }

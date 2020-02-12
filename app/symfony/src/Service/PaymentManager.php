@@ -109,9 +109,12 @@ class PaymentManager
     {
         $student = $orders->getStudent();
 
-        $description = sprintf("Numéro de commande: %s %s %s",
+        $description = sprintf(
+            "Numéro de commande: %s %s %s",
             $orders->getOrderNumber(),
-            $student->getFirstName(), $student->getLastName());
+            $student->getFirstName(),
+            $student->getLastName()
+        );
 
         $data = [
             'amount' => $orders->getTotal() * 100,
@@ -166,7 +169,8 @@ class PaymentManager
         return ($paymentIntent instanceof PaymentIntent);
     }
 
-    public function setPrivateKey(){
+    public function setPrivateKey()
+    {
         Stripe::setApiKey($_ENV['PRIVATE_KEY']);
     }
 }

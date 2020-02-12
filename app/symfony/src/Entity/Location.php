@@ -49,5 +49,4 @@ class Location
     {
         $this->id = $id;
     }
-
 }

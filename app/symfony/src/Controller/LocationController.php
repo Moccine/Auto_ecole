@@ -38,7 +38,6 @@ class LocationController extends AbstractController
             $this->addFlash('success', $translator->trans('form.save.success'));
 
             return $this->redirectToRoute('list_metting_location');
-
         }
 
         return $this->render('location/edit.html.twig', [
@@ -51,15 +50,13 @@ class LocationController extends AbstractController
      */
     public function removeMettingLocationAction(Location $location, TranslatorInterface $translator)
     {
-        if($location instanceof Location) {
-
+        if ($location instanceof Location) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($location);
             $em->flush();
             $this->addFlash('success', $translator->trans('form.save.success'));
         }
 
-            return $this->redirectToRoute('location_list');
-
+        return $this->redirectToRoute('location_list');
     }
 }

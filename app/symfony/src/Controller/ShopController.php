@@ -42,7 +42,6 @@ class ShopController extends AbstractController
             $em->persist($form->getData());
             $em->flush();
             return $this->redirectToRoute('shop_list');
-
         }
 
         return $this->render('shop/add.html.twig', [
@@ -62,7 +61,6 @@ class ShopController extends AbstractController
             $em->persist($form->getData());
             $em->flush();
             return $this->redirectToRoute('shop_list');
-
         }
 
         return $this->render('shop/add.html.twig', [
@@ -83,11 +81,8 @@ class ShopController extends AbstractController
             $session->getFlashBag()->add('notice', 'Profile updated');
             return $this->redirectToRoute('shop_list');
         } catch (\Exception $e) {
-
             return $this->redirectToRoute('shop_list');
         }
-
-
     }
 
     /**
@@ -107,7 +102,6 @@ class ShopController extends AbstractController
             'bestOffers' => $bestOffers,
             'drivingCards' => $drivingCards,
         ]);
-
     }
     /**
      * @Route("/add/product/{id}", name="add_product")
@@ -122,8 +116,6 @@ class ShopController extends AbstractController
             ->setShop($shop);
         $em->persist($card);
         $em->flush();
-return $this->redirectToRoute('stripe_payment_form',['id' => $card->getId()]);
-
+        return $this->redirectToRoute('stripe_payment_form', ['id' => $card->getId()]);
     }
-
 }
