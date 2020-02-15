@@ -4,6 +4,7 @@
       <div class="footer-widget text-left col-lg-3 col-md-6 col-12">
         <h4 class="widget-title">A propos</h4>
         <div class="about-widget">
+          <p>Description de meilleurs moniteurs en ligne</p>
           <div class="widget-social fix">
             <a href="#"><i class="icofont icofont-social-facebook"></i></a>
             <a href="#"><i class="icofont icofont-social-pinterest"></i></a>
@@ -13,27 +14,62 @@
         </div>
       </div>
       <div class="footer-widget text-left col-lg-3 col-md-6 col-12">
-        <h4 class="widget-title">Contact rapide</h4>
+        <h4 class="widget-title">Nous contacter</h4>
         <div class="contact-widget">
-          <h5>address:</h5>
+          <h5>Adresse:</h5>
+          <p>{{ 'footer.address'|trans|raw }}</p>
           <h5>phone:</h5>
+          <p>{{'footer.phone'|trans}} <br />{{'footer.fax'|trans}}</p>
           <h5>e-mail</h5>
           <p>
-            <a href="#" style="color: white">permisacceleres@yahoo.f</a>
-            <a href="#" style="color: white">www.meilleurs.moniteur.com</a>
+            <a href="#">meilleurs-moniteurs@gmail.com</a>
+            <a href="#">www.meilleurs-moniteurs.com</a>
           </p>
         </div>
       </div>
       <div class="footer-widget text-left col-lg-3 col-md-6 col-12">
-        <h4 class="widget-title">blog post</h4>
+        <h4 class="widget-title">Le blog</h4>
+        <div class="blog-widget">
+          <div class="widget-blog fix">
+            <a href="#" class="image float-left"><img src="{{ asset('theme-img/img/blog-widget/1.jpg') }}" alt="" /></a>
+            <div class="content fix">
+              <a href="#">Nouveau projet</a>
+              <p>It is a long established fact that is a reader will be...</p>
+            </div>
+          </div>
+          <div class="widget-blog fix">
+            <a href="#" class="image float-left"><img src="{{ asset('theme-img/img/blog-widget/2.jpg') }}" alt="" /></a>
+            <div class="content fix">
+              <a href="#">google maps</a>
+              <p>It is a long established fact that is a reader will be...</p>
+            </div>
+          </div>
+          <div class="widget-blog fix">
+            <a href="#" class="image float-left"><img src="{{ asset('theme-img/img/blog-widget/3.jp') }}g" alt="" /></a>
+            <div class="content fix">
+              <a href="#">learn first</a>
+              <p>It is a long established fact that is a reader will be...</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="footer-widget text-left col-lg-3 col-md-6 col-12">
         <h4 class="widget-title">instagram</h4>
+        <div class="instagram-widget">
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/1.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/2.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/3.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/4.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/5.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/6.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/7.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/8.jpg') }}" alt="" /></a></div>
+          <div class="instagram-item"><a href="#"><img src="{{ asset('theme-img/img/instagram/9.jpg') }}" alt="" /></a></div>
+        </div>
       </div>
     </div>
     <div class="footer-bottom text-center col-12">
-      <p class="copyright" style="color: white; font-size: 15px">Copyright &copy; {{ "now"|date("Y") }}
-        <a href="#">{{'app.name'|trans}}</a> Tous droits reservés</p>
+      <p class="copyright">Copyright &copy; <a href="#">{{'footer.email'|trans}}</a> ALL Right Reserved</p>
     </div>
   </div>
 </div>

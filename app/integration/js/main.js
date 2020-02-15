@@ -42,13 +42,12 @@ $(document).ready(function () {
     "pageLength": 50,
     responsive: true
   });
-
-
-
-
-
-
-
+ $("a[href*='#driving-cards']").click((e)=>{
+    $('html, body').animate({scrollTop: $('#driving-cards').offset().top}, 800);
+  });
+  $("a[href*='#best-offers']").click((e)=>{
+    $('html, body').animate({scrollTop: $('#best-offers').offset().top}, 800);
+  });
 
 
 
