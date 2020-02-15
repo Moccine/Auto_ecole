@@ -52,6 +52,8 @@ class CardController extends AbstractController
 
         ]);
     }
+
+
     /**
      * @Route("/card/paid", name="paid_card", methods={"GET"})
      */

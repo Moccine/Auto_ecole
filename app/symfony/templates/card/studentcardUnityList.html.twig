@@ -28,8 +28,7 @@
                 <th>N°</th>
                 <th>montant</th>
                 <th>status</th>
-                <th>Reserver des cours</th>
-                <th>voir les cours reservés</th>
+                <th>Voir les reservations</th>
               </tr>
               </thead>
               <tbody>
@@ -38,10 +37,6 @@
                 <td>{{ loop.index }}</td>
                 <td>{{ card.total|price }}</td>
                 <td>{{ card.status }}</td>
-                <td>
-                  <a href="{{ path('unity_booking_instructor_search_form') }}" style="color: red"><i class="icon-plus-sign-alt"></i></a>
-
-                </td>
                 <td>
                   <a href="{{ path('display_card', { 'id' : card.id }) }}" style="color: red"><i class="icon-eye-open"></i></a>
                 </td>
