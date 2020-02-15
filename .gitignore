@@ -1,0 +1,19 @@
+# Basic
+*~
+\#*\#
+*.swp
+*.log
+.DS_Store
+.trash/
+.idea/
+.php_cs.cache
+
+# Docker
+/docker-compose.override.yml
+/data
+/build
+!/data/.gitkeep
+/.env
+
+# NodeJS
+node_modules
