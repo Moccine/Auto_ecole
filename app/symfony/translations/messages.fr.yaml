@@ -7,7 +7,7 @@ app:
     add: 'Ajouter'
   phone: '01 42 63 93 40'
   name: 'Meilleurs Moniteurs'
-  email: 'permisacceleres@yahoo.fr '
+  email: 'contact@meilleurs-moniteurs.com'
   slogan: 'Meilleurs Moniteurs'
   devise: '€'
   traffick:
@@ -159,3 +159,8 @@ shop:
 package:
   add:
     error: 'Impossible d''ajouter des cours'
+footer:
+  email: 'contact@meilleurs-moniteurs.com'
+  address: '<span>7 rue meilleur moniteur</span><br><span> 75017 Paris</span>'
+  phone: '01 24 00 00 00'
+  fax: '01 00 00 00 00'
