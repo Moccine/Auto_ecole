@@ -142,6 +142,9 @@ course:
   paid: 'Payé'
   done: 'Effectuer'
 shop:
+  best_offers:
+    title: 'Nos meilleures offres'
+    comment: 'Nous avons une solution pour tous vos besoins d’apprentissage'
   name : 'Nom du produit'
   hour : 'Prix par heure'
   price : 'Prix du produit'
@@ -149,8 +152,9 @@ shop:
   priority : 'Priorité'
   complementDescription : 'information complementaire'
   add: 'Ajouter un produit'
-  best_offers: 'Nos meilleures offres'
-  driving_card: 'La conduite à la carte'
+  driving_card:
+    title: 'La conduite à la carte'
+    comment: 'Apprenez la conduite à votre rythme'
   course_number: 'Nombre d''heure du package'
 package:
   add:
