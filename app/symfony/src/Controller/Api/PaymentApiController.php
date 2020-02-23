@@ -8,6 +8,7 @@ use App\Entity\Card;
 use App\Entity\Credit;
 use App\Entity\Orders;
 use App\Entity\Payment;
+use App\Entity\Shop;
 use App\Entity\User;
 use App\Service\PaymentManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -84,12 +85,19 @@ class PaymentApiController extends BaseAjaxController
     public function createOrder(Card $card)
     {
         $orders = new Orders();
-        return $orders->setStudent($this->getUser())
+         $orders->setStudent($this->getUser())
             ->setCurrency(Payment::CURRENCY)
             ->setTva(Payment::TVA)
             ->setTotal($card->getTotal())
             ->setStatus(Payment::STATUS_PENDING)
-            ->setQuantity($card->getCourses()->count());
+            ->setQuantity($card->getCourses()->count())
+            ->addCard($card);
+         $shop = $card->getShop();
+         if($shop instanceof Shop){
+             $orders->setShop($shop);
+         }
+
+         return  $orders;
     }
 
     /**
@@ -101,6 +109,7 @@ class PaymentApiController extends BaseAjaxController
     public function createCredit(Card $card)
     {
         $credit = new Credit();
+        $shop = $card->getShop();
         $courseNumber = $card->getShop()->getCourseNumber();
         return $credit->setCard($card)
             ->setTotal($card->getTotal())

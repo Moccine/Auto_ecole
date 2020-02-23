@@ -3,6 +3,7 @@ parameters:
     payment_log_dir: '%kernel.logs_dir%/payment/'
     voter_config: '%kernel.project_dir%/config/voters.yaml'
     app.path.users_images: /uploads/images/users
+    csv_folder_path: '%kernel.project_dir%/var/import/db/'
 
 
 services:
@@ -67,5 +68,10 @@ services:
             - [enableRouter, ['@router']]
     App\Utils\DateHelper:
         arguments: ['@translator']
+    App\Service\Import\ImportService:
+        public: true
 
-
+    App\Service\Import\FranceLocationImportService:
+        public: true
+        arguments:
+            $filename: 'EUCircos_Regions_departements_circonscriptions_communes_gps.csv'

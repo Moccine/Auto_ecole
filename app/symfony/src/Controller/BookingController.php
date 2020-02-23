@@ -6,9 +6,11 @@ use App\Entity\Card;
 use App\Entity\Course;
 use App\Entity\Credit;
 use App\Entity\MettingPoint;
+use App\Entity\Shop;
 use App\Entity\User;
 use App\Form\InstructorHourType;
 use App\Form\MettingPointType;
+use App\Repository\ShopRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -117,15 +119,14 @@ class BookingController extends AbstractController
      */
     public function stripeFormAction(Request $request, Card $card)
     {
-        $hop = $card->getShop();
+        $shop = $card->getShop();
 
         return $this->render('payment/index.html.twig', [
             'card' => $card,
             'publickey' => $_ENV['PUBLIC_KEY'],
-            'shop' => $hop ?? null
+            'shop' => $shop ?? null
         ]);
     }
-
 
     /**
      * liste des cours acheter à l'unite
@@ -135,8 +136,6 @@ class BookingController extends AbstractController
     public function studentCardUnityListAction(User  $user)
     {
         $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($user, Card::TYPE_UNITE);
-
-
 
         return $this->render('card/studentcardUnityList.html.twig', [
             'cards' => $cards,

@@ -66,7 +66,7 @@
             <th>price</th>
             <th>status</th>
           </tr>
-          {% for course in courses %}
+          {% for course in order.card.course %}
             <tr>
               <td>{{ loop.index }}</td>
               <td>{{ course.courseDate|date('d/m/Y') }}</td>
@@ -83,20 +83,24 @@
     {% else %}
       <div class="row">
         <div class="col-lg-12">
-          <h5 style="color: black">  {{ shop.name }}</h5>
+          <h5 style="color: black">  {{ order.shop.name }}</h5>
         </div>
         <div class="col-lg-12">
-          <p class="description">{{ shop.description }}</p>
+          <p class="description">{{ order.shop.description }}</p>
         </div>
       </div>
       <div class="row">
         <table class="table">
-          <tr><td> Dont  TVA 20%	</td>		<td></td><td>{{ card.totalTva|price }}</td>
-          <tr class="text-bold"> <td>Montant de la commande	</td>		<td></td><td>{{ card.total|price }}</td>
+          <tr><td> Dont  TVA 20%	</td>		<td></td><td>{{ order.totalTva|price }}</td>
+          <tr class="text-bold"> <td>Montant de la commande	</td>		<td></td><td>{{ order.total|price }}</td>
           </tr>
         </table>
       </div>
     {% endif %}
     <p style="margin-bottom: 50px">Nous restons bien entendu à votre disposition pour toute information.</p>
   </div> {# table des course#}
+  <div class="row">
+    <a style="color: black" href="{{ path('download_invoice', {'id': order.id}) }}">{{ 'download.invoice'|trans }}</a>
+  </div>
+
 </div>

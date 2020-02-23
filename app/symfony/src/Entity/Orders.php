@@ -19,6 +19,7 @@ class Orders
     use OrderTrait;
 
     const PAID = 'PAID';
+    const TVA = 0.2;
     const STATUS_CANCLED = 'CANCELED';
     const STATUS_PENDING = 'PENDIND';
 
@@ -45,14 +46,10 @@ class Orders
     private $student;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Course", inversedBy="orders")
-     */
-    private $course;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Payment", mappedBy="orders")
      */
     private $payment;
+
 
     /**
      * @ORM\Column(type="integer")
@@ -62,7 +59,7 @@ class Orders
     /**
      * @ORM\Column(type="float")
      */
-    private $discount=0;
+    private $discount = 0;
 
     /**
      * @ORM\Column(type="float")
@@ -75,6 +72,16 @@ class Orders
     private $billDate;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Card", mappedBy="orders")
+     */
+    private $card;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Shop")
+     */
+    private $shop;
+
+    /**
      * BookingOrder constructor.
      * @throws \Exception
      */
@@ -83,6 +90,8 @@ class Orders
         $this->createdAt = new \DateTime();
         $this->payment = new ArrayCollection();
         $this->orderNumber = sprintf('%s%s', time(), 'ORDER');
+        $this->Orders = new ArrayCollection();
+        $this->card = new ArrayCollection();
     }
 
     /**
@@ -104,24 +113,6 @@ class Orders
         return $this;
     }
 
-    /**
-     * @return Course|null
-     */
-    public function getCourse(): ?Course
-    {
-        return $this->course;
-    }
-
-    /**
-     * @param Course|null $course
-     * @return $this
-     */
-    public function setCourse(?Course $course): self
-    {
-        $this->course = $course;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Payment[]
@@ -292,5 +283,62 @@ class Orders
         $this->productDetails = $productDetails;
 
         return $this;
+    }
+
+
+    /**
+     * @return Collection|Card[]
+     */
+    public function getCard(): Collection
+    {
+        return $this->card;
+    }
+
+    /**
+     * @param Card $card
+     * @return $this
+     */
+    public function addCard(Card $card): self
+    {
+        if (!$this->card->contains($card)) {
+            $this->card[] = $card;
+            $card->setOrders($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Card $card
+     * @return $this
+     */
+    public function removeCard(Card $card): self
+    {
+        if ($this->card->contains($card)) {
+            $this->card->removeElement($card);
+            // set the owning side to null (unless already changed)
+            if ($card->getOrders() === $this) {
+                $card->setOrders(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getShop(): ?Shop
+    {
+        return $this->shop;
+    }
+
+    public function setShop(?Shop $shop): self
+    {
+        $this->shop = $shop;
+
+        return $this;
+    }
+
+    public function getTotalTva()
+    {
+        return $this->total * self::TVA;
     }
 }

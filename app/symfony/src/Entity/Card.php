@@ -50,7 +50,6 @@ class Card
      */
     private $courses;
 
-
     /**
      * dertermine si l'achat est package=1 ou pas
      *
@@ -59,30 +58,46 @@ class Card
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Shop")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Orders", inversedBy="card")
+     */
+    private $orders;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Shop", inversedBy="cards")
      */
     private $shop;
 
+    /**
+     * Card constructor.
+     */
     public function __construct()
     {
         $this->course = new ArrayCollection();
         $this->total=0;
         $this->courses = new ArrayCollection();
-        $this->shop = new ArrayCollection();
         $this->type = self::DRIVING;
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return float|null
+     */
     public function getTotal(): ?float
     {
         return $this->total;
     }
 
+    /**
+     * @param float $total
+     * @return $this
+     */
     public function setTotal(float $total): self
     {
         $this->total = $total;
@@ -98,6 +113,10 @@ class Card
         return $this->course;
     }
 
+    /**
+     * @param Course $course
+     * @return $this
+     */
     public function addCourse(Course $course): self
     {
         if (!$this->courses->contains($course)) {
@@ -108,6 +127,10 @@ class Card
         return $this;
     }
 
+    /**
+     * @param Course $course
+     * @return $this
+     */
     public function removeCourse(Course $course): self
     {
         if ($this->courses->contains($course)) {
@@ -121,12 +144,18 @@ class Card
         return $this;
     }
 
-
+    /**
+     * @return float|null
+     */
     public function getPrice(): ?float
     {
         return $this->price;
     }
 
+    /**
+     * @param float $price
+     * @return $this
+     */
     public function setPrice(float $price): self
     {
         $this->price = $price;
@@ -134,12 +163,18 @@ class Card
         return $this;
     }
 
-
+    /**
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
+    /**
+     * @param string $status
+     * @return $this
+     */
     public function setStatus(string $status): self
     {
         $this->status = $status;
@@ -174,11 +209,18 @@ class Card
         return $this->courses;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getType(): ?bool
     {
         return $this->type;
     }
 
+    /**
+     * @param bool $type
+     * @return $this
+     */
     public function setType(bool $type): self
     {
         $this->type = $type;
@@ -194,6 +236,25 @@ class Card
         return $this->total* (1- 0.2);
     }
 
+    /**
+     * @param Orders|null $orders
+     * @return $this
+     */
+    public function setOrders(?Orders $orders): self
+    {
+        $this->orders = $orders;
+
+        return $this;
+    }
+
+    /**
+     * @return Orders|null
+     */
+    public function getOrders(): ?Orders
+    {
+        return $this->orders;
+    }
+
     public function getShop(): ?Shop
     {
         return $this->shop;
@@ -205,4 +266,5 @@ class Card
 
         return $this;
     }
+
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,6 +17,7 @@ class Shop
         self::BEST_OFFERS => 'shop.best_offers',
         self::DRIVING_CARD => 'shop.driving_card',
     ];
+    const PEDDING = 'PEDDING';
 
     /**
      * @ORM\Id()
@@ -58,7 +61,15 @@ class Shop
      */
     private $courseNumber;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Card", mappedBy="shop")
+     */
+    private $cards;
 
+    public function __construct()
+    {
+        $this->cards = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -200,4 +211,37 @@ class Shop
 
         return $this;
     }
+    
+
+    /**
+     * @return Collection|Card[]
+     */
+    public function getCards(): Collection
+    {
+        return $this->cards;
+    }
+
+    public function addCard(Card $card): self
+    {
+        if (!$this->cards->contains($card)) {
+            $this->cards[] = $card;
+            $card->setShop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCard(Card $card): self
+    {
+        if ($this->cards->contains($card)) {
+            $this->cards->removeElement($card);
+            // set the owning side to null (unless already changed)
+            if ($card->getShop() === $this) {
+                $card->setShop(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
