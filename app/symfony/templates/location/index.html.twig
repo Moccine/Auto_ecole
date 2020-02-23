@@ -9,53 +9,55 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  '',
-                description: ''
-              } %}
-            </div>
-            <div class="col-12">
-              <table id="example" class="display" style="width:100%">
-                <thead>
-                <tr>
-                  <th>Adresse</th>
-                  <th>Code postal</th>
-                  <th>Villel</th>
-                  <th>Point de recontre</th>
-                  <th>active</th>
-                  <th>editer</th>
-                  <th>supprimer</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for location in locations %}
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  '',
+                  description: ''
+                } %}
+              </div>
+              <div class="col-12">
+                <table id="example" class="display" style="width:100%">
+                  <thead>
                   <tr>
-                    <td>{{location.address}}</td>
-                    <td>{{location.postalCode}}</td>
-                    <td>{{location.city}}</td>
-                    <td> {{ location.metting? 'oui':'non'}} </td>
-                    <td> {{ location.activated? 'oui':'non'}} </td>
-                    <td><a style="color: black" href=" {{ path('edit_metting_location', {'id': location.id}) }}">Modifier</a></td>
-                    <td><a style="color: black" href=" {{ path('remove_metting_location', {'id': location.id}) }}">Suuprimer</a></td>
+                    <th>Adresse</th>
+                    <th>Code postal</th>
+                    <th>Villel</th>
+                    <th>Point de recontre</th>
+                    <th>active</th>
+                    <th>editer</th>
+                    <th>supprimer</th>
                   </tr>
-                {% endfor %}
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
-                </tr>
-                </tfoot>
-              </table>
+                  </thead>
+                  <tbody>
+                  {% for location in locations %}
+                    <tr>
+                      <td>{{location.address}}</td>
+                      <td>{{location.postalCode}}</td>
+                      <td>{{location.city}}</td>
+                      <td> {{ location.metting? 'oui':'non'}} </td>
+                      <td> {{ location.activated? 'oui':'non'}} </td>
+                      <td><a style="color: black" href=" {{ path('edit_metting_location', {'id': location.id}) }}">Modifier</a></td>
+                      <td><a style="color: black" href=" {{ path('remove_metting_location', {'id': location.id}) }}">Suuprimer</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
         </div>

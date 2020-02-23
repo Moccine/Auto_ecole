@@ -20,48 +20,50 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title: shopName,
-                description: shopDescription
-              }
-               %}
-            </div>
-            <div class="col-12">
-              <div class="col-6 offset-3" id="form-payment" data-public-key="{{ publickey }}" data-card-id="{{ card.id }}">
-                <form  method="POST" action="{{ path('checkout', {id: card.id}) }}">
-                  <input type="hidden" name="token" />
-                  <div class="group">
-                    <label>
-                      <span>Numero carte</span>
-                      <div id="card-number-element" class="field"></div>
-                      <span class="brand"><i class="pf pf-credit-card" id="brand-icon"></i></span>
-                    </label>
-                    <label>
-                      <span>Date d'expiration</span>
-                      <div id="card-expiry-element" class="field"></div>
-                    </label>
-                    <label>
-                      <span>CVC</span>
-                      <div id="card-cvc-element" class="field"></div>
-                    </label>
-                    <label>
-                      <span>Postal code</span>
-                      <input id="postal-code" name="postal_code" class="field" placeholder="90210" />
-                    </label>
-                  </div>
-                  <button type="submit">{{ card.total|price }}</button>
-                  <div class="outcome">
-                    <div class="error"></div>
-                    <div class="success">
-                      Success! Your Stripe token is <span class="token"></span>
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title: shopName,
+                  description: shopDescription
+                }
+                 %}
+              </div>
+              <div class="col-12">
+                <div class="col-6 offset-3" id="form-payment" data-public-key="{{ publickey }}" data-card-id="{{ card.id }}">
+                  <form  method="POST" action="{{ path('checkout', {id: card.id}) }}">
+                    <input type="hidden" name="token" />
+                    <div class="group">
+                      <label>
+                        <span>Numero carte</span>
+                        <div id="card-number-element" class="field"></div>
+                        <span class="brand"><i class="pf pf-credit-card" id="brand-icon"></i></span>
+                      </label>
+                      <label>
+                        <span>Date d'expiration</span>
+                        <div id="card-expiry-element" class="field"></div>
+                      </label>
+                      <label>
+                        <span>CVC</span>
+                        <div id="card-cvc-element" class="field"></div>
+                      </label>
+                      <label>
+                        <span>Postal code</span>
+                        <input id="postal-code" name="postal_code" class="field" placeholder="90210" />
+                      </label>
                     </div>
-                  </div>
-                </form>
+                    <button class="btn" type="submit">{{ card.total|price }}</button>
+                    <div class="outcome">
+                      <div class="error"></div>
+                      <div class="success">
+                        Success! Your Stripe token is <span class="token"></span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

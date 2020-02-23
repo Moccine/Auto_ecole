@@ -9,27 +9,29 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'drive_to_code.training.slogan',
-                description: '10× moins cher qu’en auto-école traditionnelle !'
-              } %}
-            </div>
-            <div class="col-12 center-block text-center">
-              <ul>
-                <li class="h4 heading"> 2 000 questions de code en ligne conformes à l’examen</li>
-                <li class="h4 heading"> Entraînez-vous n’importe où et n’importe quand en illimité</li>
-                <li class="h4 heading"> Une équipe pédagogique prête à accompagner votre réussite</li>
-                <li class="h4 heading"> Dossier de pré-inscription au fichier national du permis</li>
-              </ul>
-            </div>
-            <div class="col-12 offset-3 ">
-              <button class="btn btn-lg hover-black color"><a href= "{{ path('card_code') }}"> Acheter le Pack Code</a></button>
-              <button class="btn btn-lg hover-black black"><a href="#">Essayer une série gratuite</a></button>
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'drive_to_code.training.slogan',
+                  description: '10× moins cher qu’en auto-école traditionnelle !'
+                } %}
+              </div>
+              <div class="col-12 center-block text-center">
+                <ul>
+                  <li class="h4 heading"> 2 000 questions de code en ligne conformes à l’examen</li>
+                  <li class="h4 heading"> Entraînez-vous n’importe où et n’importe quand en illimité</li>
+                  <li class="h4 heading"> Une équipe pédagogique prête à accompagner votre réussite</li>
+                  <li class="h4 heading"> Dossier de pré-inscription au fichier national du permis</li>
+                </ul>
+              </div>
+              <div class="col-12 offset-3 ">
+                <button class="btn btn-lg hover-black color"><a href= "{{ path('card_code') }}"> Acheter le Pack Code</a></button>
+                <button class="btn btn-lg hover-black black"><a href="#">Essayer une série gratuite</a></button>
+              </div>
             </div>
           </div>
         </div>

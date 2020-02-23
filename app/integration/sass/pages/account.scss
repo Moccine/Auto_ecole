@@ -1,0 +1,38 @@
+.section-title.text-center.black-section-title { padding-top: 50px;
+  @include max(xs){ padding-top: 30px; }
+}
+
+
+.course-wrap { display: flex; flex-wrap: wrap;
+  .day { width: calc((100% / 3) - 20px); margin-right: 30px; margin-bottom: 30px;
+    @include max(xs){ width: 100%; margin-right: 0; margin-bottom: 20px; }
+    &:nth-child(3n){ margin-right: 0;}
+    h5 { background-color: $black-light; color: $white; text-align: center; padding: 10px 20px; margin:0; font-size: 16px; font-weight: 600;
+      span { display: block; color: $white; }
+    }
+    .mid { height: 350px; overflow: scroll; border:1px solid $black-light;
+      .hour { position: relative;
+        .form-group { padding: 0; margin:0;
+          label { display: block; cursor: pointer; text-align: center; font-size: 16px; font-weight: 600; margin:0; color: $black-light; padding: 10px 20px; border-bottom: 1px solid $grey;
+            span { display: inline-block; color: $black-light; }
+          }
+          input { position: absolute; opacity: 0;
+            &:checked + label { background: $yellow; }
+          }
+        }
+        &.disabled {
+          .form-group {
+            label { color: $grey; background-color: $grey-10;
+              span { color: $grey; }
+            }
+          }
+        }
+        &:last-child {
+          .form-group {
+            label { border-bottom: none; }
+          }
+        }
+      }
+    }
+  }
+}
