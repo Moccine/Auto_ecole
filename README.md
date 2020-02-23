@@ -1,4 +1,4 @@
-OISE TUNEL DE RESERVATION
+Projet Auto-École
 
 Ce projet est constitué d'une base Docker, d'une application Symfony 4.3.
 ### Why ?
@@ -96,6 +96,8 @@ Arrêter le docker : ```make stop```
 Lancer le bash : ```make bash_app```
 
 Redemarrer le docker: ```make restart```
+
+Vider le cache (dans le container apache): ```bin/console clear:cache```
 
 ### Authors / Maintainers
 ---
