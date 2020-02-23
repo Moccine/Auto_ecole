@@ -9,51 +9,53 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/menuLateralAdmin.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'drive_to_code.training.slogan',
-                description: '10× moins cher qu’en auto-école traditionnelle !'
-              } %}
-            </div>
-            <div class="col-12">
-              <table id="example" class="display" style="width:100%">
-                <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Prenom</th>
-                  <th>Code postal</th>
-                  <th>Salary</th>
-                  <th>editer</th>
-                  <th>supprimer</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in users %}
-                <tr>
-                  <td>{{user.firstName}}</td>
-                  <td>{{user.lastName}}</td>
-                  <td>{{user.zipCode}}</td>
-                  <td>{{user.role}}</td>
-                  <td><a style="color: black" href=" {{ path('fos_user_profile_edit') }}">Modifier</a></td>
-                  <td><a style="color: black" href=" {{ path('fos_user_profile_edit') }}">Modifier</a></td>
-                </tr>
-                {% endfor %}
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
-                </tr>
-                </tfoot>
-              </table>
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'drive_to_code.training.slogan',
+                  description: '10× moins cher qu’en auto-école traditionnelle !'
+                } %}
+              </div>
+              <div class="col-12">
+                <table id="example" class="display" style="width:100%">
+                  <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Code postal</th>
+                    <th>Salary</th>
+                    <th>editer</th>
+                    <th>supprimer</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for user in users %}
+                  <tr>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.zipCode}}</td>
+                    <td>{{user.role}}</td>
+                    <td><a style="color: black" href=" {{ path('fos_user_profile_edit') }}">Modifier</a></td>
+                    <td><a style="color: black" href=" {{ path('fos_user_profile_edit') }}">Modifier</a></td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
         </div>

@@ -29,14 +29,15 @@ class BookingController extends AbstractController
      */
     public function instructorByUserdMettinPointAction(Request $request, SessionInterface $session)
     {
-        $session->set('card_id', $request->query->get('card'));
-        $session->remove('card_id');
         $form = $this->createForm(MettingPointType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
             $mettingPoint = $form->getData()['address'];
-            return $this->redirect($this->generateUrl('instructor_list', array('id' => $mettingPoint->getId(),
-                'card' => $request->query->get('card'),)));
+            return $this->redirect(
+                $this->generateUrl('instructor_list_unity',
+                ['id' => $mettingPoint->getId(),
+                'card' => $request->query->get('card'),
+                    ]));
             // return $this->redirectToRoute('instructor_list', ['id' => $mettingPoint->getId(), 'card' => $request->query->get('card')]);
         }
         return $this->render('instructor/instructorSearchForm.html.twig', [
@@ -46,12 +47,12 @@ class BookingController extends AbstractController
 
     /**
      * get instructor list by metting point
-     * @Route("/list/{id}", name="instructor_list")
+     * @Route("/unity/list/{id}", name="instructor_list_unity")
      *
      * @param Request $request
      * @param MettingPoint $mettingPoint
      */
-    public function instructorsListAction(Request $request, MettingPoint $mettingPoint, FlashBagInterface $flashBag)
+    public function instructorsListUnityAction(Request $request, MettingPoint $mettingPoint, FlashBagInterface $flashBag)
     {
         // $instructors = $this->getDoctrine()->getRepository(User::class)->findByRoleMettingPoint($mettingPoint, User::ROLE_RIVING_INSTRUCTOR);
         $instructors = $mettingPoint->getUsers()->filter(function (User $user) {
@@ -67,13 +68,12 @@ class BookingController extends AbstractController
         }
 
 
-        return $this->render('booking/instructorList.html.twig', [
+        return $this->render('booking/instructorListUnity.html.twig', [
             'instructors' => $instructors,
             'mettingPoint' => $mettingPoint,
             'card' => $request->query->get('card'),
         ]);
     }
-
 
     /**
      * @Route("/hours/instructor/{instructor_id}/metting-point/{mettingPoint_id}", name="unity_list_hours_drivingins")
@@ -95,6 +95,7 @@ class BookingController extends AbstractController
         $card = $this->getDoctrine()->getRepository(Card::class)->findOneBy([
             'user' => $this->getUser(),
             'status' => Card::PENDING,
+            'type' => Card::TYPE_UNITE
         ]);
 
         if (!$card instanceof Card) {
@@ -135,6 +136,15 @@ class BookingController extends AbstractController
      */
     public function studentCardUnityListAction(User  $user)
     {
+        $em = $this->getDoctrine()->getManager();
+        $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($user, Card::TYPE_UNITE);
+        /** @var Card $card */
+        foreach ($cards as $key => $card){
+          if($card->getCourses()->count() == 0){
+              $em->remove($card);
+              $em->flush();
+          }
+      }
         $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($user, Card::TYPE_UNITE);
 
         return $this->render('card/studentcardUnityList.html.twig', [

@@ -9,65 +9,67 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'drive_to_code.training.slogan',
-                description: '10× moins cher qu’en auto-école traditionnelle !'
-              } %}
-            </div>
-            <div class="col-12">
-              {% if items|length %}
-              <table id="example" class="display" style="width:100%">
-                <thead>
-                <tr>
-                  <th>Heure</th>
-                  <th>Moniteur</th>
-                  <th>Prix</th>
-                  <th>Modifier</th>
-                  <th>supprimer</th>
-                  <th>Voir la conduite</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in items %}
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'drive_to_code.training.slogan',
+                  description: '10× moins cher qu’en auto-école traditionnelle !'
+                } %}
+              </div>
+              <div class="col-12">
+                {% if items|length %}
+                <table id="example" class="display" style="width:100%">
+                  <thead>
                   <tr>
-                    <td>{{ course_date(item.course) }}</td>
-                    <td>{{ item.course.instructor.lastName }} {{ item.course.instructor.firstName }}</td>
-                    <td>{{ item.course.price }}</td>
-                    <td><a style="color: black" href=" {{ path('course_edit', {id: item.course.id}) }}"><i class="icon-edit"></i></a></td>
-                    <td><a style="color: black" href=" {{ path('course_remove', {
-                        card_id: item.course.card.id,
-                        course_id: item.course.id
-                      }) }}"><i class="icon-trash"></i></a></td>
-                    <td>
-                      <a style="color: black" href="javascript:void(0)">
-                        <i class="icon-eye-open course-information" data-course-id="{{ item.course.id }}"></i>
-                      </a>
-                    </td>
+                    <th>Heure</th>
+                    <th>Moniteur</th>
+                    <th>Prix</th>
+                    <th>Modifier</th>
+                    <th>supprimer</th>
+                    <th>Voir la conduite</th>
                   </tr>
-                {% endfor %}
-                </tbody>
-                <tfoot>
-                <tr>
-                  <td></td>
-                  <td class="h5">Total</td>
-                  <td class="h5">{{price|price }}</td>
-                  <td>
-                    {% if price != 0 %}
-                    <a href="{{ path('stripe_payment_form',{id: card.id}) }}" class="btn btn-sm hover-black black activated">Payer</a>
-                    {% endif %}
+                  </thead>
+                  <tbody>
+                  {% for item in items %}
+                    <tr>
+                      <td>{{ course_date(item.course) }}</td>
+                      <td>{{ item.course.instructor.lastName }} {{ item.course.instructor.firstName }}</td>
+                      <td>{{ item.course.price }}</td>
+                      <td><a style="color: black" href=" {{ path('course_edit', {id: item.course.id}) }}"><i class="icon-edit"></i></a></td>
+                      <td><a style="color: black" href=" {{ path('course_remove', {
+                          card_id: item.course.card.id,
+                          course_id: item.course.id
+                        }) }}"><i class="icon-trash"></i></a></td>
+                      <td>
+                        <a style="color: black" href="javascript:void(0)">
+                          <i class="icon-eye-open course-information" data-course-id="{{ item.course.id }}"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <td></td>
+                    <td class="h5">Total</td>
+                    <td class="h5">{{price|price }}</td>
+                    <td>
+                      {% if price != 0 %}
+                      <a href="{{ path('stripe_payment_form',{id: card.id}) }}" class="btn btn-sm hover-black black activated">Payer</a>
+                      {% endif %}
 
-                  </td>
-                  <th></th>
-                  <th></th>
-                </tr>
-                </tfoot>
-              </table>
-              {% endif %}
+                    </td>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  </tfoot>
+                </table>
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>

@@ -9,54 +9,56 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/menuLateralAdmin.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'drive_to_code.training.slogan',
-                description: '10× moins cher qu’en auto-école traditionnelle !'
-              } %}
-            </div>
-            <div class="col-12">
-              <table id="example" class="display" style="width:100%">
-                <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Prenom</th>
-                  <th>Code postal</th>
-                  <th>fonction</th>
-                  <th>editer</th>
-                  <th>supprimer</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for student in students %}
-                  {% set roles = student.roles|first %}
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'drive_to_code.training.slogan',
+                  description: '10× moins cher qu’en auto-école traditionnelle !'
+                } %}
+              </div>
+              <div class="col-12">
+                <table id="example" class="display" style="width:100%">
+                  <thead>
                   <tr>
-                    <td>{{student.firstName}}</td>
-                    <td>{{student.lastName}}</td>
-                    <td>{{student.zipCode}}</td>
-                    <td>{{ constant('App\\Entity\\User::ROLES')[roles]|trans }}
-                    </td>
-
-                    <td><a style="color: black" href=" {{ path('fos_user_profile_edit') }}">{{'app.common.edit'|trans}}</a></td>
-                    <td><a style="color: black" href=" #">{{'app.common.delete'|trans}}</a></td>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Code postal</th>
+                    <th>fonction</th>
+                    <th>editer</th>
+                    <th>supprimer</th>
                   </tr>
-                {% endfor %}
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Nom</th>
-                  <th>Prenom</th>
-                  <th>Code postal</th>
-                  <th>fonction</th>
-                  <th>editer</th>
-                  <th>supprimer</th>
-                </tr>
-                </tfoot>
-              </table>
+                  </thead>
+                  <tbody>
+                  {% for student in students %}
+                    {% set roles = student.roles|first %}
+                    <tr>
+                      <td>{{student.firstName}}</td>
+                      <td>{{student.lastName}}</td>
+                      <td>{{student.zipCode}}</td>
+                      <td>{{ constant('App\\Entity\\User::ROLES')[roles]|trans }}
+                      </td>
+
+                      <td><a style="color: black" href=" {{ path('fos_user_profile_edit') }}">{{'app.common.edit'|trans}}</a></td>
+                      <td><a style="color: black" href=" #">{{'app.common.delete'|trans}}</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Code postal</th>
+                    <th>fonction</th>
+                    <th>editer</th>
+                    <th>supprimer</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
         </div>
