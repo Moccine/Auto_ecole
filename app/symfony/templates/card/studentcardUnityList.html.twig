@@ -9,46 +9,48 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'drive_to_code.training.slogan',
-                description: '10× moins cher qu’en auto-école traditionnelle !'
-              } %}
-            </div>
-            <div class="col-lg-12">
-            </div>
-            {% if cards|length %}
-            <table id="example" class="display" style="width:100%">
-              <thead>
-              <tr>
-                <th>N°</th>
-                <th>montant</th>
-                <th>status</th>
-                <th>Voir les reservations</th>
-              </tr>
-              </thead>
-              <tbody>
-              {% for card in cards %}
-              <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ card.total|price }}</td>
-                <td>{{ card.status }}</td>
-                <td>
-                  <a href="{{ path('display_card', { 'id' : card.id }) }}" style="color: red"><i class="icon-eye-open"></i></a>
-                </td>
-              </tr>
-              {% endfor %}
-              </tbody>
-            </table>
-            {% else %}
-              <div class="col-lg-6 offset-3">
-                <h5 class="title">Auncun achat </h5>
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'drive_to_code.training.slogan',
+                  description: '10× moins cher qu’en auto-école traditionnelle !'
+                } %}
               </div>
-            {% endif %}
+              <div class="col-lg-12">
+                {% if cards|length %}
+                <table id="example" class="display" style="width:100%">
+                  <thead>
+                  <tr>
+                    <th>N°</th>
+                    <th>montant</th>
+                    <th>status</th>
+                    <th>Voir les reservations</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for card in cards %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ card.total|price }}</td>
+                    <td>{{ card.status }}</td>
+                    <td>
+                      <a href="{{ path('display_card', { 'id' : card.id }) }}" style="color: red"><i class="icon-eye-open"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                  <div class="col-lg-6 offset-3">
+                    <h5 class="title">Auncun achat </h5>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
       </div>

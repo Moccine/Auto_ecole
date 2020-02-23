@@ -9,56 +9,58 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'Vos achats package',
-                description: ' '
-              } %}
-            </div>
-            <div class="col-lg-12">
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'Vos achats package',
+                  description: ' '
+                } %}
+              </div>
+              <div class="col-lg-12">
+                {% if cards|length > 0 %}
+                  <table id="example" class="display" style="width:100%">
+                    <thead>
+                    <tr>
+                      <th></th>
+                      <th>montant(€)</th>
+                      <th>Nombre d'heure (h)</th>
+                      <th>Nombre reservé (h)</th>
+                      <th>status</th>
+                      <th>Reserver des cours</th>
+                      <th>voir les cours reservés</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cardData in cardDatas %}
+                      <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ cardData.card.total }}</td>
+                        <td>{{ cardData.credit?cardData.credit.courseNumber:'Non achecté' }}</td>
+                        <td>{{ cardData.credit?cardData.credit.restCourseNumber:'Non achecté' }}</td>
+                        <td>{{ cardData.card.status }}</td>
+                        <td>
+                          {% if cardData.card.status == constant('PAID', cardData.card) %}
+                            <a style="color: black" href="{{ path('package_metting_search_form', {'id' : cardData.card.id}) }}">
+                              <i class="icon-plus-sign-alt" aria-hidden="true"></i></a>
+                          {% endif %}
+                        </td>
+                        <td><a href="{{ path('display_card', { id : cardData.card.id}) }}" style="color: black"><i class="icon-eye-open" aria-hidden="true"></i></a></td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                {% else %}
+                  <div class="col-lg-6 offset-3">
+                    <h5 class="title">Aucun achat </h5>
+                  </div>
+                {% endif %}
+              </div>
 
             </div>
-            {% if cards|length > 0 %}
-              <table id="example" class="display" style="width:100%">
-                <thead>
-                <tr>
-                  <th></th>
-                  <th>montant(€)</th>
-                  <th>Nombre d'heure (h)</th>
-                  <th>Nombre reservé (h)</th>
-                  <th>status</th>
-                  <th>Reserver des cours</th>
-                  <th>voir les cours reservés</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for cardData in cardDatas %}
-                  <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ cardData.card.total }}</td>
-                    <td>{{ cardData.credit?cardData.credit.courseNumber:'Non achecté' }}</td>
-                    <td>{{ cardData.credit?cardData.credit.restCourseNumber:'Non achecté' }}</td>
-                    <td>{{ cardData.card.status }}</td>
-                    <td>
-                      {% if cardData.card.status == constant('PAID', cardData.card) %}
-                        <a style="color: black" href="{{ path('package_metting_search_form', {'id' : cardData.card.id}) }}">
-                          <i class="icon-plus-sign-alt" aria-hidden="true"></i></a>
-                      {% endif %}
-                    </td>
-                    <td><a href="{{ path('display_card', { id : cardData.card.id}) }}" style="color: black"><i class="icon-eye-open" aria-hidden="true"></i></a></td>
-                  </tr>
-                {% endfor %}
-                </tbody>
-              </table>
-            {% else %}
-              <div class="col-lg-6 offset-3">
-                <h5 class="title">Aucun achat </h5>
-              </div>
-            {% endif %}
           </div>
         </div>
       </div>

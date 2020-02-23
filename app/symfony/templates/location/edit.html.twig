@@ -9,29 +9,32 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  '',
-                description: '10× moins cher qu’en auto-école traditionnelle !'
-              } %}
-            </div>
-            <div class="col-12 center-block text-center">
-              {{ form_start(form) }}
-              <div class="row">
-                <div class="col-6 offset-3">
-                  {{ form_row(form.address) }}
-                  {{ form_row(form.postalCode) }}
-                  {{ form_row(form.city) }}
-                </div>
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  '',
+                  description: '10× moins cher qu’en auto-école traditionnelle !'
+                } %}
               </div>
-              <div class="col-6">
-                {{ form_row(form.activated) }}
-                <button type="submit" class="btn btn-lg hover-black color">{{'app.common.save'|trans}}</button>
-              </div>              {{ form_end(form) }}
+              <div class="col-12 center-block text-center">
+                {{ form_start(form) }}
+                <div class="row">
+                  <div class="col-6 offset-3">
+                    {{ form_row(form.address) }}
+                    {{ form_row(form.postalCode) }}
+                    {{ form_row(form.city) }}
+                  </div>
+                </div>
+                <div class="col-6">
+                  {{ form_row(form.activated) }}
+                  <button type="submit" class="btn btn-lg hover-black color">{{'app.common.save'|trans}}</button>
+                </div>
+                {{ form_end(form) }}
+              </div>
             </div>
           </div>
         </div>

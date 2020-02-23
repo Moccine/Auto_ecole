@@ -9,40 +9,43 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'Moniteur : ' ~ instructor.firstName ,description: 'Heures de disponibilité'
-              } %}
-            </div>
-            <form id="instructor-hours" data-package="{% if credit.id is defined %}1{% endif %}"
-                                         data-instructor-id="{{ instructor.id }}"
-                                         data-metting-point-id="{{ mettingPoint.id }}">
-              <div class="col-12" style="margin-bottom: 20px">
-                <h5 style="color: black; padding-bottom: 20px">{{'app.menu.location.title'|trans}} : {{ mettingPoint.address }}  </h5>
-                <!-- Course Wrapper -->
-                {{ form_start(form) }}
-                  <table class="table">
-                      <tr>
-                      {% for child in form.children %}
-                       <td>{{ form_row(child)}}</td>
-                        {% if loop.index is divisible by(7) %}
-                      </tr> <tr>
-                      {% endif %}
-                      {% endfor %}
-                      </tr>
-                  </table>
-
-                {{ form_start(form) }}
+          <div class="col-sm-9 col-md-7 col-lg-8">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'Moniteur : ' ~ instructor.firstName ,description: 'Heures de disponibilité'
+                } %}
               </div>
-                <button type="submit" class="btn btn-lg hover-black color">{{'app.common.save'|trans}}</button>
-              {{ form_end(form) }}
+              <div class="col-12" style="margin-bottom: 20px">
+                <form id="instructor-hours" data-package="{% if credit.id is defined %}1{% endif %}"
+                                           data-instructor-id="{{ instructor.id }}"
+                                           data-metting-point-id="{{ mettingPoint.id }}">
+                  <h5 style="color: black; padding-bottom: 20px">{{'app.menu.location.title'|trans}} : {{ mettingPoint.address }}  </h5>
+                  <!-- Course Wrapper -->
+                  {{ form_start(form) }}
+                    <table class="table">
+                        <tr>
+                        {% for child in form.children %}
+                         <td>{{ form_row(child)}}</td>
+                          {% if loop.index is divisible by(7) %}
+                        </tr> <tr>
+                        {% endif %}
+                        {% endfor %}
+                        </tr>
+                    </table>
+
+                  {{ form_start(form) }}
+                  <button type="submit" class="btn btn-lg hover-black color">{{'app.common.save'|trans}}</button>
+                  {{ form_end(form) }}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="col-2" style="padding-top: 50px">
+          <div class="col-md-2" style="padding-top: 50px">
 
           {% if credit.courseNumber is not defined %}
             <h5>Panier</h5>

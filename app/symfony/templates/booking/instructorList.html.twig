@@ -9,16 +9,17 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm 3 col-md-3 col-lg-2">
             {% include 'blocks/sideMenu.html.twig' %}
           </div>
-          <div class="col-8">
-            <div class="col-12">
-              {% include 'blocks/title.block.html.twig' with {
-                title:  'Liste des moniteurs ',
-                description: '10× moins cher qu’en auto-école traditionnelle !'
-              } %}
-            </div>
+          <div class="col-sm-9 col-md-9 col-lg-10">
+            <div class="row">
+              <div class="col-12">
+                {% include 'blocks/title.block.html.twig' with {
+                  title:  'Liste des moniteurs ',
+                  description: '10× moins cher qu’en auto-école traditionnelle !'
+                } %}
+              </div>
               <div id="course-area" class="course-area bg-white pt-90 pb-60">
                 <div class="container">
                   <div class="col-12 row" style="color: black; padding-bottom: 50px">
@@ -45,12 +46,12 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 {% endblock %}
 
