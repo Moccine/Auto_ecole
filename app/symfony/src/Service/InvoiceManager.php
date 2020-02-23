@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Entity\Card;
 use App\Entity\Course;
+use App\Entity\Orders;
 use App\Entity\Payment;
 use App\Entity\Shop;
 use JMS\Serializer\Tests\Fixtures\Order;
@@ -15,6 +16,7 @@ use Twig\Environment;
 
 class InvoiceManager
 {
+    const INVOICE_NAME = 'facture';
 
     /** @var Environment */
     private $twig;
@@ -28,9 +30,10 @@ class InvoiceManager
         $this->twig = $twig;
     }
 
-    public function generateQuotePDF(Card $card, Order $order, Payment $payment, Shop $shop, Course $course)
+    public function generateInvoicePDF(Orders $order)
     {
-        $filename = 'quotation.pdf';
+
+        $filename = sprintf('%s_%s.pdf', self::INVOICE_NAME, $order->getOrderNumber() );
         $tempDir = '/tmp';
         $fullPath = $tempDir.'/'.$filename;
 
@@ -45,14 +48,14 @@ class InvoiceManager
                 'setAutoBottomMargin' => 'stretch'
             ]);
 
-            $html = $this->twig->render('pdf/confirmation.html.twig', [
-                'card' => $card,
-                'order' => $payment,
-                'shop' => $shop,
-            ]);
+            $html = $this->twig->render('common/confirmationTemplate.html.twig', [
+                'order' => $order,
+                'card' =>$order->getCard()->first()
 
-            $header = $this->twig->render('');
-            $footer = ($this->twig->render(''));
+            ]);
+            $header = ''; //$this->twig->render(null);
+            $footer = '';//($this->twig->render(null));
+
             $mpdf->SetHTMLHeader($header);
             $mpdf->SetHTMLFooter($footer);
             $mpdf->WriteHTML($html);
@@ -71,6 +74,7 @@ class InvoiceManager
 
             return $response;
         } catch (\Exception $exception) {
+            dd($exception);
             return $exception->getMessage();
         }
     }

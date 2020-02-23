@@ -61,22 +61,23 @@ class CheckoutController extends AbstractController
             ]);
         }
 
-
-        return $this->redirectToRoute('checkout_confirmation');
+        return $this->redirectToRoute('checkout_confirmation', ['id' => $bookingOrder->getId()]);
     }
 
     /**
-     * @Route("/checkout/confirmation/", name="checkout_confirmation")
+     * @Route("/checkout/confirmation/{id}", name="checkout_confirmation")
      * @throws \Exception
      */
-    public function confirmationActiion(Request $request, PaymentManager $paymentManager, TranslatorInterface $translator, Session $session)
+    public function confirmationAction(Request $request, Orders $orders, PaymentManager $paymentManager, TranslatorInterface $translator, Session $session)
     {
+
         /** @var Card $card */
         $card = $session->get('card');
         /** @var Payment $payment */
         $payment = $this->getDoctrine()->getRepository(Payment::class)->findOneBy([
             'card' => $card
         ]);
+
         $courses = $this->getDoctrine()->getRepository(Course::class)->findBy([
             'card' => $card
         ]);
@@ -85,11 +86,11 @@ class CheckoutController extends AbstractController
             $shop = $this->getDoctrine()->getRepository(Shop::class)->find($card->getShop()->getId());
         }
 
+        dump($card);
+
         return $this->render('checkout/confirmation.html.twig', [
             'card' => $session->get('card'),
-            'order' => $payment->getOrders(),
-            'courses' => $courses,
-            'shop' => $shop,
+            'order' => $orders,
         ]);
     }
 }
