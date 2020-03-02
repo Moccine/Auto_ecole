@@ -24,12 +24,12 @@ class MettingPointType extends AbstractType
                         return $er->createQueryBuilder('m')
                             ->orderBy('m.address', 'ASC');
                     },
+                    'placeholder' => 'Choisir un point de rencontre',
                     'choice_label' => function (MettingPoint $mettingPoint) {
                         return sprintf('%s %s %s', $mettingPoint->getAddress(), $mettingPoint->getCity(), $mettingPoint->getPostalCode());
                     },
                 ]
-            )
-        ;
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

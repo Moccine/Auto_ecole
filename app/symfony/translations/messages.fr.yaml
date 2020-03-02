@@ -166,3 +166,11 @@ footer:
   fax: '01 00 00 00 00'
   download:
     invoice: 'Telecharger la facture'
+days:
+  monday: 'Lundi'
+  tuesday: 'Mardi'
+  wednesday: 'Mercredi'
+  thursday: 'Jeudi'
+  friday: 'Vendredi'
+  saturday: 'Samedi'
+  sunday: 'Dimanche'

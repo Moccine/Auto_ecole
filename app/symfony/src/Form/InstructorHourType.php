@@ -13,6 +13,24 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class InstructorHourType extends AbstractType
 {
+    const HOUR = 22;
+    const DAY = 7;
+    const MONDAY = 1;
+    const TUESDAY = 2;
+    const WEDNESDAY = 3;
+    const THURSDAY = 4;
+    const FRIDAY = 5;
+    const SATURDAY = 6;
+    const SUNDAY = 7;
+    const DAYS = [
+        self::MONDAY => 'days.monday',
+        self::TUESDAY => 'days.tuesday',
+        self::WEDNESDAY => 'days.wednesday',
+        self::THURSDAY => 'days.thursday',
+        self::FRIDAY => 'days.friday',
+        self::SATURDAY => 'days.saturday',
+        self::SUNDAY => 'days.sunday',
+    ];
     /** @var EntityManager */
     private $entityManager;
     /** @var TranslatorInterface $translator */
@@ -44,12 +62,13 @@ class InstructorHourType extends AbstractType
             'instructor' => $instructor
         ]);
         /** @var Course $course */
-        for ($day = 0; $day < $offset->days; $day++) {
+        for ($day = 0; $day < $offset->days; $day++) { // jours
             $date = $currentDate->add(new \DateInterval('P1D'));
             //$date->add(new \DateInterval('PT10H30S'));
             for ($hour = 7; $hour < 22; $hour++) { //l'heure
                 $checkboxValue = false;
                 $date->setTime($hour, 0, 0);
+
                 $label = sprintf(
                     '%s H - %s %s %s',
                     $hour,
@@ -59,13 +78,11 @@ class InstructorHourType extends AbstractType
                 );
                 $fieldName = sprintf('hours-%d-%d', $day, $hour);
                 $attr = [
-
-                    'class' => 'course-hour',
+                    'class' => 'course-hour hour',
                     'data-instructor' => $instructor->getId(),
                     'data-hour' => $hour,
                     'mapped' => false,
                     'data-dateTime' => $date->format('d/m/Y'),
-
                 ];
 
                 foreach ($courses as $course) {

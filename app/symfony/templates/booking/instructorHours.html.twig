@@ -1,231 +1,313 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-  {% include 'common/banner.html.twig'  with {
-    title: 'Reservation',
-    link: '#',
-    home: 'Code de la route'
-  } %}
-  <div class="container-fluid bg-white" style="min-height: 200px">
-    <div class="row">
-      <div class="col-12">
+    {% include 'common/banner.html.twig'  with {
+        title: 'Reservation',
+        link: '#',
+        home: 'Code de la route'
+    } %}
+    <div class="container-fluid bg-white" style="min-height: 200px">
         <div class="row">
-          <div class="col-sm 3 col-md-3 col-lg-2">
-            {% include 'blocks/sideMenu.html.twig' %}
-          </div>
-          <div class="col-sm-9 col-md-7 col-lg-8">
-            <div class="row">
-              <div class="col-12">
-                {% include 'blocks/title.block.html.twig' with {
-                  title:  'Moniteur : ' ~ instructor.firstName ,description: 'Heures de disponibilité'
-                } %}
-              </div>
-            </div>
-            <form id="instructor-hours" data-package="{% if credit.id is defined %}1{% endif %}"
-                data-instructor-id="{{ instructor.id }}"
-                data-metting-point-id="{{ mettingPoint.id }}">
-            <div class="row">
-              <div class="col-12" style="margin-bottom: 20px">
-                <h5 style="color: black; padding-bottom: 20px">{{'app.menu.location.title'|trans}} : {{ mettingPoint.address }}  </h5>
-                <!-- Course Wrapper -->
-                {{ form_start(form) }}
-                <div class="course-wrapp">
-                  <table class="table">
-                    <tr class="blocs">
-                      {% for child in form.children %}
-                      <td class="course">{{ form_row(child)}}</td>
-                      {% if loop.index is divisible by(7) %}
-                    </tr> <tr>
-                      {% endif %}
-                      {% endfor %}
-                    </tr>
-                  </table>
-                </div>
-
-                <div class="course-wrap">
-                  <div class="day">
-                    <h5>Lundi <span>1 mars</span></h5>
-                    <div class="mid">
-                      <!-- repeat blocks
-                        Si l'heure n'est pas disponible, ajouter la classe "disabled"
-                      -->
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-0" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-0">
-                                <span class="icon"></span> <span>07:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End block-->
-
-                      <!-- Si l'heure n'est pas disponible, ajouter la classe "disabled" comme ci dessous -->
-                      <div class="hour disabled">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-1" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1" disabled>
-                            <label for="input-1">
-                                <span class="icon"></span> <span>08:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-2" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-2">
-                                <span class="icon"></span> <span>09:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-3" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-3">
-                                <span class="icon"></span> <span>10:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-4" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-4">
-                                <span class="icon"></span> <span>11:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-5" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-5">
-                                <span class="icon"></span> <span>12:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-6" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-6">
-                                <span class="icon"></span> <span>13:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-7" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-7">
-                                <span class="icon"></span> <span>14:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-8" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-8">
-                                <span class="icon"></span> <span>15:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-9" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-9">
-                                <span class="icon"></span> <span>16:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-10" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-10">
-                                <span class="icon"></span> <span>17:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="hour">
-                        <div class="form-group">
-                          <div class="form-checkbox">
-                            <input type="checkbox" id="input-11" name="course-monday" required="required" class="course-hour" data-instructor="32" data-hour="7" data-datetime="24/02/2020" value="1">
-                            <label for="input-11">
-                                <span class="icon"></span> <span>18:00</span>
-                            </label>
-
-                          </div>
-                        </div>
-                      </div>
-
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm 3 col-md-3 col-lg-2">
+                        {% include 'blocks/sideMenu.html.twig' %}
                     </div>
-                  </div>
+                    <div class="col-sm-9 col-md-7 col-lg-8">
+                        <div class="row">
+                            <div class="col-12">
+                                {% include 'blocks/title.block.html.twig' with {
+                                    title:  'Moniteur : ' ~ instructor.firstName ,description: 'Heures de disponibilité'
+                                } %}
+                            </div>
+                        </div>
+                        <div id="instructor-hours" data-package="{% if credit.id is defined %}1{% endif %}"
+                             data-instructor-id="{{ instructor.id }}"
+                             data-metting-point-id="{{ mettingPoint.id }}">
+                                <div class="col-12" style="margin-bottom: 20px">
+                                    <h5 style="color: black; padding-bottom: 20px">{{ 'app.menu.location.title'|trans }}
+                                        : {{ mettingPoint.address }}  </h5>
+
+
+
+                                    {{ form_start(dayFrom) }}
+                                    <div class="course-wrap">
+                                        <div class="day">
+                                            <h5>{{loop.index}} <span>1 mars</span></h5>
+                                            <div class="mid">
+                                                <!-- repeat blocks
+                                                  Si l'heure n'est pas disponible, ajouter la classe "disabled"
+                                                -->
+                                                    <div class="hour">
+                                                        <div class="form-group">
+                                                            <div class="form-checkbox">
+                                                                {{ form_row(dayFrom) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ form_end(dayFrom) }}
+
+
+
+                                    <!-- Course Wrapper -->
+                                    {{ form_start(form) }}
+                                  <div class="course-wrap">
+                                    <div class="day">
+                                      <h5>Lundi <span>1 mars</span></h5>
+                                      <div class="mid">
+                                        {% for child in form.children %}
+                                        <div class="form-group">
+                                        <div class="hour">
+                                          {{ form_label(child) }}
+                                          {{ form_widget(child, {'attr':{'class': 'course-hour'}}) }}
+                                        </div>
+                                        </div>
+                                          {% if loop.index is divisible by(15) %}
+                                      </div></div>
+                                    <div class="day">
+                                      <h5>Lundi <span>1 mars</span></h5>
+                                      <div class="mid">
+                                        {% endif %}
+
+                                        {% endfor %}
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                        {#{% if loop.index is divisible by(7) %} #}
+
+                                </div>
+
+                                <div class="course-wrap">
+                                    <div class="day">
+                                        <h5>Lundi <span>1 mars</span></h5>
+                                        <div class="mid">
+                                            <!-- repeat blocks
+                                              Si l'heure n'est pas disponible, ajouter la classe "disabled"
+                                            -->
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox"
+                                                               id="input-0"
+                                                               name="course-monday"
+                                                               required="required"
+                                                               class="course-hour"
+                                                               data-instructor="32"
+                                                               data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-0">
+                                                            <span class="icon"></span> <span>07:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End block-->
+
+                                            <!-- Si l'heure n'est pas disponible, ajouter la classe "disabled" comme ci dessous -->
+                                            <div class="hour disabled">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox"
+                                                               id="input-1"
+                                                               name="course-monday"
+                                                               required="required"
+                                                               class="course-hour"
+                                                               data-instructor="32"
+                                                               data-hour="7"
+                                                               data-datetime="24/02/2020"
+                                                               value="1" disabled>
+                                                        <label for="input-1">
+                                                            <span class="icon"></span> <span>08:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-2" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-2">
+                                                            <span class="icon"></span> <span>09:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-3" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-3">
+                                                            <span class="icon"></span> <span>10:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-4" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-4">
+                                                            <span class="icon"></span> <span>11:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-5" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-5">
+                                                            <span class="icon"></span> <span>12:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-6" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-6">
+                                                            <span class="icon"></span> <span>13:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-7" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-7">
+                                                            <span class="icon"></span> <span>14:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-8" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-8">
+                                                            <span class="icon"></span> <span>15:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-9" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-9">
+                                                            <span class="icon"></span> <span>16:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-10" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-10">
+                                                            <span class="icon"></span> <span>17:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hour">
+                                                <div class="form-group">
+                                                    <div class="form-checkbox">
+                                                        <input type="checkbox" id="input-11" name="course-monday"
+                                                               required="required" class="course-hour"
+                                                               data-instructor="32" data-hour="7"
+                                                               data-datetime="24/02/2020" value="1">
+                                                        <label for="input-11">
+                                                            <span class="icon"></span> <span>18:00</span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_start(form) }}
+                            </div>
+                        </div>
+                        <div class="action btns">
+                            <button type="submit"
+                                    class="btn btn-lg hover-black color">{{ 'app.common.save'|trans }}</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+
+                    <div class="col-md-2" style="padding-top: 50px">
+
+                        {% if credit.courseNumber is not defined %}
+                            <h5>Panier</h5>
+                            <div class="h1 price">
+                                {% if card.total is defined %}
+                                    {{ card.total }}
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <h5>Heures restantes sur votre package de ({{ credit.courseNumber }})</h5>
+                            <div class="h1 course-number"
+                                 data-card-id="{{ credit.card.id }}"
+                                 data-="{{ credit.card.id }}"
+                                 data-credit-id="{{ credit.id }}">
+                                {% if credit.restCourseNumber is defined %}
+                                    {{ credit.restCourseNumber }} h
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <button type="button" class="btn btn-ms hover-black color">
+                            <a href="{{ path('display_card', {'id': card.id}) }}">voir le panier</a></button>
+                    </div>
+
                 </div>
-
-
-                {{ form_start(form) }}
-              </div>
             </div>
-            <div class="action btns">
-              <button type="submit" class="btn btn-lg hover-black color">{{'app.common.save'|trans}}</button>
-            </div>
-            {{ form_end(form) }}
-          </div>
-
-          <div class="col-md-2" style="padding-top: 50px">
-
-            {% if credit.courseNumber is not defined %}
-              <h5>Panier</h5>
-              <div class="h1 price">
-                {% if card.total is defined %}
-                  {{ card.total }}
-                {% endif %}
-              </div>
-            {% else %}
-              <h5>Heures restantes sur votre package de ({{ credit.courseNumber }})</h5>
-              <div class="h1 course-number"
-                   data-card-id="{{ credit.card.id }}"
-                   data-="{{ credit.card.id }}"
-                   data-credit-id="{{ credit.id }}">
-                {% if credit.restCourseNumber is defined %}
-                  {{ credit.restCourseNumber }} h
-                {% endif %}
-              </div>
-            {% endif %}
-            <button type="button" class="btn btn-ms hover-black color">
-              <a href="{{ path('display_card', {'id': card.id}) }}">voir le panier</a> </button>
-          </div>
-
         </div>
-      </div>
-    </div>
-  </div>
-
 {% endblock %}
 

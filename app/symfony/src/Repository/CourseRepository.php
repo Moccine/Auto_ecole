@@ -59,4 +59,18 @@ class CourseRepository extends ServiceEntityRepository
             ->getQuery()->getResult()
             ;
     }
+
+    public function findCourseByDateAndUser(User $student)
+    {
+        //$date = $dateTime->setTime(00, 00, 00)->format('Y-m-d');
+        return $this->createQueryBuilder('course')
+           // ->andWhere('course.courseDate >= :date')
+            ->andWhere('course.student = :student')
+            ->setParameters([
+              //  'date'=> $date,
+                'student' => $student
+            ])
+            ->getQuery()->getResult()
+            ;
+    }
 }

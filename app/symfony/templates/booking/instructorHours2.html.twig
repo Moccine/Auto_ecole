@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'common/banner.html.twig'  with {
+        title: 'Reservation',
+        link: '#',
+        home: 'Code de la route'
+    } %}
+<div class="container-fluid bg-white" style="min-height: 200px">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-sm 3 col-md-3 col-lg-2">
+                    {% include 'blocks/sideMenu.html.twig' %}
+                </div>
+                <div class="col-sm-9 col-md-7 col-lg-8">
+                    <div class="row">
+                        <div class="col-12">
+                            {% include 'blocks/title.block.html.twig' with {
+                                title:  'Moniteur : ' ~ instructor.firstName, description: 'Heures de disponibilité'
+                            } %}
+                        </div>
+                    </div>
+                    <div id="instructor-hours" data-package="{% if credit.id is defined %}1{% endif %}"
+                         data-instructor-id="{{ instructor.id }}"
+                         data-metting-point-id="{{ mettingPoint.id }}">
+                        <div class="col-12" style="margin-bottom: 20px">
+                            <h5 style="color: black; padding-bottom: 20px">{{ 'app.menu.location.title'|trans }}
+                                : {{ mettingPoint.address }}  </h5>
+                        </div>
+                        {{ form_start(dayFrom) }}
+                        <div class="course-wrap">
+                            <div class="day">
+                                <h5><span>{{ form_label(dayFrom.name)}}</span></h5>
+                                <div class="mid">
+                                    <!-- repeat blocks
+                                      Si l'heure n'est pas disponible, ajouter la classe "disabled"
+                                    -->
+                                    <div class="hour">
+                                        <div class="form-group">
+                                            <div class="form-checkbox">
+                                                {{ form_widget(dayFrom) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(dayFrom) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

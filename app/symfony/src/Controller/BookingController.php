@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Card;
 use App\Entity\Course;
 use App\Entity\Credit;
+use App\Entity\Day;
 use App\Entity\MettingPoint;
 use App\Entity\Shop;
 use App\Entity\User;
+use App\Form\DayType;
 use App\Form\InstructorHourType;
 use App\Form\MettingPointType;
 use App\Repository\ShopRepository;
@@ -106,12 +108,20 @@ class BookingController extends AbstractController
         }
         /** @var Course $course */
         $form->handleRequest($request);
+      $dayFrom = $this->createForm(DayType::class, new Day(), [
+          'date' => new \DateTime(),
+          'instructor' => $user,
+          'student' => $this->getUser(),
+          'metting-point' => $mettingPoint,
 
-        return $this->render('booking/instructorHours.html.twig', [
+      ]);
+
+        return $this->render('booking/instructorHours2.html.twig', [
             'mettingPoint' => $mettingPoint,
-            'form' => $form->createView(),
+           // 'form' => $form->createView(),
             'instructor' => $user,
             'card' => $card,
+            'dayFrom' => $dayFrom->createView(),
         ]);
     }
 

@@ -9,6 +9,7 @@ use App\Entity\Credit;
 use App\Entity\MettingPoint;
 use App\Entity\User;
 use App\Service\CourseManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CourseApiController extends AbstractController
 {
+    /** @var EntityManagerInterface */
+    private $em;
+
+    /**
+     * CourseApiController constructor.
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @Route("/add/course/{instructor_id}", name="add_course", methods={"GET"})
      * @ParamConverter("user", options={"id" = "instructor_id"})
@@ -27,19 +40,18 @@ class CourseApiController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         /** @var MettingPoint $mettingPoint */
-        $mettingPoint =  $em->getRepository(MettingPoint::class)->find($request->query->get('mettingPointId'));
+        $mettingPoint =  $em->getRepository(MettingPoint::class)->find($request->query->get('mettingPoint'));
         /** @var User $instructor */
-        $instructor =  $em->getRepository(User::class)->find($request->query->get('instructorId'));
+        $instructor =  $em->getRepository(User::class)->find($request->query->get('instructor'));
         /** @var User $student */
         $student = $this->getUser();
-
 
         $courseRepository = $this->getDoctrine()->getRepository(Course::class);
         /** @var SessionInterface $session */
         $session = $this->get('session');
         $courseHour = (int)$request->query->get('hour');
         $courseDateTime = $request->query->get('datetime');
-        $courseDate = \DateTime::createFromFormat('d/m/Y', $courseDateTime)->setTime($courseHour, 0, 0);
+        $courseDate = \DateTime::createFromFormat('Y/m/d', $courseDateTime)->setTime($courseHour, 0, 0);
         $course = $courseRepository->findOneBy([
             'student' => $student,
             'instructor' => $user,
@@ -106,7 +118,7 @@ class CourseApiController extends AbstractController
         /** @var User $student */
         $student = $this->getUser();
         $courseDateTime = $request->query->get('datetime');
-        $courseDate = \DateTime::createFromFormat('d/m/Y', $courseDateTime)->setTime($courseHour, 0, 0);
+        $courseDate = \DateTime::createFromFormat('Y/m/d', $courseDateTime)->setTime($courseHour, 0, 0);
         $course = $courseRepository->findOneBy([
             'student' => $student,
             'instructor' => $user,
