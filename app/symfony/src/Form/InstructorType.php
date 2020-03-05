@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,9 +17,20 @@ class InstructorType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('firstName')
-            ->add('password')
+            //->add('password', PasswordType::class)
             ->add('lastName')
-            ->add('birthDate')
+            ->add('birthDate', null, [
+                    'label' => 'security.login.birth_date',
+                    'widget' => 'single_text',
+
+                    // prevents rendering it as type="date", to avoid HTML5 date pickers
+                    'html5' => false,
+
+                    // adds a class that can be selected in JavaScript
+                    'attr' => ['class' => 'js-datepicker'],
+    ]
+
+            )
             ->add('zipCode')
             ->add('phone')
             ->add('address')
@@ -29,8 +41,7 @@ class InstructorType extends AbstractType
                 'label' => 'Photo',
                 'data_class' => null,
                 'required' => false
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)

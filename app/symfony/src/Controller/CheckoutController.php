@@ -86,7 +86,6 @@ class CheckoutController extends AbstractController
             $shop = $this->getDoctrine()->getRepository(Shop::class)->find($card->getShop()->getId());
         }
 
-        dump($card);
 
         return $this->render('checkout/confirmation.html.twig', [
             'card' => $session->get('card'),

@@ -43,15 +43,15 @@
   <div class="panel panel-default"> {# student #}
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" aria-expanded="false" href="#accordion-2">
+        <a data-toggle="collapse" aria-expanded="false" href="#accordion-3">
           {{ 'app.menu.user.student.title'|trans }}        </a>
       </h4>
     </div>
-    <div id="accordion-2" class="panel-collapse collapse" data-parent="#accordion">
+    <div id="accordion-3" class="panel-collapse collapse" data-parent="#accordion">
       <div class="panel-body">
         <ul>
           <li><a href="{{ path('list_students') }}">{{ 'app.menu.user.student.list'|trans }} </a></li>
-          <li><a href="#">{{ 'app.menu.user.student.add'|trans }} </a></li>
+          <li><a href="{{ path('add_instructor') }}">{{ 'app.menu.user.student.add'|trans }} </a></li>
         </ul>
       </div>
     </div>
@@ -59,10 +59,10 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" aria-expanded="false" href="#accordion-3">Les examen </a>
+        <a data-toggle="collapse" aria-expanded="false" href="#accordion-4">Les examen </a>
       </h4>
     </div>
-    <div id="accordion-3" class="panel-collapse collapse " data-parent="#accordion">
+    <div id="accordion-4" class="panel-collapse collapse " data-parent="#accordion">
       <div class="panel-body">
         <ul>
           <li><a href="#">{{ 'app.menu.examination_area.title'|trans }}</a></li>
@@ -73,12 +73,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" aria-expanded="false" href="#accordion-4">
+        <a data-toggle="collapse" aria-expanded="false" href="#accordion-5">
           {{ 'app.menu.shop.title'|trans }}
         </a>
       </h4>
     </div>
-    <div id="accordion-4" class="panel-collapse collapse " data-parent="#accordion">
+    <div id="accordion-5" class="panel-collapse collapse " data-parent="#accordion">
       <div class="panel-body">
         <ul>
           <li><a href="{{ path('shop_list') }}"> {{ 'app.menu.shop.list'|trans }} </a></li>

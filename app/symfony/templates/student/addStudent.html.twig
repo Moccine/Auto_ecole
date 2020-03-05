@@ -47,13 +47,13 @@
                         <div class="metting-point" style="padding-top: 15px">
                             {{ form_row(form.photoFile) }}
                         </div>
-                        {% if instructor.photo %}
+                        {% if student is defined and student.photo %}
                             <div class="row">
                                 <!-- Team Member 1 -->
                                 <div class="card border-0 shadow">
-                                    <img src="{{ asset('/uploads/images/users/' ~ instructor.photo) }}" alt="" class="card-img-top">
+                                    <img src="{{ asset('/uploads/images/users/' ~ student.photo) }}" alt="" class="card-img-top">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title mb-0">{{ instructor.firstName }} {{ instructor.firstName }}</h5>
+                                        <h5 class="card-title mb-0">{{ student.firstName }} {{ student.firstName }}</h5>
                                         <div class="card-text text-black-50">Web Developer</div>
                                     </div>
                                 </div>
@@ -66,13 +66,13 @@
                             </button>
 
                         </div>
-                        <div class="col-2" style="padding-top: 50px">
+                       {# <div class="col-2" style="padding-top: 50px">
                             <h5>Panier</h5>
                             {% if card is defined %}
                                 <div class="h1 price">{{ card.price }}</div>
                                 <button type="button" class="btn btn-ms hover-black color"><a href="{{ path('display_card') }}">Panier</a></button>
                             {% endif %}
-                        </div>
+                        </div>#}
                     </div>
                     <div class="col-4" style="padding-top: 50px">
                         {% for message in app.flashes('danger') %}

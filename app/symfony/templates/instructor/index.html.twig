@@ -41,8 +41,7 @@
                       <td>{{instructor.zipCode}}</td>
                       <td>{{ constant('App\\Entity\\User::ROLES')[roles]|trans }}
                       </td>
-
-                      <td><a style="color: black" href=" {{ path('fos_user_profile_edit') }}">{{'app.common.edit'|trans}}</a></td>
+                      <td><a style="color: black" href=" {{ path('edit_instructor', {'id':instructor.id}) }}) }}">{{'app.common.edit'|trans}}</a></td>
                       <td><a style="color: black" href=" {{ path('edit_instructor', {'id':instructor.id}) }}">{{ 'app.common.delete'|trans }}</a></td>
                     </tr>
                   {% endfor %}

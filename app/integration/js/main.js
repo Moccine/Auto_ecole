@@ -73,6 +73,15 @@ $(document).ready(function () {
   });
 
 
+  $('.js-datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    weekStart: 1,
+    daysOfWeekHighlighted: "6,0",
+    autoclose: true,
+    todayHighlight: true,
+  });
+
+
 
 });
 /*

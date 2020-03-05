@@ -365,7 +365,7 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getExtraAddress(): string
+    public function getExtraAddress(): ?string
     {
         return $this->extraAddress;
     }
@@ -424,7 +424,6 @@ class User extends BaseUser
      */
     public function setPhoto(?string $photo): self
     {
-        dump($photo);
         $this->photo = $photo;
 
         return $this;

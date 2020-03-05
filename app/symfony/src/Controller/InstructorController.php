@@ -15,13 +15,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/instructor")
- */
+
 class InstructorController extends AbstractController
 {
     /**
-     * @Route("/list", name="list_instructor")
+     * @Route("/admin/instructor/list", name="list_instructor")
      */
     public function index()
     {
@@ -34,7 +32,7 @@ class InstructorController extends AbstractController
 
 
     /**
-     * @Route("/add/", name="add_instructor")
+     * @Route("/admin/instructor/add/", name="add_instructor")
      */
 
     public function addInstructorAction(Request $request)
@@ -51,11 +49,12 @@ class InstructorController extends AbstractController
         ]);
     }
     /**
-     * @Route("/edit/{id}", name="edit_instructor")
+     * @Route("/admin/instructor/edit/{id}", name="edit_instructor")
      */
 
     public function editAction(Request $request, User $user)
     {
+
         $form = $this->createForm(InstructorType::class, $user);
 
         $form->handleRequest($request);
