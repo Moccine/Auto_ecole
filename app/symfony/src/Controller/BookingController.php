@@ -37,8 +37,8 @@ class BookingController extends AbstractController
             $mettingPoint = $form->getData()['address'];
             return $this->redirect(
                 $this->generateUrl('instructor_list_unity',
-                ['id' => $mettingPoint->getId(),
-                'card' => $request->query->get('card'),
+                    ['id' => $mettingPoint->getId(),
+                        'card' => $request->query->get('card'),
                     ]));
             // return $this->redirectToRoute('instructor_list', ['id' => $mettingPoint->getId(), 'card' => $request->query->get('card')]);
         }
@@ -108,17 +108,17 @@ class BookingController extends AbstractController
         }
         /** @var Course $course */
         $form->handleRequest($request);
-      $dayFrom = $this->createForm(DayType::class, new Day(), [
-          'date' => new \DateTime(),
-          'instructor' => $user,
-          'student' => $this->getUser(),
-          'metting-point' => $mettingPoint,
+        $dayFrom = $this->createForm(DayType::class, new Day(), [
+            'date' => new \DateTime(),
+            'instructor' => $user,
+            'student' => $this->getUser(),
+            'metting-point' => $mettingPoint,
 
-      ]);
+        ]);
 
         return $this->render('booking/instructorHours2.html.twig', [
             'mettingPoint' => $mettingPoint,
-           // 'form' => $form->createView(),
+            // 'form' => $form->createView(),
             'instructor' => $user,
             'card' => $card,
             'dayFrom' => $dayFrom->createView(),
@@ -144,17 +144,17 @@ class BookingController extends AbstractController
      *
      * @Route("/unity/courses/student/{id}", name="student_cardUnity_list_unity")
      */
-    public function studentCardUnityListAction(User  $user)
+    public function studentCardUnityListAction(User $user)
     {
         $em = $this->getDoctrine()->getManager();
         $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($user, Card::TYPE_UNITE);
         /** @var Card $card */
-        foreach ($cards as $key => $card){
-          if($card->getCourses()->count() == 0){
-              $em->remove($card);
-              $em->flush();
-          }
-      }
+        foreach ($cards as $key => $card) {
+            if ($card->getCourses()->count() == 0) {
+                $em->remove($card);
+                $em->flush();
+            }
+        }
         $cards = $this->getDoctrine()->getRepository(Card::class)->findByUserAndType($user, Card::TYPE_UNITE);
 
         return $this->render('card/studentcardUnityList.html.twig', [

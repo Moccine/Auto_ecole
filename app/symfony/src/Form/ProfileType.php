@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Location;
 use App\Entity\User;
-use AppBundle\Entity\ObservationCategoryTree;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;

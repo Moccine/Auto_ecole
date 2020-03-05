@@ -174,3 +174,6 @@ days:
   friday: 'Vendredi'
   saturday: 'Samedi'
   sunday: 'Dimanche'
+thumbable:
+  chooseFile: ''
+  browse: ''

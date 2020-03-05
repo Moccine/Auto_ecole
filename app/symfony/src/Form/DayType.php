@@ -162,7 +162,35 @@ class DayType extends AbstractType
 
             ]);
     }
+
+    /**
+     * @param $hour
+     * @param \DateTime $date
+     * @param array $courses
+     * @return array
+     */
     public  function setdayData($hour, \DateTime $date,  array $courses){
+        foreach ($courses as $course){
+            $currentDate = $course->getCourseDate();
+            $courseDate = $date->setTime($hour, 0, 0);
+            if($courseDate == $currentDate ){
+                return [
+                    'checked' => 'checked',
+                    'data-value' => 1,
+                ];
+            }
+        }
+        return [
+            'data-value' => 0,
+        ];
+    }
+    /**
+     * @param $hour
+     * @param \DateTime $date
+     * @param array $courses
+     * @return array
+     */
+    public  function setInstructordayData($hour, \DateTime $date,  array $courses){
         foreach ($courses as $course){
             $currentDate = $course->getCourseDate();
             $courseDate = $date->setTime($hour, 0, 0);

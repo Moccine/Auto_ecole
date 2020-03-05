@@ -41,8 +41,7 @@ services:
             - { name: form.type, alias: app_user_profile }
 
     App\Controller\ProfileController:
-        arguments:
-            - $formFactory: '@fos_user.profile.form.factory'
+        public: true
 
     App\Form\InstructorHourType:
         arguments:

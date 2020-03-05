@@ -46,16 +46,15 @@
           <div class="metting-point" style="padding-top: 15px">
             {{ form_row(form.photoFile) }}
           </div>
-
           <div class="row">
             <!-- Team Member 1 -->
-            {% if app.user.photoFile %}
+            {% if app.user.photo %}
 
             <div class="card border-0 shadow">
-                <img src="{{ vich_uploader_asset(app.user, 'photoFile') }}" alt="" class="card-img-top" >
+                <img src="{{ asset('/uploads/images/users/' ~ app.user.photo) }}" alt="" class="card-img-top" >
                 <div class="card-body text-center">
-                  <h5 class="card-title mb-0">Team Member</h5>
-                  <div class="card-text text-black-50">Web Developer</div>
+                  <h5 class="card-title mb-0">{{ app.user.firstName }} {{ app.user.lastName }}</h5>
+                  <div class="card-text text-black-50">{{ app.user.firstName }}</div>
                 </div>
             </div>
             {% endif %}

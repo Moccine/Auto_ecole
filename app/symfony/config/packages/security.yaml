@@ -22,7 +22,7 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 always_use_default_target_path: false
-                default_target_path: referer
+                default_target_path: fos_user_profile_edit
             logout:       true
             anonymous:    true
     # Easy way to control access for large sections of your site

@@ -23,16 +23,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ProfileController extends BaseController
 {
     use ControllerTrait;
-    /**
-     * @var FactoryInterface
-     */
-    private $formFactory;
 
-    public function __construct(FormFactory $formFactory)
+    public function __construct()
     {
-        $this->formFactory = $formFactory;
     }
-
     public function editAction(Request $request)
     {
         $courses = $this->getDoctrine()->getRepository(Course::class)->findBy([

@@ -131,18 +131,18 @@ class User extends BaseUser
     private $birthday;
 
     /**
-     * @var File
-     *
-     * @Vich\UploadableField(mapping="users_images", fileNameProperty="photo")
-     */
-    private $photoFile;
-
-    /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
      */
     private $photo;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="users_images", fileNameProperty="photo")
+     */
+    private $photoFile;
 
     /**
      * @var int
@@ -420,10 +420,14 @@ class User extends BaseUser
 
     /**
      * @param string $photo
+     * @return $this
      */
-    public function setPhoto(string $photo): void
+    public function setPhoto(?string $photo): self
     {
+        dump($photo);
         $this->photo = $photo;
+
+        return $this;
     }
 
     /**
