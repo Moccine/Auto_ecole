@@ -24,11 +24,27 @@
                 <div class="container">
                   <div class="col-12 row" style="color: black; padding-bottom: 50px">
                     <h5 style="color: black; padding-right: 15px">Point de rencontre:  </h5>
-                    <i class="fas fa-map-marker-alt"></i> <span  class="h4" style="color : red; float: left"> {{ mettingPoint.address }} {{ mettingPoint.city }} {{ mettingPoint.postalcode }} </span>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span  class="h4" style="color : red; float: left">
+                      {{ mettingPoint.address }} {{ mettingPoint.city }} {{ mettingPoint.postalcode }}
+                    </span>
                   </div>
                   <!-- Course Wrapper -->
-                  <div class="course-wrapper row">
+                  <div class="course-wrappe row">
+
+
                     {% for instructor in instructors %}
+
+
+                      <div class="card border-0 shadow">
+                        <img src="{{ asset('/uploads/images/users/' ~ instructor.photo) }}" alt="" class="card-img-top" >
+                        <div class="card-body text-center">
+                          <h5 class="card-title mb-0">{{ instructor.firstName }} {{ instructor.lastName }}</h5>
+                          <div class="card-text text-black-50">{{ ainstructor.firstName }}</div>
+                        </div>
+                      </div>
+
+
                       <div class="col-lg-3 col-md-6 col-12 mb-30 fix">
                         <div class="course-item text-center">
                           <i class="icofont icofont-user-alt-4"></i>

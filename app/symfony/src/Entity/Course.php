@@ -261,18 +261,18 @@ class Course
     }
 
     /**
-     * @return Collection|Order[]
+     * @return Collection|Orders[]
      */
     public function getOrders(): Collection
     {
         return $this->orders;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder(Orders $order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders[] = $order;
-            $order->setCourse($this);
+            $order->setC($this);
         }
 
         return $this;
