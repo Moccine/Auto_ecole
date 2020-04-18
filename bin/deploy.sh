@@ -10,7 +10,7 @@ git pull origin $(git rev-parse --abbrev-ref HEAD)
 
 echo -e 'Installing Symfony dependencies'
 cd app/symfony
-composer install
+composer install --no-dev --optimize-autoloader
 php bin/console doctrine:migrations:migrate
 php bin/console cache:clear
 
@@ -28,6 +28,7 @@ echo -e 'Installation of Front dependencies'
 cd ../integration/ && yarn run start:prod
 
 echo -e 'Clear du cache'
+APP_ENV=prod APP_DEBUG=0
 php bin/console cache:clear
 php bin/console cache:warmup
 
