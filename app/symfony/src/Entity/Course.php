@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\CreatedAtTrait;
 use App\Entity\Traits\UpdatedAtTrait;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -114,17 +115,15 @@ class Course
     private $mettingPoint;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="course")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Orders", inversedBy="courses")
      */
     private $orders;
 
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
-        $this->orders = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
-
 
     /**
      * @return int|null
@@ -232,27 +231,34 @@ class Course
     /**
      * @return mixed
      */
-    public function getCourseDate(): ?\DateTime
+    public function getCourseDate(): ?DateTime
     {
         return $this->courseDate;
     }
 
     /**
-     * @param \DateTime $courseDate
+     * @param DateTime $courseDate
      * @return $this
      */
-    public function setCourseDate(\DateTime $courseDate): self
+    public function setCourseDate(DateTime $courseDate): self
     {
         $this->courseDate = $courseDate;
 
         return $this;
     }
 
+    /**
+     * @return MettingPoint|null
+     */
     public function getMettingPoint(): ?MettingPoint
     {
         return $this->mettingPoint;
     }
 
+    /**
+     * @param MettingPoint|null $mettingPoint
+     * @return $this
+     */
     public function setMettingPoint(?MettingPoint $mettingPoint): self
     {
         $this->mettingPoint = $mettingPoint;
@@ -261,32 +267,20 @@ class Course
     }
 
     /**
-     * @return Collection|Orders[]
+     * @return Orders|null
      */
-    public function getOrders(): Collection
+    public function getOrders(): ?Orders
     {
         return $this->orders;
     }
 
-    public function addOrder(Orders $order): self
+    /**
+     * @param Orders|null $orders
+     * @return $this
+     */
+    public function setOrders(?Orders $orders): self
     {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->setC($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrder(Order $order): self
-    {
-        if ($this->orders->contains($order)) {
-            $this->orders->removeElement($order);
-            // set the owning side to null (unless already changed)
-            if ($order->getCourse() === $this) {
-                $order->setCourse(null);
-            }
-        }
+        $this->orders = $orders;
 
         return $this;
     }

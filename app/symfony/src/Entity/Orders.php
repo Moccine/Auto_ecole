@@ -8,6 +8,7 @@ use App\Entity\Traits\OrderTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * @ORM\Entity()
@@ -82,16 +83,21 @@ class Orders
     private $shop;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Course", mappedBy="orders")
+     */
+    private $courses;
+
+    /**
      * BookingOrder constructor.
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->payment = new ArrayCollection();
         $this->orderNumber = sprintf('%s%s', time(), 'ORDER');
-        $this->Orders = new ArrayCollection();
         $this->card = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
 
     /**
@@ -325,11 +331,18 @@ class Orders
         return $this;
     }
 
+    /**
+     * @return Shop|null
+     */
     public function getShop(): ?Shop
     {
         return $this->shop;
     }
 
+    /**
+     * @param Shop|null $shop
+     * @return $this
+     */
     public function setShop(?Shop $shop): self
     {
         $this->shop = $shop;
@@ -337,8 +350,50 @@ class Orders
         return $this;
     }
 
+    /**
+     * @return float|int
+     */
     public function getTotalTva()
     {
         return $this->total * self::TVA;
+    }
+
+    /**
+     * @return Collection|Course[]
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    /**
+     * @param Course $course
+     * @return $this
+     */
+    public function addCourse(Course $course): self
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses[] = $course;
+            $course->setOrders($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Course $course
+     * @return $this
+     */
+    public function removeCourse(Course $course): self
+    {
+        if ($this->courses->contains($course)) {
+            $this->courses->removeElement($course);
+            // set the owning side to null (unless already changed)
+            if ($course->getOrders() === $this) {
+                $course->setOrders(null);
+            }
+        }
+
+        return $this;
     }
 }

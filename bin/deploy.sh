@@ -10,7 +10,7 @@ git pull origin $(git rev-parse --abbrev-ref HEAD)
 
 echo -e 'Installation des dépendances Symfony'
 cd app/symfony
-composer install
+composer install --no-dev
 php bin/console doctrine:migrations:migrate
 php bin/console cache:clear
 
