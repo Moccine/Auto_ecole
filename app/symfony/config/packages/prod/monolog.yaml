@@ -6,11 +6,15 @@ monolog:
             handler: nested
             excluded_http_codes: [404, 405]
         nested:
-            type: rotating_file
+            type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: alert
         console:
             type: console
             process_psr_3_messages: false
             channels: ["!event", "!console"]
-
+        prod:
+            level: debug
+            type: rotating_file
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            channel: 'prod'
