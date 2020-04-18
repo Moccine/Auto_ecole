@@ -5,7 +5,6 @@ parameters:
     app.path.users_images: /uploads/images/users
     csv_folder_path: '%kernel.project_dir%/var/import/db/'
 
-
 services:
     # default configuration for services in *this* file
     _defaults:
