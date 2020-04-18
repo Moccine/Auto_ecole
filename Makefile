@@ -2,6 +2,7 @@ install:
 		docker-compose up -d --build
 		cp .env.dist .env
 		cp app/symfony/.env.dist app/symfony/.env
+		docker-compose restart
 		sh bin/install.sh
 
 ps:

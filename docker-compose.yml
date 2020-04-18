@@ -25,30 +25,31 @@ services:
       - ./app/symfony/symfony.lock:/var/www/symfony/symfony.lock
       - ./app/symfony/.env:/var/www/symfony/.env
       - app-vendor:/var/www/symfony/vendor
-
     environment:
       APP_ENV: $APP_ENV
       DATABASE_URL: mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DATABASE
-
   # MySQL
   mysql:
     image: mysql:5.7
     volumes:
       - ./docker/etc/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - mysql-data:/var/lib/mysql/
-
+      - ./data:/data
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_USER: $MYSQL_USER
       MYSQL_PASSWORD: $MYSQL_PASSWORD
-
   # phpMyAdmin
   phpmyadmin:
     image: nazarpc/phpmyadmin
     depends_on:
       - mysql
-
+  # MailHog
+  mailhog:
+    image: mailhog/mailhog:latest
+    depends_on:
+      - apache
 volumes:
   app-vendor:
   mysql-data:
