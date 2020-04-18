@@ -1,33 +1,35 @@
 #!/bin/bash
-echo -e 'Charchement de la clef de déploiement github'
+echo -e 'Loading the github deployment key'
 pkill -f 'ssh-agent -s'
 eval `ssh-agent -s`
 
 ssh-add ~/.ssh/github-Auto_ecole
 
-echo -e 'Téléchargement des mises à jour'
+echo -e 'Download updates'
 git pull origin $(git rev-parse --abbrev-ref HEAD)
 
-echo -e 'Installation des dépendances Symfony'
+echo -e 'Installing Symfony dependencies'
 cd app/symfony
 composer install
 php bin/console doctrine:migrations:migrate
 php bin/console cache:clear
 
-echo -e 'Mise a jour de base de donées'
+echo -e 'Database update'
 php bin/console doctrine:migrations:migrate --no-interaction
 
-echo -e 'Installation des assets'
+echo -e 'Fixture'
+php bin/console doctrine:fixtures:load
+
+echo -e 'Installation of assets'
 php bin/console assets:install public
 
 
-echo -e 'Installation des dépendances du Front'
+echo -e 'Installation of Front dependencies'
 cd ../integration/ && yarn run start:prod
 
 echo -e 'Clear du cache'
 php bin/console cache:clear
 php bin/console cache:warmup
 
-echo -e 'Mise à jour des permissions'
-chown -R apache: var/cache
+echo -e 'Updating permissions'
 chmod -R +w var
