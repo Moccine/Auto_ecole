@@ -18,7 +18,7 @@ export MYSQL_DATABASE=auto_ecole
 export MYSQL_USER=root
 export MYSQL_PASSWORD=TLJqyA2t
 composer install --no-dev --optimize-autoloader
-php bin/console doctrine:migrations:migrate --no-dev
+php bin/console doctrine:migrations:migrate
 
 php bin/console cache:clear
 
