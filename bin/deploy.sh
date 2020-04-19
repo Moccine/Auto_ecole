@@ -23,7 +23,7 @@ php bin/console doctrine:migrations:migrate --no-dev
 php bin/console cache:clear
 
 echo -e 'Database update'
-#php bin/console doctrine:migrations:migrate --no-interaction
+php bin/console doctrine:migrations:migrate
 
 #echo -e 'Fixture'
 #php bin/console doctrine:fixtures:load
