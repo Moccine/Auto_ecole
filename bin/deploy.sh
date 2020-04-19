@@ -10,8 +10,16 @@ git pull origin $(git rev-parse --abbrev-ref HEAD)
 
 echo -e 'Installing Symfony dependencies'
 cd app/symfony
+export APP_DEV=prod
+export APP_DEBUG=0
+export MYSQL_HOST=mysql
+export MYSQL_PORT=3306
+export MYSQL_DATABASE=auto_ecole
+export MYSQL_USER=root
+export MYSQL_PASSWORD=TLJqyA2t
 composer install --no-dev --optimize-autoloader
 php bin/console doctrine:migrations:migrate
+
 php bin/console cache:clear
 
 echo -e 'Database update'
