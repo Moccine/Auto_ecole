@@ -19,6 +19,7 @@ export MYSQL_USER=root
 export MYSQL_PASSWORD=TLJqyA2t
 export DATABASE_URL=mysql://root:TLJqyA2t@127.0.0.1:3306/auto_ecole
 
+composer dump-env prod --empty
 composer install --no-dev --optimize-autoloader
 php bin/console doctrine:migrations:migrate
 
