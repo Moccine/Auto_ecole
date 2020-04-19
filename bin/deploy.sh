@@ -23,10 +23,10 @@ php bin/console doctrine:migrations:migrate
 php bin/console cache:clear
 
 echo -e 'Database update'
-php bin/console doctrine:migrations:migrate --no-interaction
+#php bin/console doctrine:migrations:migrate --no-interaction
 
-echo -e 'Fixture'
-php bin/console doctrine:fixtures:load
+#echo -e 'Fixture'
+#php bin/console doctrine:fixtures:load
 
 echo -e 'Installation of assets'
 php bin/console assets:install public
@@ -36,7 +36,6 @@ echo -e 'Installation of Front dependencies'
 cd ../integration/ && yarn run start:prod
 
 echo -e 'Clear du cache'
-APP_ENV=prod APP_DEBUG=0
 php bin/console cache:clear
 php bin/console cache:warmup
 
