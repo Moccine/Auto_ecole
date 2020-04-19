@@ -10,7 +10,7 @@ git pull origin $(git rev-parse --abbrev-ref HEAD)
 
 echo -e 'Installing Symfony dependencies'
 cd app/symfony
-export APP_DEV=prod
+export APP_ENV=prod
 export APP_DEBUG=0
 export MYSQL_HOST=mysql
 export MYSQL_PORT=3306
