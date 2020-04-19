@@ -41,3 +41,4 @@ php bin/console cache:warmup
 
 echo -e 'Updating permissions'
 chmod -R +w var
+chown www-data: ../* -R
