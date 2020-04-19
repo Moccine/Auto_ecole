@@ -17,6 +17,8 @@ export MYSQL_PORT=3306
 export MYSQL_DATABASE=auto_ecole
 export MYSQL_USER=root
 export MYSQL_PASSWORD=TLJqyA2t
+export DATABASE_URL=mysql://root:TLJqyA2t@127.0.0.1:3306/auto_ecole
+
 composer install --no-dev --optimize-autoloader
 php bin/console doctrine:migrations:migrate
 
