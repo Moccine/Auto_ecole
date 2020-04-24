@@ -28,3 +28,5 @@ clean:
 		docker volume prune -f || true
 		docker network prune -f || true
 
+logs:
+	docker-compose logs

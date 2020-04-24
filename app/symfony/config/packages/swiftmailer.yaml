@@ -1,3 +1,3 @@
 swiftmailer:
-  url: '%env(MAILER_URL)%'
+  url: 'null://localhost'
   spool: { type: 'memory' }

@@ -24,10 +24,8 @@
         <div class="authentification-wrap row">
           <!-- Form -->
           <div class="col-md-6 col-auth">
-
             <div class="content-auth">
               <div class="block-authentification">
-
                 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
                   <div class="form-group">
                     <label for="username">{{ 'security.login.email'|trans }}</label>
@@ -36,7 +34,6 @@
                   <div class="row row-actions row-inline-actions">
                     <div class="col-12">
                       <button type="submit" class="btn btn-lg hover-black color">Enregistrer</button>
-
                     </div>
                     <div class="col-12">
                       <a href="{{ path('fos_user_security_login') }}" class="action-link" style="color: black">{{ 'security.login.back_login'|trans }}</a>

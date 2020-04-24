@@ -108,8 +108,7 @@ class MailManager
         $to = $recipients['to'] ?? [];
         $cc = $recipients['cc'] ?? [];
         $bcc = $recipients['bcc'] ?? [];
-        $from = $contactName;
-
+        $from = $to;
         $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setFrom($from)
