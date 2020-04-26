@@ -13,3 +13,5 @@ services:
   mysql:
     ports:
       - "3306:3306"
+  mailhog:
+    - "1025:1025"

@@ -1,0 +1,10 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+      title: 'Point de rencontre',
+      link: '#',
+      home: 'Ajouter un point de rencontre'
+  } %}
+<p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+{% endblock %}

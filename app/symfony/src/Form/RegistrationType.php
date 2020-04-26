@@ -17,8 +17,16 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->remove('username')
+            ->add('username', null, [
+                'data' => 'Username',
+                'label' => 'security.login.first_name',
+                'constraints' => [
+                    new NotBlank(),
+                    new Length(['min' => 2]),
+                ],
+            ])
             ->add('firstName', null, [
+                'data' => 'firstName',
                 'label' => 'security.login.first_name',
                 'constraints' => [
                     new NotBlank(),
@@ -26,6 +34,7 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('lastName', null, [
+                'data' => 'lastName',
                 'label' => 'security.login.last_name',
                 'constraints' => [
                     new NotBlank(),
@@ -33,16 +42,16 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('birthDate', DateType::class, [
+                'data' => new \DateTime(),
                 'label' => 'security.login.birth_date',
                 'widget' => 'single_text',
-
                 // prevents rendering it as type="date", to avoid HTML5 date pickers
                 'html5' => false,
-
                 // adds a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('zipCode', null, [
+                'data' => '92700',
                 'label' => 'security.login.zip_code',
                 'constraints' => [
                     new NotBlank(),
@@ -53,9 +62,11 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('phone', null, [
+                'data' => '0770186892',
                 'label' => 'security.login.phone'
             ])
             ->add('city', null, [
+                'data' => 'Colombes',
                 'label' => 'security.login.city',
                 'constraints' => [
                     new NotBlank(),
@@ -65,6 +76,7 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('email', null, [
+                'data' => sprintf('mo%d@gmail.com', rand(1,100)),
                 'label' => 'security.login.email',
                 'constraints' => [
                     new NotBlank(),
@@ -73,13 +85,20 @@ class RegistrationType extends AbstractType
 
             ])
             ->add('address', null, [
+                'data' => '1 rue toto',
                 'label' => 'security.login.address'
             ])
             ->add('plainPassword', PasswordType::class, [
+                'data' => 'ColombesColombes',
+                'label' => 'confirmer votre mot de passe',
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ]) ->add('password', PasswordType::class, [
+                'data' => 'ColombesColombes',
                 'label' => 'security.login.password',
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['min' => 8, 'max' => 12]),
                 ],
             ])
         ;

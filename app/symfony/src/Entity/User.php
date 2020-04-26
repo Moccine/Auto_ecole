@@ -5,24 +5,30 @@ namespace App\Entity;
 use App\Entity\Traits\ActivatedTrait;
 use App\Entity\Traits\CreatedAtTrait;
 use App\Entity\Traits\UpdatedAtTrait;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @Vich\Uploadable
- */
-class User extends BaseUser
+ * @UniqueEntity( fields={"email"}, message="email exit dejà.")
+ * */
+class User implements UserInterface
 {
     use CreatedAtTrait;
     use ActivatedTrait;
     use UpdatedAtTrait;
+
     /**
      * roles array.
      */
@@ -54,7 +60,7 @@ class User extends BaseUser
         self::ROLE_RIVING_INSTRUCTOR,
         self::ROLE_DRIVING_STUDENT
     ];
-    const DESACTIVATED =0 ;
+    const DESACTIVATED = 0;
     const ACTIVATED = 1;
 
     /**
@@ -63,17 +69,31 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      */
     protected $id;
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $confirmationToken;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $firstName;
-
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\Email(message="Adresse email non valide")
+     */
+    protected $email;
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
-
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
     /**
      * @ORM\Column(type="datetime")
      */
@@ -86,6 +106,7 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^0[0-9]{9}$/")
      */
     private $phone;
 
@@ -124,7 +145,7 @@ class User extends BaseUser
     private $qualification;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(type="date", nullable=true)
      */
@@ -151,7 +172,6 @@ class User extends BaseUser
      */
     private $photoSize;
 
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\TimeSlot", mappedBy="user")
      */
@@ -171,22 +191,44 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="student")
      */
     private $orders;
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\Length(min="8", minMessage="Mot de passe doit faire 8 caractere")
+     * @Assert\NotBlank()
+     */
+    private $password;
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="le mot de pass doit etre identique")
+     * @Assert\NotBlank()
+     */
+    private $plainPassword;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $enabled;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $lastLogin;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $passwordRequestedAt;
 
     /**
      * User constructor.
      */
     public function __construct()
     {
-        parent::__construct();
-
         $this->registrationNumber = (substr(md5(uniqid(rand(), true)), 0, 6));
         $this->timeSlot = new ArrayCollection();
         $this->Location = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new DateTime();
         $this->activated = false;
         $this->cards = new ArrayCollection();
         $this->mettingPoints = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->enabled=false;
 
         // your own logic
     }
@@ -262,10 +304,10 @@ class User extends BaseUser
     }
 
     /**
-     * @param \DateTime $birthDate
+     * @param DateTime $birthDate
      * @return $this
      */
-    public function setBirthDate(\DateTime $birthDate): self
+    public function setBirthDate(DateTime $birthDate): self
     {
         $this->birthDate = $birthDate;
 
@@ -316,8 +358,7 @@ class User extends BaseUser
      */
     public function setEmail($email): User
     {
-        $this->setUsername($email);
-        $this->email = parent::setEmail($email);
+        $this->email = $email;
 
         return $this;
     }
@@ -347,17 +388,17 @@ class User extends BaseUser
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getBirthday(): ?\DateTime
+    public function getBirthday(): ?DateTime
     {
         return $this->birthday;
     }
 
     /**
-     * @param \DateTime $birthday
+     * @param DateTime $birthday
      */
-    public function setBirthday(\DateTime $birthday): void
+    public function setBirthday(DateTime $birthday): void
     {
         $this->birthday = $birthday;
     }
@@ -476,12 +517,12 @@ class User extends BaseUser
     /**
      * @param string $role
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function setRole($role)
     {
         if (!in_array($role, array_keys(self::ROLES))) {
-            throw new \Exception('Invalid role: [' . $role . ']');
+            throw new Exception('Invalid role: [' . $role . ']');
         }
 
         if ($this->hasRole($role)) {
@@ -503,6 +544,7 @@ class User extends BaseUser
 
     /**
      * @return string
+     * @throws Exception
      */
     public function getRoleTranslationKey()
     {
@@ -512,7 +554,7 @@ class User extends BaseUser
     /**
      * @return string
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getRole()
     {
@@ -525,7 +567,7 @@ class User extends BaseUser
         } elseif ($this->hasRole(self::ROLE_RIVING_INSTRUCTOR)) {
             return self::ROLE_RIVING_INSTRUCTOR;
         } else {
-            throw new \Exception("We can't find any expected role from the user, id: [" . $this->id . '].');
+            throw new Exception("We can't find any expected role from the user, id: [" . $this->id . '].');
         }
     }
 
@@ -649,6 +691,10 @@ class User extends BaseUser
         return $this->orders;
     }
 
+    /**
+     * @param Orders $order
+     * @return $this
+     */
     public function addOrder(Orders $order): self
     {
         if (!$this->orders->contains($order)) {
@@ -659,6 +705,10 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @param Orders $order
+     * @return $this
+     */
     public function removeOrder(Orders $order): self
     {
         if ($this->orders->contains($order)) {
@@ -671,4 +721,143 @@ class User extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return string|void|null
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     * @return $this
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     * @return $this
+     */
+    public function setPlainPassword(string $plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * @param string $username
+     * @return $this
+     */
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * @param $confirmationToken
+     * @return $this
+     */
+    public function setConfirmationToken($confirmationToken): self
+    {
+        $this->confirmationToken = $confirmationToken;
+        return $this;
+
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     * @return $this
+     */
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * @param DateTime|null $time
+     * @return $this
+     */
+    public function setLastLogin(DateTime $time = null): self
+    {
+        $this->lastLogin = $time;
+
+        return $this;
+    }
+
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
+
+    /**
+     * @param $ttl
+     * @return bool
+     */
+    public function isPasswordRequestNonExpired($ttl)
+    {
+        return $this->getPasswordRequestedAt() instanceof \DateTime &&
+            $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
+    }
+
+
 }

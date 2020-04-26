@@ -47,9 +47,11 @@ services:
       - mysql
   # MailHog
   mailhog:
-    image: mailhog/mailhog:latest
-    depends_on:
-      - apache
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
+    environment:
+      MH_SMTP_BIND_ADDR: 0.0.0.0:1025
 volumes:
   app-vendor:
   mysql-data:

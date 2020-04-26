@@ -5,7 +5,6 @@ services:
   apache:
     ports:
       - "8000:80"
-
   # phpMyAdmin
   phpmyadmin:
     ports:
@@ -13,3 +12,4 @@ services:
   mysql:
     ports:
       - "3306:3306"
+
