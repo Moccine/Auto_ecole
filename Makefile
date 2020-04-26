@@ -27,6 +27,8 @@ clean:
 		docker-compose rm --stop --force
 		docker volume prune -f || true
 		docker network prune -f || true
+		docker system prune -a
+
 
 logs:
 	docker-compose logs
