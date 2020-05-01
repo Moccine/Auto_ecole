@@ -125,7 +125,6 @@ class MailManager
      */
     public function sendConfirmationEmailMessage(User $user)
     {
-        $user->setConfirmationToken(6676);
         //try {
         $url = $this->router->generate(
             'registration_confirm',

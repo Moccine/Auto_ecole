@@ -1,9 +1,8 @@
-{% extends "security/layout.html.twig" %}
+{% extends "base.html.twig" %}
+  {% block body %}{
+    <div class="container" style="margin-top: 100px">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad enim maiores molestiae nostrum numquam odit porro quidem rerum! Ab at commodi doloribus exercitationem hic neque nostrum possimus tempora vel, voluptatem?</p>
+    </div>
+{% endblock %}
 
 
-{% block content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock content %}

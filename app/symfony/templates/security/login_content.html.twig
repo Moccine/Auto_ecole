@@ -1,0 +1,49 @@
+{% block body %}
+    {% include 'common/banner.html.twig' with {
+        title :'security.login.login'|trans,
+        home :'app.menu.home'|trans,
+        link :  path('homepage')
+    } %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="white-box">
+                    <div class="d-none">
+                        {% include 'blocks/title.block.html.twig' with {
+                            title: 'security.login.login',
+                            description: 'Connexion'
+                        } %}
+                    </div>
+                    {% if error %}
+                    {% endif %}
+
+                    {% if error %}
+                        <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <form method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <div class="col-12">
+                            <div class="form-group {% if error %}has-error{% endif %}">
+                                <label for="username">{{ 'security.login.username'|trans }}</label>
+                                <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username"/>
+                            </div>
+                            <div class="form-group {% if error %}has-error{% endif %}">
+                                <label for="password">{{ 'security.login.password'|trans }}</label>
+                                <input type="password" id="inputPassword" name="password" required="required" class="form-control" autocomplete="current-password"/>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="remember_me" name="ma" value="on"/>
+                                <label for="remember_me" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                <a style="float: right" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublier</a>
+
+                            </div>
+                            <button type="submit" class="btn btn-lg hover-black color"> {{ 'security.login.submit'|trans }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+            </div>
+        </div>
+    </div>
+{% endblock %}

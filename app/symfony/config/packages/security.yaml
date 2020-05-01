@@ -5,7 +5,6 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
-
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
 
@@ -16,9 +15,14 @@ security:
             security: false
         main:
             anonymous: ~
-            form_login:
-                login_path: login
-                check_path: login
+            guard:
+                authenticators:
+                    - App\Security\SecurityCustomAuthenticator
+            logout:
+                path: security_logout
+                # where to redirect after logout
+                # target: app_any_route
+
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

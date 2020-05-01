@@ -17,8 +17,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
+/**
+ * Class RegistrationController
+ * @package App\Controller
+ */
 class RegistrationController extends AbstractController
 {
     /**
@@ -40,12 +43,10 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
-        $neUser = $this->getDoctrine()->getRepository(User::class)->find(4);
-        $mailManager->sendConfirmationEmailMessage($neUser);
 
         if ($form->isSubmitted() and $form->isValid()) {
-            $PasswordHash = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($PasswordHash);
+            $password = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $user->setEnabled(false);
@@ -68,13 +69,12 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @param Request $request
      * @param SessionInterface $session
      * @param UserManager $userManager
      * @return RedirectResponse|Response
      * @Route("/check-email", name="registration_check_email")
      */
-    public function checkEmailAction(Request $request, SessionInterface $session, UserManager $userManager)
+    public function checkEmailAction(SessionInterface $session, UserManager $userManager)
     {
         $email = $session->get('send_confirmation_email/email');
 
@@ -82,59 +82,35 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('security_login');
         }
         $session->remove('send_confirmation_email/email');
+        /** @var User $user */
         $user = $userManager->findUserByEmail($email);
         if (null === $user) {
             return $this->redirectToRoute('security_login');
         }
 
-        return $this->render('security/Registration/check_email.html.twig', array(
-            'user' => $user,
-        ));
+        return $this->render('security/Registration/check_email.html.twig', [
+                'user' => $user,
+            ]
+        );
     }
 
 
     /**
      * @Route("/confirmed/{id}", name="registration_confirmed")
-     * @param Request $request
      * @param User $user
-     * @param UserManager $userManager
-     * @param SessionInterface $session
-     * @return Response
+     * @return RedirectResponse
      */
-    public function confirmedAction(
-        Request $request,
-        User $user,
-        UserManager $userManager,
-        SessionInterface $session)
+    public function confirmedAction(User $user)
     {
 
         if (!$user instanceof User) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->render('security/Registration/confirmed.html.twig',
-            [
-                'user' => $user,
-                'targetUrl' => $this->getTargetUrlFromSession($session, $userManager),
-            ]
-        );
+        return $this->redirectToRoute('security_login');
+
     }
 
-    /**
-     * @param SessionInterface $session
-     * @param UserManager $userManager
-     * @return mixed|null
-     */
-    private function getTargetUrlFromSession(SessionInterface $session, UserManager $userManager)
-    {
-        $key = sprintf('_security.%s.target_path', $userManager->generateToken());
-
-        if ($session->has($key)) {
-            return $session->get($key);
-        }
-
-        return null;
-    }
 
     /**
      * @param Request $request
@@ -144,15 +120,24 @@ class RegistrationController extends AbstractController
      */
     public function confirmAction(Request $request, UserManager $userManager)
     {
-        $token =  $request->query->get('token')?? 'test';
-        $user = $userManager->findUserByConfirmationToken($token);
+        $token = $request->attributes->get('token') ?? 'test';
+        $user = $this->getDoctrine()->getRepository(User::class)->findBy([
+            'confirmationToken' => $token
+        ]);
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            'confirmationToken' => $token
+        ]);
+        // $user = $userManager->findUserByConfirmationToken((int)$token);
+        //dd((int)$token, $user);
+
         if (null === $user) {
             throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
         }
         $user->setConfirmationToken(null);
         $user->setEnabled(true);
-        $userManager->updateUser($user);
-        $url = $this->generateUrl('registration_confirmed', ['token' => $token]);
+        $this->getDoctrine()->getManager()->flush();
+        //$userManager->updateUser($user);
+        $url = $this->generateUrl('registration_confirmed', ['id' => $user->getId()]);
         return $this->redirect($url);
     }
 
