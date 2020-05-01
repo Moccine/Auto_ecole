@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {% include 'common/banner.html.twig'  with {
+    title: 'Compte',
+    link: '#',
+    home: 'home'
+  } %}
+  <div class="container-fluid bg-white">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+            {% include 'blocks/lateralMemu.html.twig' %}
+          </div>
+          <div class="col-4">
+            <div class="gallery-item">
+              <img src="{{ asset('img/instagram/1.jpg') }}" alt=""/>
+            </div>
+          </div>
+          <div class="col-4">
+            <ul>
+              <li>Nom : {{ app.user.firstname }}  {{ app.user.lastname }}</li>
+              <li>Email : {{ app.user.email }}</li>
+              <li>Adresse : {{ app.user.address }} {{ app.user.zipCode }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+      </div>
+      <div class="comment-form-wrapper pt-90">
+        <!-- Comment Form -->
+        <div class="comment-form form text-left">
+            <div class="input input-submit">
+              <input type="submit" value="Reserver des lessons de conduite" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

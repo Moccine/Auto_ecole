@@ -7,8 +7,11 @@ security:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-
         in_memory: { memory: null }
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -20,6 +23,8 @@ security:
                     - App\Security\SecurityCustomAuthenticator
             logout:
                 path: security_logout
+            provider: app_user_provider
+
                 # where to redirect after logout
                 # target: app_any_route
 

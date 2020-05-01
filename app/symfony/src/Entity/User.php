@@ -216,6 +216,10 @@ class User implements UserInterface
     private $passwordRequestedAt;
 
     /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $roles;
+    /**
      * User constructor.
      */
     public function __construct()
@@ -229,6 +233,8 @@ class User implements UserInterface
         $this->mettingPoints = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->enabled=false;
+        $this->roles = [];
+
 
         // your own logic
     }
@@ -859,5 +865,12 @@ class User implements UserInterface
             $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
     }
 
-
+    /**
+     * @param $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->getRoles(), true);
+    }
 }
