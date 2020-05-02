@@ -18,7 +18,7 @@
                 {% if error is defined%}
                     <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-
+                {% include 'common/flasbag.html.twig' %}
                 <form action="{{ path('resetting_send_email') }}" method="POST" class="resetting_request">
         <div>
             <label for="email">{{ 'resetting.request.email'|trans }}</label>

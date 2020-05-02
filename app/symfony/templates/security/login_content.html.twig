@@ -16,16 +16,7 @@
                     </div>
                     {% if error %}
                     {% endif %}
-                    {% for type, messages in app.session.flashbag.all() %}
-                        {% for message in messages %}
-                            {% if type == 'error' %}
-                                {{ message }}
-                            {% endif %}
-                            {# Or even with css class rendering:
-                                <div class="flash-{{type}}">{{message}}</div>
-                            #}
-                        {% endfor %}
-                    {% endfor %}
+                    {% include 'common/flasbag.html.twig' %}
                     {% if error %}
                         <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}

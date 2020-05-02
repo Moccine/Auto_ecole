@@ -56,7 +56,6 @@ class RegistrationController extends AbstractController
             $em->flush();
 
             $mailManager->sendConfirmationEmailMessage($user);
-
             $session->set('send_confirmation_email/email', $user->getEmail());
 
             return $this->redirectToRoute('registration_check_email');
@@ -100,16 +99,18 @@ class RegistrationController extends AbstractController
      * @param User $user
      * @return RedirectResponse
      */
-    public function confirmedAction(User $user)
+    public function confirmedAction(User $user, SessionInterface $session)
     {
 
         if (!$user instanceof User) {
+            $session ->getFlashBag();
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
         return $this->redirectToRoute('security_login');
 
     }
+
 
     /**
      * @param Request $request

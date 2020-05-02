@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -36,9 +37,13 @@ class ChangePasswordController extends AbstractController
      * Change user password.
      * @Route("/change-password", name="change_password")
      * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
      * @return Response
      */
-    public function changePasswordAction(Request $request)
+    public function changePasswordAction(
+        Request $request,
+        UserPasswordEncoderInterface $encoder
+)
     {
         $user = $this->getUser();
         if (!$user instanceof User) {
@@ -48,8 +53,11 @@ class ChangePasswordController extends AbstractController
         $form = $this->createForm(ChangePasswordFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $password = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
             $this->userManager->updateUser($user);
             $url = $this->generateUrl('fos_user_profile_show');
+
             return $this->redirect($url);
         }
 

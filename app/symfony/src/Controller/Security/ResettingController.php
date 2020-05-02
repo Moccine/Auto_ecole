@@ -20,8 +20,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
@@ -46,22 +48,21 @@ class ResettingController extends AbstractController
         MailManager $mailManager)
     {
         $email = $request->request->get('email');
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
-            'email' => $request->request->get('email')
-        ]);
         $user = $userManager->findUserByEmail($email);
        // if ((null !== $user) && !$user->isPasswordRequestNonExpired(self::RETRYTTL)) {
-        if ((null !== $user)) {
+        if (!$user instanceof User) {
+            $this->addFlash('error', 'user not found');
+            return $this->redirectToRoute('security_login');
+        }
             if ($user->getConfirmationToken() === null) {
                 $user->setConfirmationToken($userManager->generateToken());
             }
-                $mailManager->sendResettingEmailMessage($user);
+           $mailManager->sendResettingEmailMessage($user);
             $user->setPasswordRequestedAt(new DateTime());
-            //dd($user);
             $this->getDoctrine()->getManager()->flush();
-        }
+            $this->addFlash('success', 'verifier votre email');
 
-        return $this->redirect($this->generateUrl('resetting_check_email', ['email' => $email]));
+        return $this->redirectToRoute('resetting_check_email', ['email' => $email]);
     }
 
     /**
@@ -74,9 +75,10 @@ class ResettingController extends AbstractController
     {
         $username = $request->query->get('username');
         if (empty($username)) {
-            // the user does not come from the sendEmail action
-            return $this->redirect($this->generateUrl('resetting_request'));
+            $this->addFlash('error', 'user not found');
+            return $this->redirectToRoute('resetting_request');
         }
+        $this->addFlash('error', 'user not found');
 
         return $this->render('security/Resetting/check_email.html.twig',
             ['tokenLifetime' => ceil(self::RETRYTTL / 3600)]
@@ -86,26 +88,36 @@ class ResettingController extends AbstractController
     /**
      * @param Request $request
      * @param UserManager $userManager
-     * @param SessionInterface $session
+     * @param Session $session
+     * @param UserPasswordEncoderInterface $encoder
      * @return RedirectResponse|Response
      * @Route("/reset/{token}", name="resetting_reset")
      */
-    public function resetAction(Request $request, UserManager $userManager, SessionInterface $session)
+    public function resetAction(
+        Request $request,
+        UserManager $userManager,
+        Session $session,
+        UserPasswordEncoderInterface $encoder
+    )
     {
         $token = $request->attributes->get('token');
         $user = $userManager->findUserByConfirmationToken($token);
         if (!$user instanceof User) {
-            throw new CustomUserMessageAuthenticationException('email could not be found.');
+            $this->addFlash('error', 'user not found');
+            return  $this->redirect($this->generateUrl('security_login'));
         }
 
         $form = $this->createForm(ResettingFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setConfirmationToken(null);
+            $password = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
             $this->getDoctrine()->getManager()->flush();
-           // $userManager->updateUser($user);
-            return  $this->redirect($this->generateUrl('security_login'));
+            $this->addFlash('success', 'Votre mot a été mis à jour');
 
+            return  $this->redirect($this->generateUrl('security_login'));
         }
 
         return $this->render('security/Resetting/reset.html.twig', [

@@ -70,7 +70,7 @@ class User implements UserInterface
      */
     protected $id;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $confirmationToken;
 
@@ -805,9 +805,10 @@ class User implements UserInterface
      * @param $confirmationToken
      * @return $this
      */
-    public function setConfirmationToken($confirmationToken): self
+    public function setConfirmationToken($confirmationToken=null): self
     {
         $this->confirmationToken = $confirmationToken;
+
         return $this;
 
     }
