@@ -9,18 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 use App\Entity\User;
+use App\Form\ResettingFormType;
 use App\Service\MailManager;
 use App\Service\UserManager;
 use DateTime;
-use FOS\UserBundle\Form\Type\ResettingFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
  * Controller managing the resetting of the password.
@@ -44,16 +46,19 @@ class ResettingController extends AbstractController
         MailManager $mailManager)
     {
         $email = $request->request->get('email');
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            'email' => $request->request->get('email')
+        ]);
         $user = $userManager->findUserByEmail($email);
-
-        if ((null !== $user) && !$user->isPasswordRequestNonExpired(self::RETRYTTL)) {
-
+       // if ((null !== $user) && !$user->isPasswordRequestNonExpired(self::RETRYTTL)) {
+        if ((null !== $user)) {
             if ($user->getConfirmationToken() === null) {
                 $user->setConfirmationToken($userManager->generateToken());
             }
-            $mailManager->sendResettingEmailMessage($user);
+                $mailManager->sendResettingEmailMessage($user);
             $user->setPasswordRequestedAt(new DateTime());
-            $userManager->updateUser($user);
+            //dd($user);
+            $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->redirect($this->generateUrl('resetting_check_email', ['email' => $email]));
@@ -70,7 +75,7 @@ class ResettingController extends AbstractController
         $username = $request->query->get('username');
         if (empty($username)) {
             // the user does not come from the sendEmail action
-            return new RedirectResponse($this->generateUrl('fos_user_resetting_request'));
+            return $this->redirect($this->generateUrl('resetting_request'));
         }
 
         return $this->render('security/Resetting/check_email.html.twig',
@@ -81,28 +86,39 @@ class ResettingController extends AbstractController
     /**
      * @param Request $request
      * @param UserManager $userManager
+     * @param SessionInterface $session
      * @return RedirectResponse|Response
-     * @Route("/reset/{token}", name="fos_user_resetting_reset", methods={"POST"})
+     * @Route("/reset/{token}", name="resetting_reset")
      */
-    public function resetAction(Request $request, UserManager $userManager)
+    public function resetAction(Request $request, UserManager $userManager, SessionInterface $session)
     {
-        $token = $request->request->get('token');
+        $token = $request->attributes->get('token');
         $user = $userManager->findUserByConfirmationToken($token);
         if (!$user instanceof User) {
-            return  $this->redirect("security_login");
+            throw new CustomUserMessageAuthenticationException('email could not be found.');
         }
 
         $form = $this->createForm(ResettingFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userManager->updateUser($user);
-            return $this->redirect('profile_show');
+            $this->getDoctrine()->getManager()->flush();
+           // $userManager->updateUser($user);
+            return  $this->redirect($this->generateUrl('security_login'));
+
         }
 
-        return $this->render('security/Resetting/reset.html.twig', array(
+        return $this->render('security/Resetting/reset.html.twig', [
             'token' => $token,
             'form' => $form->createView(),
-        ));
+        ]);
+    }
+    /**
+     * Request reset user password: show form.
+     * @Route("resetting/request", name="resetting_request")
+     */
+    public function requestAction()
+    {
+        return $this->render('security/Resetting/request.html.twig');
     }
 }

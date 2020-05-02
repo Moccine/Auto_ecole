@@ -25,17 +25,13 @@ class ResettingFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('plainPassword', RepeatedType::class, array(
-            'type' => PasswordType::class,
-            'options' => array(
-                'attr' => array(
-                    'autocomplete' => 'new-password',
-                ),
-            ),
-            'first_options' => array('label' => 'form.new_password'),
-            'second_options' => array('label' => 'form.new_password_confirmation'),
-            'invalid_message' => 'fos_user.password.mismatch',
-        ));
+        $builder->add('plainPassword', PasswordType::class,[
+            'label' => 'form.new_password'
+        ])
+        ->add('password', PasswordType::class, [
+            'label' => 'form.new_password_confirmation'
+            ]
+        );
     }
 
     /**
@@ -43,9 +39,9 @@ class ResettingFormType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => User::class,
-        ));
+        ]);
     }
 
 }

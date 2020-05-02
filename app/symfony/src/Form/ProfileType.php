@@ -76,9 +76,6 @@ class ProfileType extends AbstractType
                 'data_class' => null,
                 'required' => false
             ]);
-        // if ($user->hasRole('ROLE_SUPER_ADMIN')) {
-        $builder->remove('current_password');
-        // }
     }
 
     public function getUser()
@@ -94,13 +91,5 @@ class ProfileType extends AbstractType
         return $this->container->get('security.token_storage')->getToken();
     }
 
-    public function getParent()
-    {
-        return 'FOS\UserBundle\Form\Type\ProfileFormType';
-    }
 
-    public function getBlockPrefix()
-    {
-        return 'fos_user_profile_edit';
-    }
 }

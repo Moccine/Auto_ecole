@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 
 use App\Entity\User;
@@ -111,7 +111,6 @@ class RegistrationController extends AbstractController
 
     }
 
-
     /**
      * @param Request $request
      * @param UserManager $userManager
@@ -120,25 +119,22 @@ class RegistrationController extends AbstractController
      */
     public function confirmAction(Request $request, UserManager $userManager)
     {
-        $token = $request->attributes->get('token') ?? 'test';
-        $user = $this->getDoctrine()->getRepository(User::class)->findBy([
-            'confirmationToken' => $token
-        ]);
+        $token = $request->attributes->get('token');
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
             'confirmationToken' => $token
         ]);
         // $user = $userManager->findUserByConfirmationToken((int)$token);
-        //dd((int)$token, $user);
 
-        if (null === $user) {
+        if (!$user instanceof User) {
             throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
         }
         $user->setConfirmationToken(null);
         $user->setEnabled(true);
         $this->getDoctrine()->getManager()->flush();
         //$userManager->updateUser($user);
-        $url = $this->generateUrl('registration_confirmed', ['id' => $user->getId()]);
-        return $this->redirect($url);
+        return $this->redirectToRoute('registration_confirmed', [
+            'id' => $user->getId()
+        ]);
     }
 
 }

@@ -223,6 +223,7 @@ resetting:
   request:
     username: 'Nom d''utilisateur ou adresse e-mail'
     submit: 'Réinitialiser le mot de passe'
+    email: 'Email'
   reset:
     submit: 'Modifier le mot de passe'
   flash:
@@ -237,3 +238,6 @@ resetting:
       Cordialement,
       L'équipe
 
+form:
+  new_password: 'Nouveau mot de passe'
+  new_password_confirmation: 'Confirmation mot de passe'

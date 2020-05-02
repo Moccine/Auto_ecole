@@ -16,6 +16,11 @@ class UserManager
     private $tokenGenerator;
     private $userRepository;
 
+    /**
+     * UserManager constructor.
+     * @param EntityManagerInterface $em
+     * @param TokenGeneratorInterface $tokenGenerator
+     */
     public function __construct(EntityManagerInterface $em, TokenGeneratorInterface $tokenGenerator)
     {
         $this->em = $em;
@@ -107,6 +112,7 @@ class UserManager
         $user = $this->userRepository->findOneBy([
             'confirmationToken' => $token
         ]);
+
         return $user;
     }
 

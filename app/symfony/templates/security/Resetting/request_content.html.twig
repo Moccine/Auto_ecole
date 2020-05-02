@@ -1,10 +1,38 @@
+{% block body %}
+    {% include 'common/banner.html.twig' with {
+        title :'security.login.login'|trans,
+        home :'app.menu.home'|trans,
+        link :  path('homepage')
+    } %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="white-box">
+                <div class="d-none">
+                    {% include 'blocks/title.block.html.twig' with {
+                        title: 'security.login.login',
+                        description: 'Connexion'
+                    } %}
+                </div>
 
-<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div>
-        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-        <input type="text" id="username" name="username" required="required" />
+                {% if error is defined%}
+                    <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <form action="{{ path('resetting_send_email') }}" method="POST" class="resetting_request">
+        <div>
+            <label for="email">{{ 'resetting.request.email'|trans }}</label>
+            <input type="text" id="email" name="email" required="required" />
+        </div>
+        <div>
+            <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+        </div>
+    </form>
+
+            </div>
+        </div>
+        <div class="col-md-6 offset-md-3">
+        </div>
     </div>
-    <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
-    </div>
-</form>
+</div>
+{% endblock %}

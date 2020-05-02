@@ -3,17 +3,17 @@ namespace App\DataFixtures;
 
 use App\Entity\MettingPoint;
 use App\Entity\User;
+use App\Service\UserManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Provider\Address;
-use FOS\UserBundle\Model\UserManagerInterface;
 
 class userFixtures extends Fixture
 {
     private $userManager;
 
-    public function __construct(UserManagerInterface $userManager)
+    public function __construct(UserManager $userManager)
     {
         $this->userManager = $userManager;
     }
@@ -25,7 +25,6 @@ class userFixtures extends Fixture
 
 
         for ($i=0; $i<=100; $i++) {
-            /** @var User $user */
             $user = $this->userManager->createUser();
             $roles = User::ERP_USER_ROLES[rand(0, $index)];
             $user->setUsername($faker->name);

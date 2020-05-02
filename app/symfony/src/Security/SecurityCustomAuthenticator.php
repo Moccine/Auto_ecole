@@ -134,7 +134,7 @@ class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator impleme
         if (!$user instanceof User) {
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
-        if (null !== $user->getConfirmationToken()){
+        if ( !$user->isEnabled() ){
             throw new CustomUserMessageAuthenticationException('votre inscription n\'est pas valider.');
         }
 

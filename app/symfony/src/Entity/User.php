@@ -873,4 +873,15 @@ class User implements UserInterface
     {
         return in_array(strtoupper($role), $this->getRoles(), true);
     }
+
+    /**
+     * @param DateTime $date
+     * @return $this
+     */
+    public function setPasswordRequestedAt(DateTime $date)
+    {
+        $this->passwordRequestedAt = $date;
+
+        return $this;
+    }
 }

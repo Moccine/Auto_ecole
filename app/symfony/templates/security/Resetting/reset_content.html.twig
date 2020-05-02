@@ -1,7 +1,38 @@
+{% block body %}
+    {% include 'common/banner.html.twig' with {
+        title :'security.login.login'|trans,
+        home :'app.menu.home'|trans,
+        link :  path('homepage')
+    } %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="white-box">
+                    <div class="d-none">
+                        {% include 'blocks/title.block.html.twig' with {
+                            title: 'security.login.login',
+                            description: 'Connexion'
+                        } %}
+                    </div>
 
-{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+
+                    {% if error is defined%}
+                        <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    {#----------------- content init  -------------------#}
+
+                    {{ form_start(form, { 'action': path('resetting_reset', {'token': token}), 'attr': { 'class': 'resetting_reset' } }) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}"/>
+                    </div>
+                    {{ form_end(form) }}
+                    {#----------------- content end -------------------#}
+
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+            </div>
+        </div>
     </div>
-{{ form_end(form) }}
+{% endblock %}

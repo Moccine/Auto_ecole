@@ -18,14 +18,14 @@
       {% if app.user %}
       <li><a href="#">Compte<i class="icofont icofont-simple-down"></i></a>
         <ul>
-          <li><a href="{{ path('fos_user_profile_edit') }}">Profil</a></li>
-          <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+          <li><a href="{{ path('profile_edit') }}">Profil</a></li>
+          <li><a href="{{ path('security_logout') }}">Se déconnecter</a></li>
         </ul>
       {% else %}
       <li><a href="#">{{'app.home.login'|trans}}<i class="icofont icofont-simple-down"></i></a>
         <ul>
-          <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
-          <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+          <li><a href="{{ path('security_login') }}">Se connecter</a></li>
+          <li><a href="{{ path('security_registration') }}">Inscription</a></li>
         </ul>
       </li>
       {% endif %}

@@ -97,7 +97,7 @@ class MailManager
      * @param array $recipients like ['to' => ['email@mail.com', ...], 'cc' => [], 'bcc' => [...]]
      * @param bool $contactName
      */
-    public function sendMail($content, $subject = '', array $recipients = [], $contactName = false): void
+    public function sendMail($content, $subject = '', array $recipients = [], $contactName = false)
     {
         $to = $recipients['to'] ?? [];
         $cc = $recipients['cc'] ?? [];
@@ -113,9 +113,10 @@ class MailManager
             ->setCc($cc)
             ->setBcc($bcc)
             ->setBody($content, 'text/html');
-        try{$this->mailer->send($message);}
-        catch (\Exception $e){
-            dd($e);
+        try {
+            $this->mailer->send($message);
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 
@@ -125,42 +126,47 @@ class MailManager
      */
     public function sendConfirmationEmailMessage(User $user)
     {
-        //try {
-        $url = $this->router->generate(
-            'registration_confirm',
-            ['token' => $user->getConfirmationToken()],
-            UrlGeneratorInterface::ABSOLUTE_URL
-        );
-        $content = $this->twig->render('security/Registration/email.txt.twig', [
-            'user' => $user,
-            'confirmationUrl' => $url
-        ]);
-        $subject = $this->translator->trans('registration.email.subject', ['%username%' => $user->getUsername()]);
-        $this->sendMail($content, $subject, [$user->getEmail()]);
-   /* } catch (\Exception $e) {
-dump($e);
-}*/
+        try {
+            $url = $this->router->generate(
+                'registration_confirm',
+                ['token' => $user->getConfirmationToken()],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+            $content = $this->twig->render('security/Registration/email.txt.twig', [
+                'user' => $user,
+                'confirmationUrl' => $url
+            ]);
+            $subject = $this->translator->trans('registration.email.subject', ['%username%' => $user->getUsername()]);
+            $this->sendMail($content, $subject, [$user->getEmail()]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
 
+    /**
+     * @param User $user
+     * @return string
+     */
     public function sendResettingEmailMessage(User $user)
-    {  try {
-        $url = $this->router->generate(
-            'fos_user_resetting_reset',
-            [
-                'token' => $user->getConfirmationToken()
-            ],
-            UrlGeneratorInterface::ABSOLUTE_URL
-        );
+    {
+        try {
+            $url = $this->router->generate(
+                'resetting_reset',
+                [
+                    'token' => $user->getConfirmationToken()
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+            $content = $this->twig->render('security/Resetting/email.txt.twig', [
+                'user' => $user,
+                'confirmationUrl' => $url
+            ]);
+            $subject = $this->translator->trans('resetting.email.subject', ['%username%' => $user->getUsername()]);
+            $this->sendMail($content, $subject, [$user->getEmail()]);
 
-        $content = $this->twig->render('security/Registration/resetting.html.twig', [
-            'user' => $user,
-            'confirmationUrl' => $url
-        ]);
-
-            $this->sendMail($content, [$user->getEmail()]);
         } catch (\Exception $e) {
-            dump($e);
+            return $e->getMessage();
         }
     }
 
