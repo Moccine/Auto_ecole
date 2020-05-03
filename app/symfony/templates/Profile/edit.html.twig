@@ -60,17 +60,20 @@
             {% endif %}
           </div>
 
-
+          {% if app.user.hasRole('ROLE_SUPER_ADMIN') %}
           <div class="ativated">
-            <button type="submit" class="btn btn-lg hover-black color">
-              Activer</button>
-
+            <button type="submit" class="btn btn-lg hover-black color">Activer</button>
+          </div>
+          {% endif %}
+          <div>
+            <a class="btn hover-bg-black color" href="{{ path('change_password') }}">Changer de mot de passe</a>
           </div>
           <div class="col-2" style="padding-top: 50px">
-            <h5>Panier</h5>
-            {% if card is defined %}
-            <div class="h1 price">{{ card.price }}</div>
-            <button type="button" class="btn btn-ms hover-black color"><a href="{{ path('display_card') }}">Panier</a></button>
+            {% if card is defined and card.price is not null %}
+              <h5>Panier</h5>
+              <div class="h1 price">{{ card.price }}</div>
+            <button type="button" class="btn btn-ms hover-black color">
+              <a href="{{ path('display_card') }}">Panier</a></button>
             {% endif %}
           </div>
         </div>
@@ -101,6 +104,7 @@
           {{ form_end(form) }}
 
         </div>
+
       </div>
     </div>
   </div>

@@ -6,6 +6,7 @@ use App\Entity\Traits\ActivatedTrait;
 use App\Entity\Traits\CreatedAtTrait;
 use App\Entity\Traits\UpdatedAtTrait;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -234,7 +235,7 @@ class User implements UserInterface
         $this->mettingPoints = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->enabled=false;
-        $this->roles = [];
+        $this->roles = [self::ROLE_DRIVING_STUDENT];
 
 
         // your own logic
@@ -303,9 +304,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getBirthDate(): ?\DateTimeInterface
+    public function getBirthDate(): ?DateTimeInterface
     {
         return $this->birthDate;
     }
@@ -863,8 +864,7 @@ class User implements UserInterface
      */
     public function isPasswordRequestNonExpired($ttl)
     {
-        return $this->getPasswordRequestedAt() instanceof \DateTime &&
-            $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
+        return ($this->getPasswordRequestedAt() instanceof \DateTime) && ($this->getPasswordRequestedAt()->getTimestamp() + $ttl) > time();
     }
 
     /**

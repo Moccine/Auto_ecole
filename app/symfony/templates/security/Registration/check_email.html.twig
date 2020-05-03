@@ -1,10 +1,32 @@
 
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
+
 {% block body %}
-  {% include 'common/banner.html.twig'  with {
-      title: 'Point de rencontre',
-      link: '#',
-      home: 'Ajouter un point de rencontre'
-  } %}
-<p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+    {% include 'common/banner.html.twig' with {
+        title :'security.login.login'|trans,
+        home :'app.menu.home'|trans,
+        link :  path('homepage')
+    } %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="white-box">
+                    <div>
+                        {% include 'blocks/title.block.html.twig' with {
+                            title: 'security.login.login',
+                            description: 'Connexion'
+                        } %}
+                    </div>
+
+                    {% if error is defined %}
+                        <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

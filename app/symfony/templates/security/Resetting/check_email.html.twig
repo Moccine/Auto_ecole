@@ -1,7 +1,32 @@
 {% extends "base.html.twig" %}
 
-{% block  %}
-    <p>
-        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
-    </p>
+{% block body %}
+    {% include 'common/banner.html.twig' with {
+        title :'security.login.login'|trans,
+        home :'app.menu.home'|trans,
+        link :  path('homepage')
+    } %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="white-box">
+                    <div class="d-none">
+                        {% include 'blocks/title.block.html.twig' with {
+                            title: 'security.login.login',
+                            description: 'Connexion'
+                        } %}
+                    </div>
+
+                    {% if error is defined %}
+                        <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <p class="alert alert-success"  >
+                        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -71,7 +71,7 @@ class RegistrationController extends AbstractController
      * @param SessionInterface $session
      * @param UserManager $userManager
      * @return RedirectResponse|Response
-     * @Route("/check-email", name="registration_check_email")
+     * @Route("/registration-check-email", name="registration_check_email")
      */
     public function checkEmailAction(SessionInterface $session, UserManager $userManager)
     {
