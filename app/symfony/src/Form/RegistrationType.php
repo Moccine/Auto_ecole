@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
@@ -58,7 +59,7 @@ class RegistrationType extends AbstractType
                     new Length([
                         'min' => 5,
                         'max' => 5,
-                        ]),
+                    ]),
                 ],
             ])
             ->add('phone', null, [
@@ -76,32 +77,26 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('email', null, [
-                'data' => sprintf('mo%d@gmail.com', rand(1,100)),
+                'data' => sprintf('mo%d@gmail.com', rand(1, 100)),
                 'label' => 'security.login.email',
                 'constraints' => [
                     new NotBlank(),
                     new Email(['strict' => true]),
                 ],
-
             ])
             ->add('address', null, [
                 'data' => '1 rue toto',
                 'label' => 'security.login.address'
             ])
-            ->add('plainPassword', PasswordType::class, [
-                'data' => 'ColombesColombes',
-                'label' => 'confirmer votre mot de passe',
-                'constraints' => [
-                    new NotBlank(),
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'options' => ['attr' =>
+                    ['autocomplete' => 'new-password']
                 ],
-            ]) ->add('password', PasswordType::class, [
-                'data' => 'ColombesColombes',
-                'label' => 'security.login.password',
-                'constraints' => [
-                    new NotBlank(),
-                ],
-            ])
-        ;
+                'first_options' => ['label' => 'form.password'],
+                'second_options' => ['label' => 'form.password_confirmation'],
+                'invalid_message' => 'form.password.mismatch',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

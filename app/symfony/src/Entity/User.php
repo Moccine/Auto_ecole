@@ -193,13 +193,14 @@ class User implements UserInterface
     private $orders;
     /**
      * @ORM\Column(type="string")
-     * @Assert\Length(min="8", minMessage="Mot de passe doit faire 8 caractere")
-     * @Assert\NotBlank()
      */
+    // Assert\EqualTo(propertyPath="password", message="le mot de pass doit etre identique")
+
     private $password;
     /**
-     * @Assert\EqualTo(propertyPath="password", message="le mot de pass doit etre identique")
-     * @Assert\NotBlank()
+     *
+     * @Assert\NotBlank(message="le mot de pass doit etre identique")
+     * @Assert\Length(min="8", minMessage="Mot de passe doit faire 8 caractere")
      */
     private $plainPassword;
     /**

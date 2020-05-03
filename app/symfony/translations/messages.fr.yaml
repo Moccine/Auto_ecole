@@ -76,6 +76,8 @@ app:
       list: 'Liste des points de recontre'
 
 security:
+  current_password:
+    invalid: 'Le mot de passe est invalide.'
   login:
     password: 'Mot de passe'
     username: 'Email'
@@ -96,6 +98,7 @@ security:
     reset: 'Mot de passe oublié'
     save: 'Enregistrer'
     description: 'Description'
+
 drive_to_code:
   title: 'Code de la route'
   training:
@@ -177,10 +180,6 @@ days:
 thumbable:
   chooseFile: ''
   browse: ''
-layout:
-  logout: 'Deconnexion'
-  login: 'messages'
-  logged_in_as: 'messages'
 profile:
   show:
     username: 'Nom d''utilisateur'
@@ -238,6 +237,18 @@ resetting:
       Cordialement,
       L'équipe
 
+layout:
+  logout: Déconnexion
+  login: Connexion
+  register: Inscription
+  logged_in_as: 'Connecté en tant que %username%'
 form:
+  group_name: 'Nom du groupe'
+  username: 'Nom d''utilisateur'
+  email: 'Adresse e-mail'
+  current_password: 'Mot de passe actuel'
+  password: 'Mot de passe'
+  password_confirmation: 'Répéter le mot de passe'
   new_password: 'Nouveau mot de passe'
-  new_password_confirmation: 'Confirmation mot de passe'
+  new_password_confirmation: 'Répéter le nouveau mot de passe'
+  mismatch: 'Les deux mots de passe ne sont pas identiques.'
