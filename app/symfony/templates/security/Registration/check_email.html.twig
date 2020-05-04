@@ -13,19 +13,21 @@
                 <div class="white-box">
                     <div>
                         {% include 'blocks/title.block.html.twig' with {
-                            title: 'security.login.login',
+                            title: 'Creation de compte',
                             description: 'Connexion'
                         } %}
                     </div>
-
                     {% if error is defined %}
                         <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
-                    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                    <p class="alert alert-success">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                    <div class="col-md-6 offset-md-3">
+                        <a href="{{ path('security_login') }}" class="btn btn-lg hover-black  color">Se connecter</a>
+                    </div>
                 </div>
+
             </div>
-            <div class="col-md-6 offset-md-3">
-            </div>
+
         </div>
     </div>
 {% endblock %}

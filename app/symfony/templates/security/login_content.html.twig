@@ -34,7 +34,14 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="remember_me" name="ma" value="on"/>
                                 <label for="remember_me" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                                <a style="float: right" href="{{ path('resetting_request') }}">Mot de passe oublier</a>
+                                <ul class="login-list">
+                                  <li>
+                                      <a style="float: right" href="{{ path('resetting_request') }}">Mot de passe oublier</a>
+                                  </li>
+                                    <li><a style="float: right" href="{{ path('security_registration') }}">s'incrire</a></li>
+
+                                </ul>
+
 
                             </div>
                             <button type="submit" class="btn btn-lg hover-black color"> {{ 'security.login.submit'|trans }}</button>

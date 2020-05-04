@@ -29,7 +29,7 @@ class ChangePasswordFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $constraintsOptions = [
-            'message' => 'security.current_password.invalid',
+            'message' => 'form.current_password.invalid',
         ];
 
         if (!empty($options['validation_groups'])) {
@@ -60,7 +60,7 @@ class ChangePasswordFormType extends AbstractType
             'required' => true,
             'first_options' => ['label' => 'form.new_password'],
             'second_options' =>['label' => 'form.new_password_confirmation'],
-            'invalid_message' => 'security.password.mismatch',
+            'invalid_message' => 'form.password.mismatch',
         ));
     }
 
