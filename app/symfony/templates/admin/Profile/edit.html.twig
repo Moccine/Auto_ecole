@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'common/banner.html.twig'  with {
+        title: 'Compte',
+        link: '#',
+        home: 'home'
+    } %}
+    {% set disabled = false %}
+    <div class="container-fluid bg-white">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-2">
+                        {% include 'blocks/menuLateralAdmin.html.twig' with {
+                            title:  'drive_to_code.training.slogan',
+                            description: 'Un seul paiement, pas d\'abonnement. 2000 questions et un cours de code en ligne, en accès immédiat et illimité pendant un an.'
+                        } %}
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-2" style="padding-top: 70px">
+                        {{ form_start(form) }}
+                        <div class="metting-point" style="padding-top: 15px">
+                            {{ form_row(form.photoFile) }}
+                        </div>
+                        <div class="row">
+                            <!-- Team Member 1 -->
+                            {% if app.user.photo %}
+
+                                <div class="card border-0 shadow">
+                                    <img src="{{ asset('/uploads/images/users/' ~ app.user.photo) }}" alt="" class="card-img-top">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title mb-0">{{ app.user.firstName }} {{ app.user.lastName }}</h5>
+                                        <div class="card-text text-black-50">{{ app.user.firstName }}</div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div>
+                            <a class="btn hover-bg-black color" href="{{ path('change_password') }}">Changer de mot de passe</a>
+                        </div>
+                        <div class="col-2" style="padding-top: 50px">
+                            {% if card is defined and card.price is not null %}
+                                <h5>Panier</h5>
+                                <div class="h1 price">{{ card.price }}</div>
+                                <button type="button" class="btn btn-ms hover-black color">
+                                    <a href="{{ path('display_card') }}">Panier</a></button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-4" style="padding-top: 50px">
+                        {% for message in app.flashes('danger') %}
+                            <div class="flash-notice">
+                                {% include 'common/flashBlock.html.twig' with {
+                                    title: 'Attention : ',
+                                    message: message,
+                                    level: 'danger'
+                                } %}            </div>
+                        {% endfor %}
+                        <h1 class="text-center text-justify" style="color: black">Mes informations de contact</h1>
+                        <p>Ces informations nous permettent de vous contacter en cas de problème,
+                            ainsi que de vous conseiller au mieux sur vos centres d'examens et points de rendez-vous les plus proches !</p>
+                        {{ form_row(form.firstName) }}
+                        {{ form_row(form.lastName) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.phone) }}
+                        <h5 style="color: black">Adresse postale</h5>
+                        {{ form_row(form.address) }}
+                        {{ form_row(form.zipCode) }}
+                        {{ form_row(form.city) }}
+                        {% if is_granted('ROLE_ADMIN') ==false %}
+                        {% endif %}
+                        <button type="submit" class="btn btn-lg hover-black color">Enregistrer</button>
+                        {{ form_end(form) }}
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="comment-form-wrapper pt-90">
+                <!-- Comment Form -->
+                <div class="comment-form form text-left">
+                    <div class="input input-submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

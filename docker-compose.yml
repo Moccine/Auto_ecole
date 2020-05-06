@@ -6,6 +6,9 @@ services:
     build: ./docker/build/apache
     depends_on:
       - mysql
+    links:
+      - mysql
+      - mailhog
     volumes:
       - ./docker/etc/apache/virtualhost.conf:/etc/apache2/sites-enabled/000-default.conf:ro
       - ./docker/etc/php/php.ini:/usr/local/etc/php/php.ini

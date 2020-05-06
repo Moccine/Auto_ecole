@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProfileType extends AbstractType
 {
@@ -33,9 +33,7 @@ class ProfileType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $locations = $this->entityManager->getRepository(Location::class)->findAll();
-        /** @var User $user */
-        $user = $this->getUser();
+
         $disabled = false //!$user->hasRole('ROLE_SUPER_ADMIN')
         ;
         $builder
@@ -75,21 +73,14 @@ class ProfileType extends AbstractType
                 'label' => 'Photo',
                 'data_class' => null,
                 'required' => false
-            ]);
+            ])
+        ->remove('plainPassword');
     }
 
-    public function getUser()
+    public function configureOptions(OptionsResolver $resolver)
     {
-        return $this->getToken()->getUser();
+        $resolver->setDefaults([
+            'data_class' => User::class,
+        ]);
     }
-
-    /**
-     * @return TokenInterface|null
-     */
-    public function getToken()
-    {
-        return $this->container->get('security.token_storage')->getToken();
-    }
-
-
 }

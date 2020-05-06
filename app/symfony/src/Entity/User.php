@@ -195,12 +195,9 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string")
      */
-    // Assert\EqualTo(propertyPath="password", message="le mot de pass doit etre identique")
-
     private $password;
     /**
-     *
-     * @Assert\NotBlank(message="le mot de pass doit etre identique")
+     * @Assert\NotBlank()
      * @Assert\Length(min="8", minMessage="Mot de passe doit faire 8 caractere")
      */
     private $plainPassword;
@@ -235,7 +232,7 @@ class User implements UserInterface
         $this->mettingPoints = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->enabled=false;
-        $this->roles = [self::ROLE_DRIVING_STUDENT];
+        $this->roles = [self::ROLE_SUPER_ADMIN, self::ROLE_DRIVING_STUDENT];
 
 
         // your own logic

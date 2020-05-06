@@ -98,7 +98,6 @@
           {{ form_row(form.zipCode) }}
           {{ form_row(form.city) }}
           {% if is_granted('ROLE_ADMIN') ==false %}
-          {#{{ form_row(form.current_password) }} #}
           {% endif %}
           <button type="submit" class="btn btn-lg hover-black color">Enregistrer</button>
           {{ form_end(form) }}

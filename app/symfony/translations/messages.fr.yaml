@@ -152,7 +152,7 @@ shop:
   hour : 'Prix par heure'
   price : 'Prix du produit'
   description : 'Description'
-  priority : 'Priorité'
+  priority : 'Type d''offre'
   complementDescription : 'information complementaire'
   add: 'Ajouter un produit'
   driving_card:

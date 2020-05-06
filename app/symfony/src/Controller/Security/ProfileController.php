@@ -65,7 +65,6 @@ class ProfileController extends BaseController
             $em->flush();
         }
 
-
         return $this->render('Profile/edit.html.twig', [
             'form' => $form->createView()
         ]);

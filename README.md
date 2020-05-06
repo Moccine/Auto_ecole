@@ -24,6 +24,10 @@ Cet outil permet de faire une resevation des séjours lingustiques de haute gamm
 make install    
 
 ```
+Lancement du Docker (Uniquement pour l'environnement Dev)
+```
+docker-compose exec apache bash -ci 'chown www-data: ../* -R'
+```
 
 Installer la base de données:
 
