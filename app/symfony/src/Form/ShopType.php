@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Shop;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -43,9 +44,10 @@ class ShopType extends AbstractType
 
                 ]
             )
-            ->add('priority', IntegerType::class, [
+            ->add('priority', ChoiceType::class, [
                 'label' => 'shop.priority',
                 'required' => true,
+                'choices' => array_flip(Shop::offers)
 
             ])
             ->add('courseNumber', IntegerType::class, [

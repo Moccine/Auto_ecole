@@ -33,7 +33,7 @@ class ShopController extends AbstractController
     /**
      * @Route("/add/", name="shop_add")
      */
-    public function add(Request $request)
+    public function addAction(Request $request)
     {
         $form = $this->createForm(ShopType::class, new Shop());
         $form->handleRequest($request);

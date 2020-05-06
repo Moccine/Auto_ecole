@@ -14,8 +14,8 @@ class Shop
     const BEST_OFFERS =  1;
     const DRIVING_CARD =  2;
     const offers = [
-        self::BEST_OFFERS => 'shop.best_offers',
-        self::DRIVING_CARD => 'shop.driving_card',
+        self::BEST_OFFERS => 'shop.best_offers.title',
+        self::DRIVING_CARD => 'shop.driving_card.title',
     ];
     const PEDDING = 'PEDDING';
 

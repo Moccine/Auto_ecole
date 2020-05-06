@@ -3,23 +3,25 @@
 
 namespace App\Service;
 
-use App\Entity\Booking;
-use App\Entity\BookingOrder;
 use App\Entity\Orders;
-use Doctrine\Common\Persistence\ObjectManager;
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Swift_Mailer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MailManager
 {
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
     private $entityManager;
 
     /**
-     * @var \Swift_Mailer
+     * @var Swift_Mailer
      */
     private $mailer;
 
@@ -36,28 +38,36 @@ class MailManager
     private $adminMail;
     /** @var ContainerInterface */
     private $container;
+    /**
+     * @var RouterInterface
+     */
+    private $router;
 
     /**
      * MailManager constructor.
-     * @param ObjectManager $entityManager
-     * @param \Swift_Mailer $mailer
+     * @param EntityManagerInterface $entityManager
+     * @param Swift_Mailer $mailer
      * @param EngineInterface $twig
      * @param TranslatorInterface $translator
-     * @param string $oiseMail
+     * @param ContainerInterface $container
+     * @param RouterInterface $router
      */
     public function __construct(
-        ObjectManager $entityManager,
-                                \Swift_Mailer $mailer,
-                                EngineInterface $twig,
-                                TranslatorInterface $translator,
-                                ContainerInterface $container
-    ) {
+        EntityManagerInterface $entityManager,
+        Swift_Mailer $mailer,
+        EngineInterface $twig,
+        TranslatorInterface $translator,
+        ContainerInterface $container,
+        RouterInterface $router
+    )
+    {
         $this->entityManager = $entityManager;
         $this->mailer = $mailer;
         $this->twig = $twig;
         $this->translator = $translator;
         $this->adminMail = $_ENV['ADMIN_MAIL'];
         $this->container = $container;
+        $this->router = $router;
     }
 
     /**
@@ -66,24 +76,8 @@ class MailManager
     public function sendConfirmationMail(Orders $orders)
     {
         $accommodationPricing = null;
-        $this->sendCustomerMail($orders, ['to' => $orders->getStudent()->getEmail()]);
-        $this->sendAgencyMail($orders, $this->translator->trans('email.agency.subject.success'));
     }
 
-    /**
-     * @param Orders $orders
-     * @param array $recipients
-     */
-    public function sendCustomerMail(Orders $orders, array $recipients): void
-    {
-        $content = $this->twig->render('/mail/customer.confirmation.html.twig', $this->getMailDatas($orders));
-        $this->sendMail(
-            $content,
-            $this->translator->trans('email.customer.subject', ['%orderNumber%' => $bookingOrder->getCode()]),
-            array_merge(['cc' => $this->adminMail], $recipients),
-            $this->adminMail
-        );
-    }
 
     /**
      * @param Orders $orders
@@ -101,14 +95,17 @@ class MailManager
      * @param string $content
      * @param string $subject
      * @param array $recipients like ['to' => ['email@mail.com', ...], 'cc' => [], 'bcc' => [...]]
-     * @param null|string $contactName
+     * @param bool $contactName
      */
-    public function sendMail($content, $subject = '', array $recipients = [], $contactName = false): void
+    public function sendMail($content, $subject = '', array $recipients = [], $contactName = false)
     {
         $to = $recipients['to'] ?? [];
         $cc = $recipients['cc'] ?? [];
         $bcc = $recipients['bcc'] ?? [];
-        $from = $to;
+        $from = $contactName;
+        if ($contactName === false) {
+            $from = 'msow@kernix.com';
+        }
         $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setFrom($from)
@@ -116,26 +113,61 @@ class MailManager
             ->setCc($cc)
             ->setBcc($bcc)
             ->setBody($content, 'text/html');
-
-        $this->mailer->send($message);
+        try {
+            $this->mailer->send($message);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
-    /**
-     * @param array $data
-     */
-    public function sendAgencyMail(Orders $orders, string $subject): void
-    {
-        $content = $this->twig->render('/mail/agency.confirmation.html.twig', $this->getMailDatas($orders));
-        $this->sendMail($content, $subject, ['to' => $this->adminMail], $this->adminMail);
-    }
 
     /**
-     * Failed agency mail
-     *
-     * @param Orders $orders
+     * @param User $user
      */
-    public function sendFailledPaymentMail(Orders $orders)
+    public function sendConfirmationEmailMessage(User $user)
     {
-        $this->sendAgencyMail($orders, $this->translator->trans('email.agency.subject.failed'));
+        try {
+            $url = $this->router->generate(
+                'registration_confirm',
+                ['token' => $user->getConfirmationToken()],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+            $content = $this->twig->render('security/Registration/email.txt.twig', [
+                'user' => $user,
+                'confirmationUrl' => $url
+            ]);
+            $subject = $this->translator->trans('registration.email.subject', ['%username%' => $user->getUsername()]);
+            $this->sendMail($content, $subject, [$user->getEmail()]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
+
+
+    /**
+     * @param User $user
+     * @return string
+     */
+    public function sendResettingEmailMessage(User $user)
+    {
+        try {
+            $url = $this->router->generate(
+                'resetting_reset',
+                [
+                    'token' => $user->getConfirmationToken()
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+            $content = $this->twig->render('security/Resetting/email.txt.twig', [
+                'user' => $user,
+                'confirmationUrl' => $url
+            ]);
+            $subject = $this->translator->trans('resetting.email.subject', ['%username%' => $user->getUsername()]);
+            $this->sendMail($content, $subject, [$user->getEmail()]);
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
 }

@@ -6,6 +6,9 @@ services:
     build: ./docker/build/apache
     depends_on:
       - mysql
+    links:
+      - mysql
+      - mailhog
     volumes:
       - ./docker/etc/apache/virtualhost.conf:/etc/apache2/sites-enabled/000-default.conf:ro
       - ./docker/etc/php/php.ini:/usr/local/etc/php/php.ini
@@ -47,9 +50,11 @@ services:
       - mysql
   # MailHog
   mailhog:
-    image: mailhog/mailhog:latest
-    depends_on:
-      - apache
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
+    environment:
+      MH_SMTP_BIND_ADDR: 0.0.0.0:1025
 volumes:
   app-vendor:
   mysql-data:

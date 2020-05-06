@@ -24,7 +24,7 @@
           {% if error %}
             <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
           {% endif %}
-          <form action="{{ path('fos_user_security_check') }}" method="post">
+          <form action="{{ path('security_check') }}" method="post">
             {% if csrf_token %}
               <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
             {% endif %}

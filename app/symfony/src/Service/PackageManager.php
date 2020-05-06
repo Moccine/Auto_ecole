@@ -28,6 +28,5 @@ class PackageManager
             'courseDate' =>$now->add(new \DateInterval('P1D'))->setTime(0, 0, 0)
 
         ]);
-        dump($courses);
     }
 }

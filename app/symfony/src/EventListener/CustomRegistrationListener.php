@@ -29,7 +29,7 @@ class CustomRegistrationListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FOSUserEvents::RESETTING_RESET_SUCCESS => 'onPasswordResettingSuccess',
+           // FOSUserEvents::RESETTING_RESET_SUCCESS => 'onPasswordResettingSuccess',
             //FOSUserEvents::REGISTRATION_INITIALIZE => 'onRegistrationInitialise',
         );
     }

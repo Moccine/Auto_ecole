@@ -1,0 +1,38 @@
+{% block body %}
+    {% include 'common/banner.html.twig' with {
+        title :'security.login.login'|trans,
+        home :'app.menu.home'|trans,
+        link :  path('homepage')
+    } %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="white-box">
+                    <div class="">
+                        {% include 'blocks/title.block.html.twig' with {
+                            title: '',
+                            description: 'resetting.email.subject'|trans
+                        } %}
+                    </div>
+                    {% if error is defined %}
+                        <div class="error" style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    {% include 'common/flasbag.html.twig' %}
+
+                    <form action="{{ path('resetting_send_email') }}" method="POST" class="resetting_request">
+                        <div class="form-group">
+                            <label for="email">{{ 'resetting.request.email'|trans }}</label>
+                            <input type="email" class="form-control" id="email" name="email"  placeholder="email" required="required"/>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn hover-black color" value="{{ 'resetting.request.submit'|trans }}"/>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+            </div>
+        </div>
+    </div>
+{% endblock %}

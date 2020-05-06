@@ -1,30 +1,34 @@
 security:
     encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
+        App\Entity\User:
+            algorithm: bcrypt
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
-
-
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username
-        #in_memory: { memory: null }
+        in_memory: { memory: null }
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            pattern: ^/
-            form_login:
-                use_referer: true
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-                always_use_default_target_path: false
-                default_target_path: fos_user_profile_edit
-            logout:       true
-            anonymous:    true
+            anonymous: ~
+            guard:
+                authenticators:
+                    - App\Security\SecurityCustomAuthenticator
+            logout:
+                path: security_logout
+            provider: app_user_provider
+
+                # where to redirect after logout
+                # target: app_any_route
+
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:

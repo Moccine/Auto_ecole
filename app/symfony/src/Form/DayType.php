@@ -68,7 +68,6 @@ class DayType extends AbstractType
         }
 
 
-       // dd($studentCourses);
         if ($instructor instanceof User) {
             $instructorCourses = $this->em->getRepository(Course::class)->findOneBy([
                 'courseDate' => $date,

@@ -74,7 +74,6 @@ class InvoiceManager
 
             return $response;
         } catch (\Exception $exception) {
-            dd($exception);
             return $exception->getMessage();
         }
     }

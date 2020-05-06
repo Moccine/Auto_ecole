@@ -5,26 +5,24 @@ namespace App\DataFixtures;
 
 use App\Entity\Location;
 use App\Entity\MettingPoint;
+use App\Service\UserManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Provider\Address;
-use FOS\UserBundle\Model\UserManagerInterface;
 
 class LocationFixtures extends Fixture
 {
-    private $userManager;
 
-    public function __construct(UserManagerInterface $userManager)
-    {
-        $this->userManager = $userManager;
-    }
 
     public static function getGroups(): array
     {
         return ['location'];
     }
 
+    /**
+     * Load data fixtures with the passed EntityManager
+     */
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
@@ -53,6 +51,9 @@ class LocationFixtures extends Fixture
         }
     }
 
+    /**
+     * @return int
+     */
     public function getOrder()
     {
         return 1; // the order in which fixtures will be loaded
