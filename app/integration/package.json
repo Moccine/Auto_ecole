@@ -31,7 +31,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-util": "3.0.8",
     "imagesloaded": "^4.1.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "material-design-iconic-font": "^2.2.0",
     "modernizr": "^3.8.0",
     "paymentfont": "^1.2.5",
