@@ -28,10 +28,11 @@
                 <table id="example" class="display" style="width:100%">
                   <thead>
                   <tr>
+                    <th></th>
                     <th>Nom</th>
                     <th>Price</th>
                     <th>Description</th>
-                    <th>Priorité</th>
+                    <th>Type</th>
                     <th>Information complementaire</th>
                     <th>modifier</th>
                     <th>supprimer</th>
@@ -40,9 +41,11 @@
                   <tbody>
                   {% for shop in shops %}
                     <tr>
+                      <td></td>
                       <td>{{shop.name}}</td>
                       <td>{{shop.price}}</td>
                       <td>{{shop.description}}</td>
+                      <td>{{ constant('App\\Entity\\Shop::offers')[shop.priority]|trans }}
                       <td>{{ shop.priority }}  </td>
                       <td>{{ shop.complementDescription}} </td>
                       <td><a style="color: black" href=" {{ path('shop_edit', {id: shop.id}) }}">{{'app.common.edit'|trans}}</a></td>
@@ -52,10 +55,11 @@
                   </tbody>
                   <tfoot>
                   <tr>
+                    <th></th>
                     <th>Nom</th>
                     <th>Price</th>
                     <th>Description</th>
-                    <th>Priorité</th>
+                    <th>Type</th>
                     <th>Information complementaire</th>
                     <th>modifier</th>
                     <th>supprimer</th>

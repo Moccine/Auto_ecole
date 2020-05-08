@@ -24,9 +24,10 @@
                 <table id="example" class="display" style="width:100%">
                   <thead>
                   <tr>
+                    <th></th>
                     <th>Adresse</th>
                     <th>Code postal</th>
-                    <th>Villel</th>
+                    <th>Ville</th>
                     <th>Point de recontre</th>
                     <th>active</th>
                     <th>editer</th>
@@ -36,6 +37,7 @@
                   <tbody>
                   {% for location in locations %}
                     <tr>
+                      <td></td>
                       <td>{{location.address}}</td>
                       <td>{{location.postalCode}}</td>
                       <td>{{location.city}}</td>
@@ -46,16 +48,7 @@
                     </tr>
                   {% endfor %}
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                  </tr>
-                  </tfoot>
+
                 </table>
               </div>
             </div>

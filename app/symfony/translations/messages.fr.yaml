@@ -25,6 +25,7 @@ app:
     activated: 'Activer'
     desactivated: 'Desactiver'
     save: 'Enregistrer'
+
   menu:
     home: 'Accueil'
     drive_to_code:
@@ -56,6 +57,7 @@ app:
         coordinator: 'Coordinateur'
         driving_student: 'Elève'
         super_admin: 'Administrateur'
+
       instructor:
         title: 'Les moniteur'
         list: 'Liste des moniteurs'
@@ -74,6 +76,16 @@ app:
       delete: 'Supprimer un point de recontre'
       edit: 'Modifier un point de recontre'
       list: 'Liste des points de recontre'
+modal:
+  common:
+    title:
+      in_progress: 'Traitement en cours...'
+admin:
+  modal:
+    activate:
+      title: 'Activer l''utilisateur'
+      message: 'Vous êtes sur le point d''activer l''utilisateur %email%'
+
 
 security:
   current_password:
@@ -119,6 +131,8 @@ user:
     coordinator: 'Coordinateur'
     driving_student: 'Elève'
     super_admin: 'Administrateur'
+  activate: 'Active'
+  deactivate: 'Desactive'
 day:
   monday: 'Lundi'
   tuesday: 'Mardi'
@@ -250,5 +264,5 @@ form:
   password: 'Mot de passe'
   password_confirmation: 'Répéter le mot de passe'
   new_password: 'Nouveau mot de passe'
-  new_password_confirmation: 'Répéter le nouveau mot de passe'
+  new_password_confirmation: 'Repéter le nouveau mot de passe'
   mismatch: 'Les deux mots de passe ne sont pas identiques.'

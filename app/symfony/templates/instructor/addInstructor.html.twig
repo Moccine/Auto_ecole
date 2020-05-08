@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'common/banner.html.twig'  with {
-        title: 'Compte',
+        title: 'Ajouter / Modifier un Moniteur',
         link: '#',
-        home: 'home'
+        home: 'Moniteur'
     } %}
     {% if app.user.hasRole('ROLE_DRIVING_STUDENT') or  app.user.hasRole('ROLE_DRIVING_INSTRUCTOR') %}
         {% set disabled = true %}
@@ -50,7 +50,7 @@
                         {% if instructor.photo is defined %}
                             <div class="row">
                                 <!-- Team Member 1 -->
-                                <div class="card border-0 shadow">
+                                <div class="card border-0 ">
                                     <img src="{{ asset('/uploads/images/users/' ~ instructor.photo) }}" alt="" class="card-img-top">
                                     <div class="card-body text-center">
                                         <h5 class="card-title mb-0">{{ instructor.firstName }} {{ instructor.firstName }}</h5>

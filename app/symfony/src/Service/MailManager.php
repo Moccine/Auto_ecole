@@ -59,8 +59,7 @@ class MailManager
         TranslatorInterface $translator,
         ContainerInterface $container,
         RouterInterface $router
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
         $this->mailer = $mailer;
         $this->twig = $twig;
@@ -164,10 +163,8 @@ class MailManager
             ]);
             $subject = $this->translator->trans('resetting.email.subject', ['%username%' => $user->getUsername()]);
             $this->sendMail($content, $subject, [$user->getEmail()]);
-
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
-
 }

@@ -3,8 +3,6 @@
 
 namespace App\Service;
 
-
-
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;

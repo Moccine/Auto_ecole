@@ -3,7 +3,6 @@
 
 namespace App\Controller\Security;
 
-
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Service\MailManager;
@@ -38,8 +37,8 @@ class RegistrationController extends AbstractController
         UserPasswordEncoderInterface $encoder,
         MailManager $mailManager,
         UserManager $userManager,
-        SessionInterface $session)
-    {
+        SessionInterface $session
+    ) {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
@@ -87,7 +86,9 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('security_login');
         }
 
-        return $this->render('security/Registration/check_email.html.twig', [
+        return $this->render(
+            'security/Registration/check_email.html.twig',
+            [
                 'user' => $user,
             ]
         );
@@ -97,18 +98,17 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/confirmed/{id}", name="registration_confirmed")
      * @param User $user
+     * @param SessionInterface $session
      * @return RedirectResponse
      */
     public function confirmedAction(User $user, SessionInterface $session)
     {
-
         if (!$user instanceof User) {
             $session ->getFlashBag();
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
         return $this->redirectToRoute('security_login');
-
     }
 
 
@@ -124,7 +124,6 @@ class RegistrationController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
             'confirmationToken' => $token
         ]);
-        // $user = $userManager->findUserByConfirmationToken((int)$token);
 
         if (!$user instanceof User) {
             throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
@@ -132,10 +131,9 @@ class RegistrationController extends AbstractController
         $user->setConfirmationToken(null);
         $user->setEnabled(true);
         $this->getDoctrine()->getManager()->flush();
-        //$userManager->updateUser($user);
+
         return $this->redirectToRoute('registration_confirmed', [
             'id' => $user->getId()
         ]);
     }
-
 }

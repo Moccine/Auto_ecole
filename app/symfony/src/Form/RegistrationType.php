@@ -43,7 +43,7 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('birthDate', DateType::class, [
-                'data' => new \DateTime(),
+                //'data' => new \DateTime(),
                 'label' => 'security.login.birth_date',
                 'widget' => 'single_text',
                 // prevents rendering it as type="date", to avoid HTML5 date pickers
@@ -90,6 +90,13 @@ class RegistrationType extends AbstractType
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'min' => 8,
+                        'max' => 18,
+                    ])
+                ],
                 'options' => ['attr' =>
                     ['autocomplete' => 'new-password']
                 ],

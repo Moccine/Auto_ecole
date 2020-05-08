@@ -46,10 +46,8 @@ class StudentController extends AbstractController
 
     public function editAction(Request $request, User $user)
     {
-
         $form = $this->createForm(StudentType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() and $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData());

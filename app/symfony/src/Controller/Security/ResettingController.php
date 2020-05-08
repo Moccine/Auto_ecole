@@ -49,18 +49,17 @@ class ResettingController extends AbstractController
         Request $request,
         UserManager $userManager,
         MailManager $mailManager,
-        TranslatorInterface $translator)
-    {
+        TranslatorInterface $translator
+    ) {
         $email = $request->request->get('email');
         $user = $userManager->findUserByEmail($email);
         if (!$user instanceof User) {
             $this->addFlash('error', 'Impossible de reinitialiser');
             return $this->redirectToRoute('security_login');
         }
-        if( $user->isPasswordRequestNonExpired(self::RETRYTTL)){
+        if ($user->isPasswordRequestNonExpired(self::RETRYTTL)) {
             $this->addFlash('error', 'Vous avez recemment reinitialiser votre mot de passe');
             return $this->redirectToRoute('security_login');
-
         }
         if ($user->getConfirmationToken() === null) {
             $user->setConfirmationToken($userManager->generateToken());
@@ -70,7 +69,6 @@ class ResettingController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', $translator->trans('resetting.check_email', ['%tokenLifetime%' => ceil(self::RETRYTTL / 3600)]));
         return new RedirectResponse($this->generateUrl('resetting_check_email', ['email' => $email]));
-
     }
 
     /**
@@ -88,7 +86,8 @@ class ResettingController extends AbstractController
         }
         $this->addFlash('error', 'user not found');
 
-        return $this->render('security/Resetting/check_email.html.twig',
+        return $this->render(
+            'security/Resetting/check_email.html.twig',
             ['tokenLifetime' => ceil(self::RETRYTTL / 3600)]
         );
     }
@@ -106,8 +105,7 @@ class ResettingController extends AbstractController
         UserManager $userManager,
         Session $session,
         UserPasswordEncoderInterface $encoder
-    )
-    {
+    ) {
         $token = $request->attributes->get('token');
         $user = $userManager->findUserByConfirmationToken($token);
         if (!$user instanceof User) {

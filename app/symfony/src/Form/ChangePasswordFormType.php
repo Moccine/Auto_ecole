@@ -65,6 +65,9 @@ class ChangePasswordFormType extends AbstractType
     }
 
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -72,5 +75,4 @@ class ChangePasswordFormType extends AbstractType
             'csrf_token_id' => 'change_password',
         ]);
     }
-
 }

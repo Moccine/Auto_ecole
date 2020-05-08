@@ -32,8 +32,7 @@ class InvoiceManager
 
     public function generateInvoicePDF(Orders $order)
     {
-
-        $filename = sprintf('%s_%s.pdf', self::INVOICE_NAME, $order->getOrderNumber() );
+        $filename = sprintf('%s_%s.pdf', self::INVOICE_NAME, $order->getOrderNumber());
         $tempDir = '/tmp';
         $fullPath = $tempDir.'/'.$filename;
 

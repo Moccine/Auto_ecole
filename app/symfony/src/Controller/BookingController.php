@@ -36,10 +36,13 @@ class BookingController extends AbstractController
         if ($form->isSubmitted() and $form->isValid()) {
             $mettingPoint = $form->getData()['address'];
             return $this->redirect(
-                $this->generateUrl('instructor_list_unity',
+                $this->generateUrl(
+                    'instructor_list_unity',
                     ['id' => $mettingPoint->getId(),
                         'card' => $request->query->get('card'),
-                    ]));
+                    ]
+                )
+            );
             // return $this->redirectToRoute('instructor_list', ['id' => $mettingPoint->getId(), 'card' => $request->query->get('card')]);
         }
         return $this->render('instructor/instructorSearchForm.html.twig', [

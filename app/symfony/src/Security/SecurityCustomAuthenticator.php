@@ -47,8 +47,7 @@ class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator impleme
         UrlGeneratorInterface $urlGenerator,
         CsrfTokenManagerInterface $csrfTokenManager,
         UserPasswordEncoderInterface $passwordEncoder
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
@@ -134,8 +133,8 @@ class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator impleme
         if (!$user instanceof User) {
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
-        if ( !$user->isEnabled() ){
-            throw new CustomUserMessageAuthenticationException('votre inscription n\'est pas valider.');
+        if (!$user->isEnabled()) {
+            throw new CustomUserMessageAuthenticationException('Après inscription un e-mail a été envoyé. Il contient un lien d\'activation sur lequel il vous faudra cliquer afin d\'activer votre compte.');
         }
 
         return $user;
@@ -169,7 +168,6 @@ class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator impleme
      */
     public function getPassword($credentials): ?string
     {
-
         return $credentials['password'];
     }
 
@@ -194,7 +192,7 @@ class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator impleme
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-         return new RedirectResponse($this->urlGenerator->generate('profile_edit'));
+        return new RedirectResponse($this->urlGenerator->generate('profile_edit'));
         //throw new Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
@@ -205,7 +203,6 @@ class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator impleme
      */
     protected function getLoginUrl()
     {
-
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }

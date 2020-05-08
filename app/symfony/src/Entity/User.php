@@ -46,7 +46,7 @@ class User implements UserInterface
         self::ROLE_RIVING_INSTRUCTOR => 'user.role.driving_instructor',
         self::ROLE_DRIVING_STUDENT => 'user.role.driving_student',
     ];
-
+    public const ROLE_DEFAULT = self::ROLE_DRIVING_STUDENT;
     const USER_ROLES = [
         self::ROLE_SUPER_ADMIN => 'user.role.super_admin',
         self::ROLE_COORDINATOR => 'user.role.coordinator',
@@ -61,8 +61,12 @@ class User implements UserInterface
         self::ROLE_RIVING_INSTRUCTOR,
         self::ROLE_DRIVING_STUDENT
     ];
-    const DESACTIVATED = 0;
-    const ACTIVATED = 1;
+    public const DESACTIVATED = 0;
+    public const ACTIVATED = 1;
+    public const ACTIVATE = [
+        self::ACTIVATED => 'user.activate',
+        self::DESACTIVATED => 'user.deactivate'
+    ];
 
     /**
      * @ORM\Id()
@@ -196,10 +200,7 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Length(min="8", minMessage="Mot de passe doit faire 8 caractere")
-     */
+
     private $plainPassword;
     /**
      * @ORM\Column(type="boolean")
@@ -218,6 +219,7 @@ class User implements UserInterface
      * @ORM\Column(type="array", nullable=true)
      */
     protected $roles;
+
     /**
      * User constructor.
      */
@@ -231,7 +233,7 @@ class User implements UserInterface
         $this->cards = new ArrayCollection();
         $this->mettingPoints = new ArrayCollection();
         $this->orders = new ArrayCollection();
-        $this->enabled=false;
+        $this->enabled = false;
         $this->roles = [self::ROLE_SUPER_ADMIN, self::ROLE_DRIVING_STUDENT];
 
 
@@ -520,21 +522,36 @@ class User implements UserInterface
     }
 
     /**
-     * @param string $role
-     *
-     * @throws Exception
+     * @param array $roles
+     * @return $this
      */
-    public function setRole($role)
+    public function setRoles(array $roles)
     {
-        if (!in_array($role, array_keys(self::ROLES))) {
-            throw new Exception('Invalid role: [' . $role . ']');
+        $this->roles = [];
+
+        foreach ($roles as $role) {
+            $this->addRole($role);
         }
 
-        if ($this->hasRole($role)) {
-            return;
+        return $this;
+    }
+
+    /**
+     * @param $role
+     * @return $this
+     */
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+        if ($role === static::ROLE_DEFAULT) {
+            return $this;
         }
 
-        $this->setRoles([$role]);
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
     }
 
     /**
@@ -571,9 +588,22 @@ class User implements UserInterface
             return self::ROLE_COORDINATOR;
         } elseif ($this->hasRole(self::ROLE_RIVING_INSTRUCTOR)) {
             return self::ROLE_RIVING_INSTRUCTOR;
+        } elseif ($this->hasRole(self::ROLE_DRIVING_STUDENT)) {
+            return self::ROLE_DRIVING_STUDENT;
         } else {
             throw new Exception("We can't find any expected role from the user, id: [" . $this->id . '].');
         }
+    }
+
+    /**
+     * @param $role
+     * @return $this
+     */
+    public function setRole($role)
+    {
+        $this->roles = [$role];
+
+        return $this;
     }
 
     /**
@@ -735,6 +765,11 @@ class User implements UserInterface
         // TODO: Implement getSalt() method.
     }
 
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
     public function getUsername()
     {
         return $this->username;
@@ -804,12 +839,11 @@ class User implements UserInterface
      * @param $confirmationToken
      * @return $this
      */
-    public function setConfirmationToken($confirmationToken=null): self
+    public function setConfirmationToken($confirmationToken = null): self
     {
         $this->confirmationToken = $confirmationToken;
 
         return $this;
-
     }
 
     /**
@@ -850,6 +884,9 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPasswordRequestedAt()
     {
         return $this->passwordRequestedAt;
@@ -880,6 +917,28 @@ class User implements UserInterface
     public function setPasswordRequestedAt(DateTime $date)
     {
         $this->passwordRequestedAt = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuperAdmin()
+    {
+        return $this->hasRole(static::ROLE_SUPER_ADMIN);
+    }
+
+    /**
+     * @param $role
+     * @return $this
+     */
+    public function removeRole($role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
 
         return $this;
     }

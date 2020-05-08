@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
   {% include 'common/banner.html.twig'  with {
-    title: 'Entrainement',
+    title: 'Liste des élèves',
     link: '#',
-    home: 'Code de la route'
+    home: 'Elèves'
   } %}
   <div class="container-fluid bg-white">
     <div class="row">
@@ -24,10 +24,12 @@
                 <table id="example" class="display" style="width:100%">
                   <thead>
                   <tr>
+                    <th></th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Code postal</th>
-                    <th>fonction</th>
+                    <th>status</th>
+                    <th>Etat</th>
                     <th>editer</th>
                     <th>supprimer</th>
                   </tr>
@@ -36,10 +38,12 @@
                   {% for student in students %}
                     {% set roles = student.roles|first %}
                     <tr>
+                      <td></td>
                       <td>{{student.firstName}}</td>
                       <td>{{student.lastName}}</td>
                       <td>{{student.zipCode}}</td>
                       <td>{{ constant('App\\Entity\\User::ROLES')[roles]|trans }}
+                      <td>{{ constant('App\\Entity\\User::ACTIVATE')[student.activated]|trans }}
                       </td>
 
                       <td><a style="color: black" href=" {{ path('edit_student', {'id': student.id}) }}">{{'app.common.edit'|trans}}</a></td>
@@ -49,10 +53,12 @@
                   </tbody>
                   <tfoot>
                   <tr>
+                    <th></th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Code postal</th>
                     <th>fonction</th>
+                    <th>Etat</th>
                     <th>editer</th>
                     <th>supprimer</th>
                   </tr>

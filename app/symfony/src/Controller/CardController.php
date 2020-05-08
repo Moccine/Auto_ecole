@@ -33,13 +33,13 @@ class CardController extends AbstractController
             $mettingPoint =$course->getMettingPoint();
             $price+=$course->getPrice();
             array_push(
-               $items,
-           [
+                $items,
+                [
                'mettingPoint'=> $mettingPoint,
                'course' => $course
 
            ]
-           );
+            );
         }
         $quantity = count($courses);
 

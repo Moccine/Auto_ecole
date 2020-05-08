@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class InstructorController extends AbstractController
 {
     /**
@@ -54,7 +53,6 @@ class InstructorController extends AbstractController
 
     public function editAction(Request $request, User $user)
     {
-
         $form = $this->createForm(InstructorType::class, $user);
 
         $form->handleRequest($request);

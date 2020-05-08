@@ -35,10 +35,10 @@ class MettingPointController extends AbstractController
             $em->flush();
             $this->addFlash('success', $translator->trans('form.save.success'));
 
-            return $this->redirectToRoute('list_metting_location');
+            return $this->redirectToRoute('metting_point_list');
         }
 
-        return $this->render('location/edit.html.twig', [
+        return $this->render('metting_point/add_metting_point.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -73,7 +73,7 @@ class MettingPointController extends AbstractController
             return $this->redirectToRoute('metting_point_list');
         }
 
-        return $this->render('location/edit.html.twig', [
+        return $this->render('metting_point/edit_metting_point.html.twig', [
             'form' => $form->createView(),
         ]);
     }

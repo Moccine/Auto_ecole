@@ -19,7 +19,10 @@ class InstructorType extends AbstractType
             ->add('firstName')
             //->add('password', PasswordType::class)
             ->add('lastName')
-            ->add('birthDate', null, [
+            ->add(
+                'birthDate',
+                null,
+                [
                     'label' => 'security.login.birth_date',
                     'widget' => 'single_text',
 
@@ -29,7 +32,6 @@ class InstructorType extends AbstractType
                     // adds a class that can be selected in JavaScript
                     'attr' => ['class' => 'js-datepicker'],
     ]
-
             )
             ->add('zipCode')
             ->add('phone')
@@ -41,7 +43,8 @@ class InstructorType extends AbstractType
                 'label' => 'Photo',
                 'data_class' => null,
                 'required' => false
-            ]);;
+            ]);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

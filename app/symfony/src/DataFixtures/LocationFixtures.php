@@ -13,8 +13,6 @@ use Faker\Provider\Address;
 
 class LocationFixtures extends Fixture
 {
-
-
     public static function getGroups(): array
     {
         return ['location'];

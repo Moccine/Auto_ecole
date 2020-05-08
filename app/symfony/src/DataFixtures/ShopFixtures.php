@@ -3,7 +3,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Location;
 use App\Entity\Shop;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -89,12 +88,10 @@ class ShopFixtures extends Fixture
                 'course_number' => 5
             ],
         ];
-
     }
 
     public function getOrder()
     {
         return 1; // the order in which fixtures will be loaded
     }
-
 }

@@ -18,7 +18,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DayType extends AbstractType
 {
-
     const HOUR = 22;
     const DAY = 7;
     const MONDAY = 1;
@@ -64,7 +63,7 @@ class DayType extends AbstractType
         $mettingPoint = isset($options['metting-point']) ? $options['metting-point'] : null;
         $dateSlug = $date->format('Y_m_d');
         if ($student instanceof User) {
-           $studentCourses = $this->em->getRepository(Course::class)->findCourseByDateAndUser($student);
+            $studentCourses = $this->em->getRepository(Course::class)->findCourseByDateAndUser($student);
         }
 
 
@@ -81,7 +80,7 @@ class DayType extends AbstractType
             'data-user' => $student->getId(),
             'data-metting-point' => $mettingPoint->getId(),
         ];
-       // dd($this->setdayData(Hours::HOURS_9, $date, $studentCourses));
+        // dd($this->setdayData(Hours::HOURS_9, $date, $studentCourses));
         $builder
             ->add('name', HiddenType::class, [
                 'mapped' => false,
@@ -168,11 +167,12 @@ class DayType extends AbstractType
      * @param array $courses
      * @return array
      */
-    public  function setdayData($hour, \DateTime $date,  array $courses){
-        foreach ($courses as $course){
+    public function setdayData($hour, \DateTime $date, array $courses)
+    {
+        foreach ($courses as $course) {
             $currentDate = $course->getCourseDate();
             $courseDate = $date->setTime($hour, 0, 0);
-            if($courseDate == $currentDate ){
+            if ($courseDate == $currentDate) {
                 return [
                     'checked' => 'checked',
                     'data-value' => 1,
@@ -189,11 +189,12 @@ class DayType extends AbstractType
      * @param array $courses
      * @return array
      */
-    public  function setInstructordayData($hour, \DateTime $date,  array $courses){
-        foreach ($courses as $course){
+    public function setInstructordayData($hour, \DateTime $date, array $courses)
+    {
+        foreach ($courses as $course) {
             $currentDate = $course->getCourseDate();
             $courseDate = $date->setTime($hour, 0, 0);
-            if($courseDate == $currentDate ){
+            if ($courseDate == $currentDate) {
                 return [
                     'checked' => 'checked',
                     'data-value' => 1,

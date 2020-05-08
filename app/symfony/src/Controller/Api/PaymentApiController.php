@@ -85,19 +85,19 @@ class PaymentApiController extends BaseAjaxController
     public function createOrder(Card $card)
     {
         $orders = new Orders();
-         $orders->setStudent($this->getUser())
+        $orders->setStudent($this->getUser())
             ->setCurrency(Payment::CURRENCY)
             ->setTva(Payment::TVA)
             ->setTotal($card->getTotal())
             ->setStatus(Payment::STATUS_PENDING)
             ->setQuantity($card->getCourses()->count())
             ->addCard($card);
-         $shop = $card->getShop();
-         if($shop instanceof Shop){
-             $orders->setShop($shop);
-         }
+        $shop = $card->getShop();
+        if ($shop instanceof Shop) {
+            $orders->setShop($shop);
+        }
 
-         return  $orders;
+        return  $orders;
     }
 
     /**

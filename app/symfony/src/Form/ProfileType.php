@@ -14,30 +14,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProfileType extends AbstractType
 {
-    /**
-     * @var EntityManager
-     */
-    private $entityManager;
-    private $container;
-
-
-    /**
-     * ProfileType constructor.
-     * @param $entityManager
-     */
-    public function __construct(EntityManagerInterface $entityManager, ContainerInterface $container)
-    {
-        $this->entityManager = $entityManager;
-        $this->container = $container;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-        $disabled = false //!$user->hasRole('ROLE_SUPER_ADMIN')
-        ;
+        $disabled = false;  //!$user->hasRole('ROLE_SUPER_ADMIN')
         $builder
-            ->remove('username')
             ->add('firstName', null, [
                 'label' => 'security.login.first_name',
                 'disabled' => $disabled,
@@ -73,8 +53,7 @@ class ProfileType extends AbstractType
                 'label' => 'Photo',
                 'data_class' => null,
                 'required' => false
-            ])
-        ->remove('plainPassword');
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

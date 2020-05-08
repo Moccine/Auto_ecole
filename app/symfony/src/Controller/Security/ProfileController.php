@@ -7,14 +7,8 @@ use App\Entity\Course;
 use App\Entity\User;
 use App\Form\ProfileType;
 use App\Form\UserType;
-use FOS\UserBundle\Controller\ProfileController as BaseController;
-use FOS\UserBundle\Event\FilterUserResponseEvent;
-use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Form\Factory\FactoryInterface;
-use FOS\UserBundle\Form\Factory\FormFactory;
-use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Model\UserInterface;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,13 +17,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ProfileController extends BaseController
+class ProfileController extends AbstractController
 {
     use ControllerTrait;
-
-    public function __construct()
-    {
-    }
 
     /**
      * @param Request $request
@@ -38,11 +28,14 @@ class ProfileController extends BaseController
      */
     public function editAction(Request $request)
     {
+        /** @var User $user */
         $user = $this->getUser();
+        if ($user->hasRole('ROLE_SUPER_ADMIN')) {
+            return $this->redirectToRoute('admin_profile_edit');
+        }
         $courses = $this->getDoctrine()->getRepository(Course::class)->findBy([
             'student' => $this->getUser(),
             'status' => Card::PENDING
-
         ]);
         $items = [];
         /** @var Course $course */

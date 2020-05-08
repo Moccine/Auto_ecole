@@ -38,7 +38,6 @@ class OrdersController extends AbstractController
      */
     public function downloadInvoiceAction(Request $request, Orders $orders, InvoiceManager $invoiceManager)
     {
-
         return $invoiceManager->generateInvoicePDF($orders);
     }
 }

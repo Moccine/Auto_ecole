@@ -12,6 +12,7 @@ use App\Service\CourseManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -35,6 +36,9 @@ class CourseApiController extends AbstractController
      * @Route("/add/course/{instructor_id}", name="add_course", methods={"GET"})
      * @ParamConverter("user", options={"id" = "instructor_id"})
      * @param Request $request
+     * @param User $user
+     * @param CourseManager $courseManager
+     * @return JsonResponse
      */
     public function addCourseAction(Request $request, User $user, CourseManager $courseManager)
     {

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
   {% include 'common/banner.html.twig'  with {
-    title: 'Les moniteurs',
+    title: 'Liste des moniteurs',
     link: '#',
-    home: 'Code de la route'
+    home: 'Moniteurs'
   } %}
   <div class="container-fluid bg-white">
     <div class="row">
@@ -20,14 +20,16 @@
                   description: ''
                 } %}
               </div>
-              <div class="col-12">
+              <div class="col-sm-12">
                 <table id="example" class="display" style="width:100%">
                   <thead>
                   <tr>
+                    <th></th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Code postal</th>
                     <th>fonction</th>
+                    <th>Etat</th>
                     <th>editer</th>
                     <th>supprimer</th>
                   </tr>
@@ -36,26 +38,18 @@
                   {% for instructor in instructors %}
                     {% set roles = instructor.roles|first %}
                     <tr>
+                      <td> </td>
                       <td>{{instructor.firstName}}</td>
                       <td>{{instructor.lastName}}</td>
                       <td>{{instructor.zipCode}}</td>
                       <td>{{ constant('App\\Entity\\User::ROLES')[roles]|trans }}
+                      <td>{{ constant('App\\Entity\\User::ACTIVATE')[instructor.activated]|trans }}
                       </td>
                       <td><a style="color: black" href=" {{ path('edit_instructor', {'id':instructor.id}) }}) }}">{{'app.common.edit'|trans}}</a></td>
                       <td><a style="color: black" href=" {{ path('edit_instructor', {'id':instructor.id}) }}">{{ 'app.common.delete'|trans }}</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Code postal</th>
-                    <th>fonction</th>
-                    <th>editer</th>
-                    <th>supprimer</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
             </div>

@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
@@ -121,7 +120,8 @@ class UserManager
      *
      * @return array|object[]
      */
-    public function findUsers(){
+    public function findUsers()
+    {
         return $this->userRepository->findAll();
     }
 
@@ -173,5 +173,4 @@ class UserManager
     {
         return $this->tokenGenerator->generateToken();
     }
-
 }

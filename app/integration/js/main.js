@@ -6,6 +6,7 @@ import './cardDisplay';
 import './checkout'
 import './packageCourse';
 import './addUnityCourse';
+import './admin';
 
 const {getRoute, httpRequest, trans} = require('./common');
 const $mettingPoint = $(".instructor");
@@ -39,12 +40,16 @@ $(document).ready(function () {
     }
   });
 
-  $('#example').DataTable({
+  var t =$('#example').DataTable({
+    "order": [[ 1, 'asc' ]],
     "pageLength": 50,
     responsive: true,
+    "columnDefs": [
+      { "width": "3%", "targets": 0 }
+    ],
     language: {
       processing:     "Traitement en cours...",
-      search:         "Rechercher;:",
+      search:         "Rechercher :",
       lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
       info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
       infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
@@ -65,6 +70,11 @@ $(document).ready(function () {
       }
     }
   });
+  t.on( 'order.dt search.dt', function () {
+    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+      cell.innerHTML = i+1;
+    } );
+  } ).draw();
  $("a[href*='#driving-cards']").click((e)=>{
     $('html, body').animate({scrollTop: $('#driving-cards').offset().top}, 800);
   });

@@ -13,7 +13,6 @@ class DrinvingCodeController extends AbstractController
      */
     public function index()
     {
-
         $hops = $this->getDoctrine()->getRepository(Shop::class)->findBy([
             'priority' => 2
         ]);

@@ -3,7 +3,6 @@
 
 namespace App\Service\import;
 
-
 use App\Entity\Domain;
 use App\Entity\FranceLocation;
 use Doctrine\ORM\EntityManagerInterface;

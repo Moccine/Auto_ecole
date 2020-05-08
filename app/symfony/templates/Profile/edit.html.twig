@@ -15,13 +15,13 @@
     <div class="col-12">
       <div class="row">
         <div class="col-2">
-          {% if app.user.hasRole('ROLE_DRIVING_STUDENT') or app.user.hasRole('ROLE_COORDINATOR') %}
-            {% include 'blocks/lateralMemu.html.twig' with {
+          {% if app.user.hasRole('ROLE_SUPER_ADMIN') %}
+            {% include 'blocks/menuLateralAdmin.html.twig' with {
               title:  'drive_to_code.training.slogan',
               description: 'Un seul paiement, pas d\'abonnement. 2000 questions et un cours de code en ligne, en accès immédiat et illimité pendant un an.'
             } %}
           {% else %}
-            {% include 'blocks/menuLateralAdmin.html.twig' with {
+            {% include 'blocks/lateralMemu.html.twig' with {
               title:  'drive_to_code.training.slogan',
               description: 'Un seul paiement, pas d\'abonnement. 2000 questions et un cours de code en ligne, en accès immédiat et illimité pendant un an.'
             } %}
@@ -48,9 +48,9 @@
           </div>
           <div class="row">
             <!-- Team Member 1 -->
-            {% if app.user.photo %}
+            {% if app.user.photo is defined%}
 
-            <div class="card border-0 shadow">
+            <div class="card border-0">
                 <img src="{{ asset('/uploads/images/users/' ~ app.user.photo) }}" alt="" class="card-img-top" >
                 <div class="card-body text-center">
                   <h5 class="card-title mb-0">{{ app.user.firstName }} {{ app.user.lastName }}</h5>

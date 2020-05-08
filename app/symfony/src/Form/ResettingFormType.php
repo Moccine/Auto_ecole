@@ -25,10 +25,13 @@ class ResettingFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('plainPassword', PasswordType::class,[
+        $builder->add('plainPassword', PasswordType::class, [
             'label' => 'form.new_password'
         ])
-        ->add('password', PasswordType::class, [
+        ->add(
+            'password',
+            PasswordType::class,
+            [
             'label' => 'form.new_password_confirmation'
             ]
         );
@@ -43,5 +46,4 @@ class ResettingFormType extends AbstractType
             'data_class' => User::class,
         ]);
     }
-
 }

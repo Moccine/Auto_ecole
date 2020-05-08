@@ -49,6 +49,8 @@ class JsVarsInitializeListener
         $this->jsVars->trans('app.action.confirm');
         $this->jsVars->trans('app.action.cancel');
         $this->jsVars->trans('app.action.close');
+        $this->jsVars->trans('app.action.save');
+        $this->jsVars->trans('modal.common.title.in_progress');
         //package
         $this->jsVars->trans('package.add.error');
 
@@ -59,6 +61,8 @@ class JsVarsInitializeListener
         $this->jsVars->addRoute('api_web_edit_payment', ['card_id' => '__card_id__']);
         $this->jsVars->addRoute('add_package_course', ['card_id' => '__card_id__', 'credit_id' => '__credit_id__']);
         $this->jsVars->addRoute('remove_package_course', ['card_id' => '__card_id__', 'credit_id' => '__credit_id__']);
+        $this->jsVars->addRoute('admin_activate_form_user', ['id' => '__id__']);
+        $this->jsVars->addRoute('admin_activate_user', ['id' => '__id__']);
 
         //API
     }

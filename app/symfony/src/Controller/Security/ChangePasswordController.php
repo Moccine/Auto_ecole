@@ -43,8 +43,7 @@ class ChangePasswordController extends AbstractController
     public function changePasswordAction(
         Request $request,
         UserPasswordEncoderInterface $encoder
-)
-    {
+    ) {
         $user = $this->getUser();
         if (!$user instanceof User) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -60,7 +59,9 @@ class ChangePasswordController extends AbstractController
             return $this->redirect($url);
         }
 
-        return $this->render('Security/ChangePassword/change_password.html.twig', [
+        return $this->render(
+            'Security/ChangePassword/change_password.html.twig',
+            [
                 'form' => $form->createView(),
             ]
         );

@@ -14,7 +14,6 @@ $(document).ready(function () {
    url: $courseInfoRoute,
    method: 'GET'
  }).done((data)=>{
-   console.log(data);
    commonModal
      .setTitle()
      .showMessage(data.template)

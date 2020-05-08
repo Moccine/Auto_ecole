@@ -23,9 +23,9 @@ class CheckoutController extends AbstractController
     public function index(
         Request $request,
         Card $card,
-                          PaymentManager $paymentManager,
-                          TranslatorInterface $translator,
-                          Session $session
+        PaymentManager $paymentManager,
+        TranslatorInterface $translator,
+        Session $session
     ) {
         try {
             /** @var Session $session */
