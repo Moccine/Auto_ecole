@@ -7,17 +7,32 @@ use App\Form\InstructorType;
 use App\Form\StudentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class StudentController extends AbstractController
 {
+    /** @var SessionInterface */
+    private $session;
+
+    /**
+     * AdminController constructor.
+     * @param SessionInterface $session
+     */
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+
+    }
     /**
      * @Route("/admin//student/list", name="list_students")
      */
     public function listAction()
     {
         $students = $this->getDoctrine()->getRepository(User::class)->findByRole(User::ROLE_DRIVING_STUDENT);
-
+        if(empty($students)){
+            $this->session->getFlashBag()->add('error', 'Liste vide ');
+        }
         return $this->render('student/index.html.twig', [
             'students' => $students,
         ]);

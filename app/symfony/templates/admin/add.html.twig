@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'common/banner.html.twig'  with {
-        title: 'Ajouter / Modifier un Moniteur',
+        title: 'Ajouter / Modifier un élève',
         link: '#',
-        home: 'Moniteur'
+        home: 'Eleves'
     } %}
-    {% if app.user.hasRole('ROLE_DRIVING_STUDENT') or  app.user.hasRole('ROLE_DRIVING_INSTRUCTOR') %}
-        {% set disabled = true %}
-    {% else %}
+    {% if app.user.hasRole('ROLE_SUPER_ADMIN') %}
         {% set disabled = false %}
+    {% else %}
+        {% set disabled = true %}
     {% endif %}
     <div class="container-fluid bg-white">
         <div class="row">
@@ -25,71 +25,33 @@
                                 title:  'drive_to_code.training.slogan',
                                 description: 'Un seul paiement, pas d\'abonnement. 2000 questions et un cours de code en ligne, en accès immédiat et illimité pendant un an.'
                             } %}
+
                         {% endif %}
 
                     </div>
                     <div class="col-1"></div>
                     <div class="col-2" style="padding-top: 70px">
                         {{ form_start(form) }}
-
-                        {% if is_granted("ROLE_SUPER_ADMIN") %}
-                            {% if app.user.activated == 1 %}
-                                <button  type="button"
-                                         data-user="{{ student.id  }}"
-                                         data-actvate="{{ student.activated }}"
-                                         data-email="{{ student.email }}"
-                                         class="activate-user btn btn-sm hover-black color activated ">
-                                    {{ 'app.common.desactivated'|trans }}
-                                </button>
-                            {% else %}
-                                <button type="button"
-                                        data-user="{{ student.id  }}"
-                                        data-actvate="{{ student.activated }}"
-                                        data-email="{{ student.email }}"
-                                        class="activate-user btn btn-sm hover-black black activated">
-                                    {{ 'app.common.activated'|trans }}</button>
-                            {% endif %}
-                            <button id="deactivate-user" type="button" class="btn btn-sm hover-black color activated ">{{ 'app.common.delete'|trans }}</button>
-                        {% endif %}
                         <div class="metting-point" style="padding-top: 15px">
                             {{ form_row(form.photoFile) }}
                         </div>
-                        {% if instructor.photo is defined %}
+                        {% if student is defined and student.photo %}
                             <div class="row">
                                 <!-- Team Member 1 -->
-                                <div class="card border-0 ">
-                                    <img src="{{ asset('/uploads/images/users/' ~ instructor.photo) }}" alt="" class="card-img-top">
+                                <div class="card border-0">
+                                    <img src="{{ asset('/uploads/images/users/' ~ student.photo) }}" alt="" class="card-img-top">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title mb-0">{{ instructor.firstName }} {{ instructor.firstName }}</h5>
+                                        <h5 class="card-title mb-0">{{ student.firstName }} {{ student.firstName }}</h5>
                                         <div class="card-text text-black-50">Web Developer</div>
                                     </div>
                                 </div>
                             </div>
 
                         {% endif %}
-                        <div class="ativated">
-                            <button type="submit" class="btn btn-lg hover-black color">
-                                Activer
-                            </button>
 
-                        </div>
-                        <div class="col-2" style="padding-top: 50px">
-                            <h5>Panier</h5>
-                            {% if card is defined %}
-                                <div class="h1 price">{{ card.price }}</div>
-                                <button type="button" class="btn btn-ms hover-black color"><a href="{{ path('display_card') }}">Panier</a></button>
-                            {% endif %}
-                        </div>
                     </div>
-                    <div class="col-4" style="padding-top: 50px">
-                        {% for message in app.flashes('danger') %}
-                            <div class="flash-notice">
-                                {% include 'common/flashBlock.html.twig' with {
-                                    title: 'Attention : ',
-                                    message: message,
-                                    level: 'danger'
-                                } %}            </div>
-                        {% endfor %}
+                    <div class="col-sm-4" style="padding-top: 50px">
+                        {% include 'common/flasbag.html.twig' %}
                         <h1 class="text-center text-justify" style="color: black">Mes informations de contact</h1>
                         <p>Ces informations nous permettent de vous contacter en cas de problème,
                             ainsi que de vous conseiller au mieux sur vos centres d'examens et points de rendez-vous les plus proches !</p>
@@ -124,8 +86,11 @@
             </div>
         </div>
     </div>
-{% endblock %}
 
+{% endblock %}
+{% block modal %}
+    {% include 'blocks/common_modal.block.html.twig' %}
+{% endblock %}
 
 {% block javascripts %}
     <script>

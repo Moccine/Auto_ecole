@@ -53,7 +53,6 @@ class RegistrationController extends AbstractController
                 $user->setConfirmationToken($userManager->generateToken());
             }
             $em->flush();
-
             $mailManager->sendConfirmationEmailMessage($user);
             $session->set('send_confirmation_email/email', $user->getEmail());
 

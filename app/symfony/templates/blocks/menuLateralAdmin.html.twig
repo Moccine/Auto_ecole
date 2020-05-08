@@ -87,4 +87,22 @@
       </div>
     </div>
   </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" aria-expanded="false" href="#accordion-6">
+          {{ 'app.menu.admin.title'|trans }}
+        </a>
+      </h4>
+    </div>
+    <div id="accordion-6" class="panel-collapse collapse " data-parent="#accordion">
+      <div class="panel-body">
+        <ul>
+          <li><a href="{{ path('admin_list') }}"> {{ 'app.menu.admin.list'|trans }} </a></li>
+          <li><a href="{{ path('admin_add') }}"> {{ 'app.menu.admin.add'|trans }} </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </div>

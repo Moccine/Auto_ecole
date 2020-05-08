@@ -73,9 +73,15 @@ app:
     location:
       title: 'Points de rencontre'
       add: 'Ajouter un point de rencontre'
-      delete: 'Supprimer un point de recontre'
-      edit: 'Modifier un point de recontre'
-      list: 'Liste des points de recontre'
+      delete: 'Supprimer un point de rencontre'
+      edit: 'Modifier un point de rencontre'
+      list: 'Liste des points de rencontre'
+    admin:
+      title: 'Administrateur'
+      list: 'Liste des administrateur'
+      add: 'Ajouter un administrateur'
+      edit: 'Modifier un administrateur'
+      delete: 'Supprimer un administrateur'
 modal:
   common:
     title:
@@ -123,7 +129,7 @@ location:
     postal_code: 'Code postal'
     city: 'Ville'
     region: 'Region'
-    activated: 'Actvivé le point de rencotre'
+    activated: 'Actvivé le point de rencontre'
 
 user:
   role:
@@ -148,7 +154,7 @@ month:
   april: 'Avril'
   may: 'Mai'
   june: 'Juin'
-  july: 'Juillert'
+  july: 'Juillet'
   august: 'Août'
   september: 'September'
   october: 'Octobre'
@@ -161,7 +167,7 @@ course:
 shop:
   best_offers:
     title: 'Nos meilleures offres'
-    comment: 'Nous avons une solution pour tous vos besoins d’apprentissage'
+    comment: 'Nous avons une solution pour tous vos besoins d''apprentissage'
   name : 'Nom du produit'
   hour : 'Prix par heure'
   price : 'Prix du produit'

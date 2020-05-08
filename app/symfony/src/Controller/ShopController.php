@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Card;
 use App\Entity\Shop;
+use App\Entity\User;
 use App\Form\ShopType;
 use Nelmio\ApiDocBundle\Annotation\Security;
+use phpDocumentor\Reflection\Types\Float_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,13 +22,16 @@ class ShopController extends AbstractController
 {
     /**
      * @Route("/list", name="shop_list")
+     * @param SessionInterface $session
+     * @return Response
      */
-    public function index()
+    public function index(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
-
         $hops = $em->getRepository(Shop::class)->findAll();
-
+        if(empty($hops)){
+            $session->getFlashBag()->add('error', 'Liste vide ');
+        }
         return $this->render('shop/index.html.twig', [
             'shops' => $hops,
         ]);
@@ -69,7 +76,7 @@ class ShopController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="shop_remove")
+     * @Route("/remove/{id}", name="shop_remove")
      */
     public function remove(Request $request, SessionInterface $session, Shop $shop)
     {
@@ -87,15 +94,18 @@ class ShopController extends AbstractController
 
     /**
      * @Route("/", name="shop_display")
+     * @param Request $request
+     * @param SessionInterface $session
+     * @return Response
      */
     public function shop(Request $request, SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
         $bestOffers = $em->getRepository(Shop::class)->findBy([
-            'priority' => 1
+            'priority' => Shop::BEST_OFFERS
         ]);
         $drivingCards = $em->getRepository(Shop::class)->findBy([
-            'priority' => 2
+            'priority' => Shop::DRIVING_CARD
         ]);
 
         return $this->render('shop/shop.html.twig', [
@@ -103,15 +113,24 @@ class ShopController extends AbstractController
             'drivingCards' => $drivingCards,
         ]);
     }
+
     /**
      * @Route("/add/product/{id}", name="add_product")
+     * @param Request $request
+     * @param SessionInterface $session
+     * @param Shop $shop
+     * @return RedirectResponse
      */
     public function addProductToCard(Request $request, SessionInterface $session, Shop $shop)
     {
         $em = $this->getDoctrine()->getManager();
         $card = new Card();
-        $card->setTotal($shop->getPrice())
-            ->setUser($this->getUser())
+        /** @var User $user */
+        $user = $this->getUser();
+        /** @var Float $price */
+        $price = $shop->getPrice();
+        $card->setTotal($price)
+            ->setUser($user)
             ->setType(Card::SHOP)
             ->setShop($shop);
         $em->persist($card);

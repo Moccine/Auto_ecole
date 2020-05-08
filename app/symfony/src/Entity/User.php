@@ -234,7 +234,7 @@ class User implements UserInterface
         $this->mettingPoints = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->enabled = false;
-        $this->roles = [self::ROLE_SUPER_ADMIN, self::ROLE_DRIVING_STUDENT];
+        $this->roles = [self::ROLE_SUPER_ADMIN];
 
 
         // your own logic

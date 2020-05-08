@@ -13,17 +13,32 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class InstructorController extends AbstractController
 {
+    /** @var SessionInterface */
+    private $session;
+
+    /**
+     * AdminController constructor.
+     * @param SessionInterface $session
+     */
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+
+    }
     /**
      * @Route("/admin/instructor/list", name="list_instructor")
      */
     public function index()
     {
         $instructors = $this->getDoctrine()->getRepository(User::class)->findByRole(User::ROLE_RIVING_INSTRUCTOR);
-
+        if(empty($instructors)){
+            $this->session->getFlashBag()->add('error', 'Liste vide ');
+        }
         return $this->render('instructor/index.html.twig', [
             'instructors' => $instructors,
         ]);
