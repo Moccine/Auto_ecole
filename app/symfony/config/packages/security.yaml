@@ -38,6 +38,7 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/admin, roles: ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_COORDINATOR', 'ROLE_DRIVING_INSTRUCTOR'] }
         - { path: ^/shop, roles: ['ROLE_SUPER_ADMIN', 'ROLE_DRIVING_STUDENT', 'ROLE_ADMIN', 'ROLE_COORDINATOR', 'ROLE_DRIVING_INSTRUCTOR'] }
+        - { path: ^/booking, roles: ['ROLE_SUPER_ADMIN', 'ROLE_DRIVING_STUDENT', 'ROLE_ADMIN', 'ROLE_COORDINATOR', 'ROLE_DRIVING_INSTRUCTOR'] }
 
 
           #- { path: ^/, roles: ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN', 'ROLE_SUPER_COORDINATOR', 'ROLE_COORDINATOR'] }
