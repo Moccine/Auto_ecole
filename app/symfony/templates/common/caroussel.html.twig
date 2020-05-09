@@ -1,8 +1,8 @@
 <div id="hero-area" class="hero-slider-area">
   <div id="hero-slider" class="nivoSlider slider-image">
-    <img src="{{ asset('img/slider/img1.jpeg') }}" alt="main slider" title="#htmlcaption1"/>
-    <img src="{{ asset('img/slider/img1.jpeg') }}" alt="main slider" title="#htmlcaption2"/>
-    <img src="{{ asset('img/slider/img1.jpeg') }}" alt="main slider" title="#htmlcaption3"/>
+    <img src="{{ asset('img/slider/caroussel1.jpeg') }}" alt="main slider" title="#htmlcaption1"/>
+    <img src="{{ asset('img/slider/caroussel2.jpeg') }}" alt="main slider" title="#htmlcaption2"/>
+    <img src="{{ asset('img/slider/caroussel3.jpeg') }}" alt="main slider" title="#htmlcaption3"/>
   </div>
   <div id="htmlcaption1" class="nivo-html-caption">
     <div class="slide-table container">
@@ -12,8 +12,8 @@
           <h1 class="wow fadeInUp" data-wow-duration=".9s" data-wow-delay="1.2s">{{ 'app.caroussel.message'|trans|raw }}</h1>
           <p class="wow fadeInUp" style="color: white" data-wow-duration=".9s" data-wow-delay="1.6s">{{ 'app.caroussel.content'|trans }}</p>
           <div class="button-group">
-            <a href="#" class="btn transparent wow fadeInLeft" data-wow-duration=".9s" data-wow-delay="2.4s">{{ 'app.traffick.laws'|trans}}</a>
-            <a href="#" class="btn color wow fadeInLeft" data-wow-duration=".9s" data-wow-delay="2s">{{ 'app.traffick.allowed_to_drive'|trans }}</a>
+            <a href="{{ path('unity_booking_instructor_search_form') }}" class="btn transparent wow fadeInLeft" data-wow-duration=".9s" data-wow-delay="2.4s">{{ 'app.traffick.laws'|trans}}</a>
+            <a href="{{ path('unity_booking_instructor_search_form') }}" class="btn color wow fadeInLeft" data-wow-duration=".9s" data-wow-delay="2s">{{ 'app.traffick.allowed_to_drive'|trans }}</a>
           </div>
         </div>
       </div>
