@@ -101,6 +101,7 @@ class User implements UserInterface
     private $username;
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Expression(expression="this.goodBirthday(value)", message="au minimum 15 ans")
      */
     private $birthDate;
 
@@ -941,5 +942,15 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @param $birthday
+     * @return bool
+     */
+    public function goodBirthday($birthday){
+        $interval = $birthday->diff(new DateTime());
+
+        return $interval->y >=15;
     }
 }

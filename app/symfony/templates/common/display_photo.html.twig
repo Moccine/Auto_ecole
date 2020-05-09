@@ -1,0 +1,16 @@
+{% if user is defined and user.photo %}
+    {% set roles = user.roles|first %}
+    <div class="row">
+        <!-- Team Member 1 -->
+        <div class="card border-0">
+            <img src="{{ asset('/uploads/images/users/' ~ user.photo) }}" alt="" class="card-img-top">
+            <div class="card-body text-center">
+                <h5 class="card-title mb-0">{{ user.firstName }} {{ user.firstName }}</h5>
+                <div class="card-text text-black-50">
+                    {{ constant('App\\Entity\\User::ROLES')[roles]|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

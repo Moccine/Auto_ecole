@@ -6,15 +6,18 @@ use App\Entity\Card;
 use App\Entity\Course;
 use App\Entity\MettingPoint;
 use App\Entity\User;
+use App\Form\InstructorEditType;
 use App\Form\InstructorHourType;
 use App\Form\InstructorType;
 use App\Form\MettingPointType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class InstructorController extends AbstractController
 {
@@ -47,16 +50,28 @@ class InstructorController extends AbstractController
 
     /**
      * @Route("/admin/instructor/add/", name="add_instructor")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @return Response
      */
 
-    public function addInstructorAction(Request $request)
+    public function addInstructorAction(Request $request,  UserPasswordEncoderInterface $encoder)
     {
-        $form = $this->createForm(InstructorType::class, new User());
+        $user =new User();
+        $form = $this->createForm(InstructorType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
+            if(array_key_exists('plainPassword', $request->request->get('instructor'))){
+                $password = $encoder->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($password)->setPlainPassword($password);
+                $user->setEnabled(true)->setRole(User::ROLE_RIVING_INSTRUCTOR);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData());
             $em->flush();
+            $this->session->getFlashBag()->add('success', 'Votre utilisateur a été crée avec succès ');
+
+           return  $this->redirectToRoute('list_instructor');
         }
         return $this->render('instructor/addInstructor.html.twig', [
             'form' => $form->createView()
@@ -68,7 +83,7 @@ class InstructorController extends AbstractController
 
     public function editAction(Request $request, User $user)
     {
-        $form = $this->createForm(InstructorType::class, $user);
+        $form = $this->createForm(InstructorEditType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
@@ -76,9 +91,9 @@ class InstructorController extends AbstractController
             $em->persist($form->getData());
             $em->flush();
         }
-        return $this->render('instructor/addInstructor.html.twig', [
+        return $this->render('instructor/editInstructor.html.twig', [
             'form' => $form->createView(),
-            'instructor' => $user,
+            'user' => $user,
         ]);
     }
 }

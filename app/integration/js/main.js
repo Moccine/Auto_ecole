@@ -89,6 +89,7 @@ $(document).ready(function () {
     daysOfWeekHighlighted: "6,0",
     autoclose: true,
     todayHighlight: true,
+    defaultDate: "2005-01-01"
   });
 
 

@@ -46,7 +46,11 @@
                       <td>{{ constant('App\\Entity\\User::ROLES')[roles]|trans }}
                       <td>{{ constant('App\\Entity\\User::ACTIVATE')[instructor.activated]|trans }}
                       </td>
-                      <td><a style="color: black" href=" {{ path('edit_instructor', {'id':instructor.id}) }}) }}">{{'app.common.edit'|trans}}</a></td>
+                      <td>
+                        <a style="color: black" href=" {{ path('edit_instructor', {'id': instructor.id}) }} ">
+                          {{'app.common.edit'|trans}}
+                        </a>
+                      </td>
                       <td><a style="color: black" href=" {{ path('edit_instructor', {'id':instructor.id}) }}">{{ 'app.common.delete'|trans }}</a></td>
                     </tr>
                   {% endfor %}

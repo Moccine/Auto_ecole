@@ -22,7 +22,6 @@
                             </div>
                             <div class="col-sm-12">
                               {% include 'common/flasbag.html.twig' %}
-
                               <table id="example" class="display" style="width:100%">
                                     <thead>
                                     <tr>
@@ -41,8 +40,8 @@
                                             <td>{{ user.lastName }}</td>
                                             <td>{{ user.zipCode }}</td>
                                             <td>{{ user.role }}</td>
-                                            <td><a style="color: black" href=" {{ path('profile_edit') }}">Modifier</a></td>
-                                            <td><a style="color: black" href=" {{ path('profile_edit') }}">Modifier</a></td>
+                                            <td><a style="color: black" href=" {{ path('admin_edit', {'id': user.id}) }}">Modifier</a></td>
+                                            <td><a style="color: black" href=" {{ path('admin_remove',  {'id': user.id}) }}">Supprimer</a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

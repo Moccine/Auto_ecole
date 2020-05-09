@@ -1,0 +1,18 @@
+{% if is_granted("ROLE_SUPER_ADMIN") %}
+    {% if app.user.activated == 1 %}
+        <button  type="button"
+                 data-user="{{ user.id  }}"
+                 data-actvate="{{ user.activated }}"
+                 data-email="{{ user.email }}"
+                 class="activate-user btn btn-sm hover-black color activated ">
+            {{ 'app.common.desactivated'|trans }}
+        </button>
+    {% else %}
+        <button type="button"
+                data-user="{{ user.id  }}"
+                data-actvate="{{ user.activated }}"
+                data-email="{{ user.email }}"
+                class="activate-user btn btn-sm hover-black black activated">
+            {{ 'app.common.activated'|trans }}</button>
+    {% endif %}
+{% endif %}

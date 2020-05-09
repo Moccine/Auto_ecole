@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'common/banner.html.twig'  with {
-        title: 'Ajouter / Modifier un Elève',
+        title: 'Ajouter / Modifier un Moniteur',
         link: '#',
-        home: 'Elève'
+        home: 'Moniteur'
     } %}
     {% if app.user.hasRole('ROLE_DRIVING_user') or  app.user.hasRole('ROLE_DRIVING_INSTRUCTOR') %}
         {% set disabled = true %}
@@ -15,16 +15,28 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-2">
+                        {% if app.user.hasRole('ROLE_SUPER_ADMIN') %}
                             {% include 'blocks/menuLateralAdmin.html.twig' with {
                                 title:  'drive_to_code.training.slogan',
                                 description: 'Un seul paiement, pas d\'abonnement. 2000 questions et un cours de code en ligne, en accès immédiat et illimité pendant un an.'
                             } %}
+                        {% else %}
+                            {% include 'blocks/lateralMemu.html.twig' with {
+                                title:  'drive_to_code.training.slogan',
+                                description: 'Un seul paiement, pas d\'abonnement. 2000 questions et un cours de code en ligne, en accès immédiat et illimité pendant un an.'
+                            } %}
+                        {% endif %}
+
                     </div>
                     <div class="col-1"></div>
                     <div class="col-2" style="padding-top: 70px">
                         {{ form_start(form) }}
+                        {% include 'common/activate_ajax_button.html.twig' %}
                         <div class="metting-point" style="padding-top: 15px">
                             {{ form_row(form.photoFile) }}
+                        </div>
+                        {% include 'common/display_photo.html.twig' %}
+                        <div class="col-2" style="padding-top: 50px">
                         </div>
                     </div>
                     <div class="col-4" style="padding-top: 50px">
@@ -33,49 +45,34 @@
                         <p>Ces informations nous permettent de vous contacter en cas de problème,
                             ainsi que de vous conseiller au mieux sur vos centres d'examens et points de rendez-vous les plus proches !</p>
                         {{ form_row(form.username) }}
-                        {{ form_row(form.firstName) }}
-                        {{ form_row(form.lastName) }}
                         {{ form_row(form.email) }}
                         {{ form_row(form.phone) }}
+                        <h5 style="color: black">Adresse postale</h5>
                         {{ form_row(form.address) }}
                         {{ form_row(form.zipCode) }}
                         {{ form_row(form.city) }}
-                        {{ form_row(form.birthDate) }}
-                        {{ form_row(form.plainPassword) }}
                         {{ form_row(form.qualification) }}
                         <button type="submit" class="btn btn-lg hover-black color">Enregistrer</button>
                         {{ form_end(form) }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-            </div>
-            <div class="comment-form-wrapper pt-90">
-                <!-- Comment Form -->
-                <div class="comment-form form text-left">
-                    <div class="input input-submit">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
-
-
+{% block modal %}
+    {% include 'blocks/common_modal.block.html.twig' %}
+{% endblock %}
 {% block javascripts %}
     <script>
         $('.js-datepicker').datepicker({
             format: 'yyyy-mm-dd',
-
-            //weekStart: 1,
+            weekStart: 1,
             daysOfWeekHighlighted: "6,0",
             autoclose: true,
             todayHighlight: true,
-
         });
-
     </script>
 
 {% endblock %}

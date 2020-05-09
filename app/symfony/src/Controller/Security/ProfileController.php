@@ -31,7 +31,7 @@ class ProfileController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         if ($user->hasRole('ROLE_SUPER_ADMIN')) {
-            return $this->redirectToRoute('admin_profile_edit');
+            return $this->redirectToRoute('admin_edit');
         }
         $courses = $this->getDoctrine()->getRepository(Course::class)->findBy([
             'student' => $this->getUser(),

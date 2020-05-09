@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\AdminEditType;
 use App\Form\AdminType;
-use App\Form\StudentType;
-use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,35 +47,24 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/index", name="admin_index")
-     */
-    public function editUserAction()
-    {
-        $users = $this->getDoctrine()->getRepository(User::class)->findBy([
-
-        ]);
-        return $this->render('admin/index.html.twig', [
-            'users' => $users,
-        ]);
-    }
 
     /**
      * @Route("/add/admin", name="admin_add")
      * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function addAction(Request $request, UserPasswordEncoderInterface $encoder
-)
+    public function addAction(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
         $form = $this->createForm(AdminType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
+            if($request->request->has('plainpassword')){
+                $password = $encoder->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($password)->setPlainPassword($password);
+            }
 
-            $password = $encoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password)->setPlainPassword($password);
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData());
             $em->flush();
@@ -96,7 +84,7 @@ class AdminController extends AbstractController
      */
     public function edit(Request $request, User $admin)
     {
-        $form = $this->createForm(User::class, $admin);
+        $form = $this->createForm(AdminEditType::class, $admin);
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -104,9 +92,9 @@ class AdminController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('admin_list');
         }
-
-        return $this->render('admin/add.html.twig', [
+        return $this->render('admin/edit.html.twig', [
             'form' => $form->createView(),
+            'user' => $admin
         ]);
     }
 

@@ -5,7 +5,7 @@
         link: '#',
         home: 'Moniteur'
     } %}
-    {% if app.user.hasRole('ROLE_DRIVING_STUDENT') or  app.user.hasRole('ROLE_DRIVING_INSTRUCTOR') %}
+    {% if app.user.hasRole('ROLE_DRIVING_user') or  app.user.hasRole('ROLE_DRIVING_INSTRUCTOR') %}
         {% set disabled = true %}
     {% else %}
         {% set disabled = false %}
@@ -32,53 +32,8 @@
                     <div class="col-2" style="padding-top: 70px">
                         {{ form_start(form) }}
 
-                        {% if is_granted("ROLE_SUPER_ADMIN") %}
-                            {% if app.user.activated == 1 %}
-                                <button  type="button"
-                                         data-user="{{ student.id  }}"
-                                         data-actvate="{{ student.activated }}"
-                                         data-email="{{ student.email }}"
-                                         class="activate-user btn btn-sm hover-black color activated ">
-                                    {{ 'app.common.desactivated'|trans }}
-                                </button>
-                            {% else %}
-                                <button type="button"
-                                        data-user="{{ student.id  }}"
-                                        data-actvate="{{ student.activated }}"
-                                        data-email="{{ student.email }}"
-                                        class="activate-user btn btn-sm hover-black black activated">
-                                    {{ 'app.common.activated'|trans }}</button>
-                            {% endif %}
-                            <button id="deactivate-user" type="button" class="btn btn-sm hover-black color activated ">{{ 'app.common.delete'|trans }}</button>
-                        {% endif %}
                         <div class="metting-point" style="padding-top: 15px">
                             {{ form_row(form.photoFile) }}
-                        </div>
-                        {% if instructor.photo is defined %}
-                            <div class="row">
-                                <!-- Team Member 1 -->
-                                <div class="card border-0 ">
-                                    <img src="{{ asset('/uploads/images/users/' ~ instructor.photo) }}" alt="" class="card-img-top">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title mb-0">{{ instructor.firstName }} {{ instructor.firstName }}</h5>
-                                        <div class="card-text text-black-50">Web Developer</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        {% endif %}
-                        <div class="ativated">
-                            <button type="submit" class="btn btn-lg hover-black color">
-                                Activer
-                            </button>
-
-                        </div>
-                        <div class="col-2" style="padding-top: 50px">
-                            <h5>Panier</h5>
-                            {% if card is defined %}
-                                <div class="h1 price">{{ card.price }}</div>
-                                <button type="button" class="btn btn-ms hover-black color"><a href="{{ path('display_card') }}">Panier</a></button>
-                            {% endif %}
                         </div>
                     </div>
                     <div class="col-4" style="padding-top: 50px">
@@ -93,18 +48,17 @@
                         <h1 class="text-center text-justify" style="color: black">Mes informations de contact</h1>
                         <p>Ces informations nous permettent de vous contacter en cas de problème,
                             ainsi que de vous conseiller au mieux sur vos centres d'examens et points de rendez-vous les plus proches !</p>
+                        {{ form_row(form.username) }}
                         {{ form_row(form.firstName) }}
                         {{ form_row(form.lastName) }}
                         {{ form_row(form.email) }}
                         {{ form_row(form.phone) }}
-                        <h5 style="color: black">Adresse postale</h5>
                         {{ form_row(form.address) }}
                         {{ form_row(form.zipCode) }}
                         {{ form_row(form.city) }}
-                        {% if is_granted('ROLE_ADMIN') ==false %}
-                            {#{{ form_row(form.current_password) }} #}
-                        {% endif %}
-                        {{ form_row(form) }}
+                        {{ form_row(form.birthDate) }}
+                        {{ form_row(form.plainPassword) }}
+                        {{ form_row(form.qualification) }}
                         <button type="submit" class="btn btn-lg hover-black color">Enregistrer</button>
                         {{ form_end(form) }}
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d16d370bc9ab6564def0951e86fdd136",
+    "content-hash": "497baaed35ec5227e5b3ba543c94cd0f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -5150,6 +5150,71 @@
                 "standards"
             ],
             "time": "2019-09-17T09:54:03+00:00"
+        },
+        {
+            "name": "symfony/expression-language",
+            "version": "v4.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/expression-language.git",
+                "reference": "38010d8d1eb425b74f25b87c366c4d97e4b06a89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/38010d8d1eb425b74f25b87c366c4d97e4b06a89",
+                "reference": "38010d8d1eb425b74f25b87c366c4d97e4b06a89",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/cache": "^3.4|^4.0|^5.0",
+                "symfony/service-contracts": "^1.1|^2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\ExpressionLanguage\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony ExpressionLanguage Component",
+            "homepage": "https://symfony.com",
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-04-15T15:55:41+00:00"
         },
         {
             "name": "symfony/filesystem",

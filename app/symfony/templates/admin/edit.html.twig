@@ -26,60 +26,25 @@
                     <div class="col-2" style="padding-top: 70px">
 
                         {% if is_granted("ROLE_SUPER_ADMIN") %}
-                            {% if app.user.activated == 1 %}
-                                <button  type="button"
-                                         data-user="{{ user.id  }}"
-                                         data-actvate="{{ user.activated }}"
-                                         data-email="{{ user.email }}"
-                                         class="activate-user btn btn-sm hover-black color activated ">
-                                    {{ 'app.common.desactivated'|trans }}
-                                </button>
-                            {% else %}
-                                <button type="button"
-                                        data-user="{{ user.id  }}"
-                                        data-actvate="{{ user.activated }}"
-                                        data-email="{{ user.email }}"
-                                        class="activate-user btn btn-sm hover-black black activated">
-                                    {{ 'app.common.activated'|trans }}</button>
-                            {% endif %}
-                            <button id="deactivate-user" type="button" class="btn btn-sm hover-black color activated ">{{ 'app.common.delete'|trans }}</button>
+                            {% include 'common/activate_ajax_button.html.twig' %}
                         {% endif %}
                         {{ form_start(form) }}
                         <div class="metting-point" style="padding-top: 15px">
                             {{ form_row(form.photoFile) }}
                         </div>
-                        {% if user is defined and user.photo %}
-                            <div class="row">
-                                <!-- Team Member 1 -->
-                                <div class="card border-0">
-                                    <img src="{{ asset('/uploads/images/users/' ~ user.photo) }}" alt="" class="card-img-top">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title mb-0">{{ user.firstName }} {{ user.firstName }}</h5>
-                                        <div class="card-text text-black-50">Web Developer</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        {% endif %}
-
+                        {% include 'common/display_photo.html.twig' %}
                     </div>
                     <div class="col-sm-4" style="padding-top: 50px">
                         {% include 'common/flasbag.html.twig' %}
                         <h1 class="text-center text-justify" style="color: black">Mes informations de contact</h1>
-                        <p>Ces informations nous permettent de vous contacter en cas de problème,
-                            ainsi que de vous conseiller au mieux sur vos centres d'examens et points de rendez-vous les plus proches !</p>
-                        {{ form_row(form.firstName) }}
-                        {{ form_row(form.lastName) }}
+                        {{ form_row(form.username) }}
                         {{ form_row(form.email) }}
                         {{ form_row(form.phone) }}
                         <h5 style="color: black">Adresse postale</h5>
                         {{ form_row(form.address) }}
                         {{ form_row(form.zipCode) }}
                         {{ form_row(form.city) }}
-                        {% if is_granted('ROLE_ADMIN') ==false %}
-                            {#{{ form_row(form.current_password) }} #}
-                        {% endif %}
-                        {{ form_row(form) }}
+                        {{ form_row(form.qualification) }}
                         <button type="submit" class="btn btn-lg hover-black color">Enregistrer</button>
                         {{ form_end(form) }}
 
