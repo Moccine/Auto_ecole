@@ -20,11 +20,11 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
-use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
+
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use UnexpectedValueException;
 
-class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+class SecurityCustomAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;
 
