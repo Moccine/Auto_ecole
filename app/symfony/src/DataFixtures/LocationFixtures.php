@@ -24,29 +24,41 @@ class LocationFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
-
-        for ($i = 0; $i <= 30; $i++) {
-            $location = new Location();
-            $location->setAddress($faker->address)
-                ->setCity(Address::citySuffix())
-                ->setPostalCode(Address::postcode())
-                ->setActivated(rand(0, 1))
-                ->setCountry($faker->country);
-            $manager->persist($location);
-        }
-
-
-        for ($i = 0; $i <= 5; $i++) {
+        $datas = $this->getDatas();
+       foreach ($datas as $data) {
             $mettingPoint = new MettingPoint();
-            $mettingPoint->setAddress($faker->streetAddress)
-                ->setCity($faker->city)
-                ->setPostalCode(Address::postcode())
-                ->setActivated(rand(0, 1))
-                ->setCountry($faker->country);
+            $mettingPoint->setAddress($data['address'])
+                ->setCity($data['city'])
+                ->setPostalCode($data['postalCode'])
+                ->setActivated(true)
+                ->setCountry('France');
             $manager->persist($mettingPoint);
             $manager->flush();
-            $this->addReference('mettingPoint'.$i, $mettingPoint);
         }
+    }
+
+    /**
+     * @return \string[][]
+     */
+    public function getDatas()
+    {
+        return [
+            [
+                'city' => 'Paris',
+                'postalCode' => '75018',
+                'address' => '72 boulevard Ney, porte de la chapelle'
+            ],
+            [
+                'city' => 'Paris',
+                'postalCode' => '75010',
+                'address' => 'Adresse : 18 Rue de Dunkerque (Gare du Nord)'
+            ],
+            [
+                'city' => 'Paris',
+                'postalCode' => '75571',
+                'address' => 'Place Louis-Armand (Gare de lyon)'
+            ]
+        ];
     }
 
     /**

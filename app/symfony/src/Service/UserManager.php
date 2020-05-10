@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class UserManager
@@ -14,17 +15,25 @@ class UserManager
     /** @var TokenGeneratorInterface */
     private $tokenGenerator;
     private $userRepository;
+    /** @var UserPasswordEncoderInterface */
+    private   $encoder;
+
 
     /**
      * UserManager constructor.
      * @param EntityManagerInterface $em
      * @param TokenGeneratorInterface $tokenGenerator
+     * @param UserPasswordEncoderInterface $encoder
      */
-    public function __construct(EntityManagerInterface $em, TokenGeneratorInterface $tokenGenerator)
+    public function __construct(
+        EntityManagerInterface $em,
+        TokenGeneratorInterface $tokenGenerator,
+        UserPasswordEncoderInterface $encoder)
     {
         $this->em = $em;
         $this->tokenGenerator = $tokenGenerator;
         $this->userRepository = $this->em->getRepository(User::class);
+        $this->encoder = $encoder;
     }
 
     /**
@@ -144,7 +153,7 @@ class UserManager
      * @param User $user
      * @return User|null
      */
-    public function updateUser(User $user): ?User
+    public function updateUser(User $user)
     {
         $this->em->flush();
     }
@@ -172,5 +181,13 @@ class UserManager
     public function generateToken()
     {
         return $this->tokenGenerator->generateToken();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function hasPassword(User $user){
+        $password = $this->encoder->encodePassword($user, $user->getPlainPassword());
+        $user->setPassword($password)->setPlainPassword($password);
     }
 }

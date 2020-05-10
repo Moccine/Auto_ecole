@@ -482,7 +482,7 @@
 }
 /* Funfact */
 .dark-wrapper .single-facts i {
-  color: #d0d0d0;
+  color: #000000;
 }
 .dark-wrapper .single-facts h1::before {
   background-color: #d0d0d0;
