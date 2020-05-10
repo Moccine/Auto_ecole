@@ -19,7 +19,7 @@ class MettingPointType extends AbstractType
                 EntityType::class,
                 [
                     'class' => MettingPoint::class,
-                    'label' => 'Choisir Point de rencontre',
+                    'label' => false,
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('m')
                             ->orderBy('m.address', 'ASC');
@@ -35,7 +35,7 @@ class MettingPointType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => MettingPoint::class,
         ]);
     }
 }

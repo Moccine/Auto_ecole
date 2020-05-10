@@ -1,56 +1,39 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-  {% include 'common/banner.html.twig'  with {
-    title: 'RESERVER UNE CONDUITE',
-    link: '#',
-    home: 'les moniteurs'
-  } %}
-  <div class="container-fluid bg-white">
-    <div class="row">
-      <div class="col-12">
+    {% include 'common/banner.html.twig'  with {
+        title: 'RESERVER UNE CONDUITE',
+        link: '#',
+        home: 'les moniteurs'
+    } %}
+    <div class="container-fluid bg-white">
         <div class="row">
-          <div class="col-sm 3 col-md-3 col-lg-2">
-            {% include 'blocks/sideMenu.html.twig' %}
-          </div>
-          <div class="col-sm-9 col-md-9 col-lg-10">
-            <div class="row">
-              <div class="col-12">
-                {% include 'blocks/title.block.html.twig' with {
-                  title:  'À partir de quel endroit aimeriez-vous conduire ? ',
-                  description: '10× moins cher qu’en auto-école traditionnelle !'
-                } %}
-              </div>
-              <div class="col-12">
-                {% for message in app.flashes('alert') %}
-                  <div class="flash-notice">
-                    <div class="alert  alert-danger" role="alert">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                      {{ message }}
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm 3 col-md-3 col-lg-2">
+                        {% include 'blocks/sideMenu.html.twig' %}
                     </div>
-                  </div>
-                {% endfor %}
-                <div id="course-area" class="course-area bg-white pt-90 pb-60">
-                  {{ form_start(form) }}
-                  <div class="col-6" style="color: black; padding-bottom: 20px">
-                    {{ form_label(form) }}
-                    {{ form_widget(form) }}
-                  </div>
-                  <div class="col-6">
-                    <button type="submit" class="btn btn-lg hover-black color">{{'app.common.save'|trans}}</button>
-                    {{ form_end(form) }}
-                  </div>
-                  <!-- Course Wrapper -->
+                    <div class="col-sm-9 col-md-9 col-lg-10">
+                        <div class="row">
+                            <div class="col-12">
+                                {% include 'blocks/title.block.html.twig' with {
+                                    title:  'À partir de quel endroit aimeriez-vous conduire ? ',
+                                    description: '10× moins cher qu’en auto-école traditionnelle !'
+                                } %}
+                            </div>
+                          <div class="col-sm-9 col-md-9 col-lg-6 offset-lg-3 text-center mb-15"
+                                {% include 'common/flasbag.html.twig' %}
+                                {{ form_start(form) }}
+                                {{ form_label(form.address) }}
+                                {{ form_row(form.address) }}
+                                <button type="submit" class="btn btn-lg hover-black color">{{ 'app.common.save'|trans }}</button>
+                                {{ form_end(form) }}
+                            <!-- Course Wrapper -->
+                        </div>
+                    </div>
                 </div>
-              </div>
-
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
 {% endblock %}
 

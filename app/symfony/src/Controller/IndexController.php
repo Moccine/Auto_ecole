@@ -13,6 +13,7 @@ class IndexController extends AbstractController
     /**
      * @Route("/", name="homepage", methods={"GET"})
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
@@ -22,10 +23,10 @@ class IndexController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $bestOffers = $em->getRepository(Shop::class)->findBy([
-            'priority' => 1
+            'priority' => Shop::BEST_OFFERS
         ]);
         $drivingCards = $em->getRepository(Shop::class)->findBy([
-            'priority' => 2
+            'priority' => Shop::DRIVING_CARD
         ]);
 
         return $this->render('default/index.html.twig', [

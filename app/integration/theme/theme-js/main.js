@@ -68,9 +68,9 @@ $('.mean-menu nav').meanmenu({
 	Hero Slider
 -----------------------------------*/
 $('#hero-slider').nivoSlider({
-	animSpeed: 500,
+	animSpeed: 100,
 	slices: 18,
-	pauseTime: 55557000,
+	pauseTime: 5555700,
 	pauseOnHover: true,
 	controlNav: true,
 	prevText: '<i class="icofont icofont-long-arrow-left"></i>',
