@@ -29,7 +29,7 @@ echo -e 'Database update'
 php bin/console doctrine:migrations:migrate
 
 #echo -e 'Fixture'
-#php bin/console doctrine:fixtures:load
+php bin/console doctrine:fixtures:load
 
 echo -e 'Installation of assets'
 php bin/console assets:install public
