@@ -1,8 +1,3 @@
 swiftmailer:
-  url: 'null://localhost'
+  url: '%env(MAILER_URL)%'
   spool: { type: 'memory' }
-  transport: 'smtp'
-  host: 'mailhog'
-  username: 'msow@kernix.com'
-  password: 'Kernix2018'
-  port: '1025'
