@@ -202,6 +202,10 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @Assert\Regex("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/",
+     * message="Huit caractères au minimum, au moins une lettre majuscule, une lettre minuscule et un chiffre:")
+     */
     private $plainPassword;
     /**
      * @ORM\Column(type="boolean")

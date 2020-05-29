@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DataFixtures;
 
 use App\Entity\MettingPoint;
@@ -20,24 +21,59 @@ class userFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('fr_FR');
+        $datas = $this->getDatas();
+        foreach ($datas as $data) {
             $user = $this->userManager->createUser();
             $role = User::ROLE_SUPER_ADMIN;
-            $user->setUsername('super_admin');
-            $user->setFirstName('Jerome');
-            $user->setLastName('Perroty');
-            $user->setEmail('super_admin@gmail.com');
-            $user->setBirthDate(new \DateTime('2004-01-01'));
-            $user->setZipCode(Address::postcode());
-            $user->setPhone('0770186890');
-            $user->setAddress($faker->streetAddress);
-            $user->setCity('Paris');
+            $user->setUsername($data['userName']);
+            $user->setFirstName($data['firstName']);
+            $user->setLastName($data['lastName']);
+            $user->setEmail($data['email']);
+            $user->setBirthDate($data['birthDate']);
+            $user->setZipCode($data['zipCode']);
+            $user->setPhone($data['phone']);
+            $user->setAddress($data['adresse']);
+            $user->setCity($data['city']);
             $user->setEnabled(true);
-            $user->setPlainPassword('colombes');
+            $user->setPlainPassword($data['plainPassword']);
             $user->setRole($role)->setConfirmationToken(null);
             $this->userManager->hasPassword($user);
             $manager->persist($user);
             $this->userManager->updateUser($user);
+        }
+
+    }
+
+    public function getDatas()
+    {
+        $faker = Factory::create('fr_FR');
+        return [
+            [
+                'userName' => 'super_admin',
+                'firstName' => 'Jerome',
+                'lastName' => 'Perroty',
+                'email' => 'super_admin@gmail.com',
+                'birthDate' => new \DateTime('2004-01-01'),
+                'zipCode' => Address::postcode(),
+                'phone' => '0770186890',
+                'adresse' => $faker->streetAddress,
+                'city' => $faker->city,
+                'plainPassword' => 'Colombes2020',
+            ],
+            [
+                'userName' => 'test_student',
+                'firstName' => 'Maxim',
+                'lastName' => 'Middle',
+                'email' => 'sow.mouctar@gmail.com',
+                'birthDate' => new \DateTime('2005-01-01'),
+                'zipCode' => Address::postcode(),
+                'phone' => '0770186894',
+                'adresse' => $faker->streetAddress,
+                'city' => $faker->city,
+                'plainPassword' => 'Colombes2020',
+            ]
+        ];
+
     }
 
     public function getOrder()

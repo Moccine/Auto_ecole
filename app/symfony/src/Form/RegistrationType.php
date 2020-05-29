@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationType extends AbstractType
 {
@@ -19,7 +20,7 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('username', null, [
-                'data' => 'Username',
+                // 'data' => 'Username',
                 'label' => 'security.login.first_name',
                 'constraints' => [
                     new NotBlank(),
@@ -27,7 +28,7 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('firstName', null, [
-                'data' => 'firstName',
+                //'data' => 'firstName',
                 'label' => 'security.login.first_name',
                 'constraints' => [
                     new NotBlank(),
@@ -35,7 +36,7 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('lastName', null, [
-                'data' => 'lastName',
+                //'data' => 'lastName',
                 'label' => 'security.login.last_name',
                 'constraints' => [
                     new NotBlank(),
@@ -52,7 +53,7 @@ class RegistrationType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('zipCode', null, [
-                'data' => '92700',
+                //'data' => '92700',
                 'label' => 'security.login.zip_code',
                 'constraints' => [
                     new NotBlank(),
@@ -63,11 +64,11 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('phone', null, [
-                'data' => '0770186892',
+                //'data' => '0770186892',
                 'label' => 'security.login.phone'
             ])
             ->add('city', null, [
-                'data' => 'Colombes',
+                //  'data' => 'Colombes',
                 'label' => 'security.login.city',
                 'constraints' => [
                     new NotBlank(),
@@ -77,7 +78,7 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('email', null, [
-                'data' => sprintf('mo%d@gmail.com', rand(1, 100)),
+                // 'data' => sprintf('mo%d@gmail.com', rand(1, 100)),
                 'label' => 'security.login.email',
                 'constraints' => [
                     new NotBlank(),
@@ -85,15 +86,14 @@ class RegistrationType extends AbstractType
                 ],
             ])
             ->add('address', null, [
-                'data' => '1 rue toto',
+                //'data' => '1 rue toto',
                 'label' => 'security.login.address'
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'constraints' => [
-                    new NotBlank(),
                     new Length([
-                        'min' => 8,
+                        'min' => 6,
                         'max' => 18,
                     ])
                 ],
@@ -106,6 +106,9 @@ class RegistrationType extends AbstractType
             ]);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -113,7 +116,9 @@ class RegistrationType extends AbstractType
         ]);
     }
 
-
+    /**
+     * @return string|null
+     */
     public function getBlockPrefix()
     {
         return 'app_user_registration';
