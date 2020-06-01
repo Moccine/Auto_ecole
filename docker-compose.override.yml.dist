@@ -1,11 +1,10 @@
+
 version: '3'
 
 services:
-  # Apache
   apache:
     ports:
       - "8000:80"
-
   # phpMyAdmin
   phpmyadmin:
     ports:
@@ -14,4 +13,5 @@ services:
     ports:
       - "3306:3306"
   mailhog:
-    - "1025:1025"
+    ports:
+      - "1025:1025"
