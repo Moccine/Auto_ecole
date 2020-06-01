@@ -957,4 +957,20 @@ class User implements UserInterface
 
         return $interval->y >=15;
     }
+
+
+    /**
+     * @param $boolean
+     * @return $this
+     */
+    public function setSuperAdmin($boolean)
+    {
+        if (true === $boolean) {
+            $this->addRole(static::ROLE_SUPER_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_SUPER_ADMIN);
+        }
+
+        return $this;
+    }
 }

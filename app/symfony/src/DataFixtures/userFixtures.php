@@ -24,7 +24,6 @@ class userFixtures extends Fixture
         $datas = $this->getDatas();
         foreach ($datas as $data) {
             $user = $this->userManager->createUser();
-            $role = User::ROLE_SUPER_ADMIN;
             $user->setUsername($data['userName']);
             $user->setFirstName($data['firstName']);
             $user->setLastName($data['lastName']);
@@ -36,7 +35,7 @@ class userFixtures extends Fixture
             $user->setCity($data['city']);
             $user->setEnabled(true);
             $user->setPlainPassword($data['plainPassword']);
-            $user->setRole($role)->setConfirmationToken(null);
+            $user->setRole($data['rôle'])->setConfirmationToken(null);
             $this->userManager->hasPassword($user);
             $manager->persist($user);
             $this->userManager->updateUser($user);
@@ -49,7 +48,8 @@ class userFixtures extends Fixture
         $faker = Factory::create('fr_FR');
         return [
             [
-                'userName' => 'super_admin',
+                'rôle' => User::ROLE_SUPER_ADMIN,
+                 'userName' => 'super_admin',
                 'firstName' => 'Jerome',
                 'lastName' => 'Perroty',
                 'email' => 'super_admin@gmail.com',
@@ -61,10 +61,11 @@ class userFixtures extends Fixture
                 'plainPassword' => 'Colombes2020',
             ],
             [
+                'rôle' => User::ROLE_DRIVING_STUDENT,
                 'userName' => 'test_student',
                 'firstName' => 'Maxim',
                 'lastName' => 'Middle',
-                'email' => 'sow.mouctar@gmail.com',
+                'email' => 'student_test@gmail.com',
                 'birthDate' => new \DateTime('2005-01-01'),
                 'zipCode' => Address::postcode(),
                 'phone' => '0770186894',
