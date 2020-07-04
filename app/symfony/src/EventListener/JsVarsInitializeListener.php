@@ -63,6 +63,7 @@ class JsVarsInitializeListener
         $this->jsVars->addRoute('remove_package_course', ['card_id' => '__card_id__', 'credit_id' => '__credit_id__']);
         $this->jsVars->addRoute('admin_activate_form_user', ['id' => '__id__']);
         $this->jsVars->addRoute('admin_activate_user', ['id' => '__id__']);
+        $this->jsVars->addRoute('search_instructor', ['id' => '__id__']);
 
         //API
     }

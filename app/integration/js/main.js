@@ -7,6 +7,7 @@ import './checkout'
 import './packageCourse';
 import './addUnityCourse';
 import './admin';
+import './searchIntructor';
 
 const {getRoute, httpRequest, trans} = require('./common');
 const $mettingPoint = $(".instructor");
